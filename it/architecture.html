@@ -1,0 +1,158 @@
+---
+layout: default
+title: "Architettura di Sistema"
+lang: it
+permalink: /it/architecture/
+---
+
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 overflow-hidden bg-grid-pattern border-b border-gray-200 dark:border-white/10">
+    <div class="absolute inset-0 bg-white/90 dark:bg-brand-dark/90 transition-colors"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-purple/10 border-l-2 border-brand-purple text-brand-purple text-xs font-mono font-bold uppercase mb-6">
+                SYS_ARCH // VER_2.0
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black font-display mb-6 text-gray-900 dark:text-white uppercase tracking-tighter">
+                La Sala <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-pink">Macchine.</span>
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400 font-mono text-sm leading-relaxed">
+                CryptoQuantix non è solo un semplice script; è un ecosistema quantitativo modulare, containerizzato e testato in battaglia. Scopri il Tech Stack che alimenta la nostra esecuzione Macro-Ciclica.
+            </p>
+        </div>
+
+        <!-- Architecture Image -->
+        <div class="rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10 mb-20 relative group">
+            <img src="/assets/images/architecture/system_architecture.png" alt="Architettura di Sistema" class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+                <p class="text-white/80 font-mono text-xs uppercase tracking-widest">Fig 1. Topologia dei Nodi ad Alto Livello</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tech Stack Section -->
+<section class="py-24 bg-gray-50 dark:bg-brand-surface transition-colors border-b border-gray-200 dark:border-white/10">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl font-black font-display mb-16 text-center text-gray-900 dark:text-white uppercase tracking-tighter">Tecnologie Core</h2>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Polars -->
+            <div class="bg-white dark:bg-brand-dark p-8 rounded-3xl border border-gray-200 dark:border-white/10 hover:border-brand-purple transition-all group">
+                <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-database text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Polars & Pandas</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Per i backtest walk-forward, il tradizionale Pandas era troppo lento. Abbiamo migrato l'enorme pipeline di ingestione dei dati tick-level su <strong>Polars</strong> (scritto in Rust) per manipolazioni dei DataFrame iperveloci, abbattendo i tempi di elaborazione dell'85%.
+                </p>
+            </div>
+            <!-- Docker -->
+            <div class="bg-white dark:bg-brand-dark p-8 rounded-3xl border border-gray-200 dark:border-white/10 hover:brand-pink transition-all group">
+                <div class="w-14 h-14 bg-brand-pink/10 rounded-2xl flex items-center justify-center text-brand-pink mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fab fa-docker text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Docker Swarm</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Il Motore di Rischio, i Feed Dati e i Moduli Strategia operano in container Docker rigorosamente isolati. Se il feed WebSocket subisce un crash, viene riavviato indipendentemente senza intaccare lo stato vitale del Risk Engine, assicurando il 99.99% di uptime.
+                </p>
+            </div>
+            <!-- Asyncio -->
+            <div class="bg-white dark:bg-brand-dark p-8 rounded-3xl border border-gray-200 dark:border-white/10 hover:border-brand-purple transition-all group">
+                <div class="w-14 h-14 bg-yellow-500/10 rounded-2xl flex items-center justify-center text-yellow-500 mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fab fa-python text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Pipeline Asyncio</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Costruito interamente nativo su Python 3.12 <code>asyncio</code>. Gli ordini di esecuzione vengono inviati parallelamente su molteplici exchange senza mai bloccare il main event loop, minimizzando lo slippage temporale durante i breakout volatili.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Deep Dive: Code Snippets -->
+<section class="py-24 bg-white dark:bg-brand-dark transition-colors">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-pink/10 border-l-2 border-brand-pink text-brand-pink text-xs font-mono font-bold uppercase mb-6">
+                    RISK_DAEMON // V1.0
+                </div>
+                <h2 class="text-4xl font-black font-display mb-6 text-gray-900 dark:text-white uppercase tracking-tighter">Il Demone Kill Switch.</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-6">
+                    Il nostro Protocollo di Rischio di grado istituzionale è totalmente disaccoppiato dalla logica strategica. Agisce come un "demone" di background sempre in ascolto, che monitora l'equità globale del portafoglio.
+                </p>
+                <p class="text-gray-600 dark:text-gray-400 mb-6">
+                    Se il Drawdown in una finestra mobile di 24 ore supera il 3.0%, il demone rileva un'anomalia algoritmica o un "flash crash". Scavalca istantaneamente il motore delle strategie, liquida a mercato ogni posizione aperta, cancella tutti gli ordini limite pendenti e si spegne del tutto.
+                </p>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3 text-gray-900 dark:text-white font-medium">
+                        <i class="fas fa-shield-alt text-brand-purple"></i> Protegge dai Disservizi dell'Exchange
+                    </li>
+                    <li class="flex items-center gap-3 text-gray-900 dark:text-white font-medium">
+                        <i class="fas fa-bolt text-brand-pink"></i> Mitiga i Flash Crash Assoluti
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Code Block UI -->
+            <div class="relative bg-[#0d1117] rounded-2xl overflow-hidden border border-gray-800 shadow-2xl">
+                <div class="flex items-center gap-2 px-4 py-3 bg-[#161b22] border-b border-gray-800">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="ml-4 text-xs text-gray-500 font-mono">risk_daemon.py</span>
+                </div>
+                <div class="p-6 overflow-x-auto text-sm font-mono leading-relaxed text-gray-300">
+<pre><code><span class="text-brand-pink">async def</span> <span class="text-blue-400">monitor_global_drawdown</span>(portfolio):
+    <span class="text-gray-500"># Calcola in continuo la rolling equity a 24h</span>
+    <span class="text-brand-pink">while</span> <span class="text-brand-purple">True</span>:
+        equity = <span class="text-brand-pink">await</span> portfolio.get_live_equity()
+        peak = portfolio.get_rolling_peak(window=<span class="text-green-400">24</span>)
+        drawdown = (peak - equity) / peak
+
+        <span class="text-brand-pink">if</span> drawdown >= <span class="text-green-400">0.03</span>: <span class="text-gray-500"># Soglia del 3% violata</span>
+            logger.critical(<span class="text-yellow-300">"KILL SWITCH ACTIVATED: 3% DD"</span>)
+            
+            <span class="text-brand-pink">await</span> portfolio.cancel_all_orders()
+            <span class="text-brand-pink">await</span> portfolio.flatten_all_positions(type=<span class="text-yellow-300">'MARKET'</span>)
+            
+            <span class="text-gray-500"># Invia allarme critico su Telegram</span>
+            <span class="text-brand-pink">await</span> telegram_alert.send_critical_panic()
+            
+            <span class="text-brand-pink">raise</span> SystemExit(<span class="text-yellow-300">"Sistema Arrestato dal Risk Daemon."</span>)
+            
+        <span class="text-brand-pink">await</span> asyncio.sleep(<span class="text-green-400">1</span>) <span class="text-gray-500"># Risoluzione a 1 secondo</span></code></pre>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-32 bg-gray-900 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+    <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <h2 class="text-5xl md:text-6xl font-black font-display mb-6 text-white uppercase tracking-tighter">
+            Fork The <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-pink">Architecture.</span>
+        </h2>
+        <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+            L'intera infrastruttura di backend, dalla matrice di backtest in Polars fino ai consumer WebSocket asincroni, è open-source. Studiala, estendila o implementala nella tua farm di server locali.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://github.com/CryptoQuantix/CryptoQuantix" target="_blank"
+                class="px-8 py-4 bg-white text-gray-900 font-bold rounded-full hover:scale-105 transition-transform flex items-center justify-center gap-3">
+                <i class="fab fa-github text-xl"></i>
+                Guarda il Sorgente
+            </a>
+            <a href="/it/blog/"
+                class="px-8 py-4 border border-white/20 text-white font-bold rounded-full hover:bg-white/10 transition-all flex items-center justify-center gap-3">
+                Leggi il Blog Tecnico
+            </a>
+        </div>
+    </div>
+</section>

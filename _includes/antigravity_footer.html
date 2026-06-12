@@ -56,21 +56,21 @@
                     %}Prodotto{% else %}Product{% endif %}</h4>
                 <ul class="space-y-3 text-sm text-gray-500">
                     <li>
-                        <a href="{% if page.lang == 'it' %}/it/how-it-works/{% else %}/en/how-it-works/{% endif %}"
+                        <a href="{% if page.lang == 'it' %}/it/about/{% else %}/en/about/{% endif %}"
                             class="hover:text-brand-purple transition-colors">
-                            {% if page.lang == 'it' %}Come Funziona{% else %}How it Works{% endif %}
+                            {% if page.lang == 'it' %}Chi Siamo{% else %}About Us{% endif %}
                         </a>
                     </li>
                     <li>
-                        <a href="{% if page.lang == 'it' %}/it/features/{% else %}/en/features/{% endif %}"
+                        <a href="{% if page.lang == 'it' %}/it/strategies/{% else %}/en/strategies/{% endif %}"
                             class="hover:text-brand-purple transition-colors">
-                            {% if page.lang == 'it' %}Funzionalità{% else %}Features{% endif %}
+                            {% if page.lang == 'it' %}Strategie{% else %}Strategies{% endif %}
                         </a>
                     </li>
                     <li>
-                        <a href="{% if page.lang == 'it' %}/it/use-cases/{% else %}/en/use-cases/{% endif %}"
+                        <a href="{% if page.lang == 'it' %}/it/architecture/{% else %}/en/architecture/{% endif %}"
                             class="hover:text-brand-purple transition-colors">
-                            {% if page.lang == 'it' %}Casi d'Uso{% else %}Use Cases{% endif %}
+                            {% if page.lang == 'it' %}Architettura{% else %}Architecture{% endif %}
                         </a>
                     </li>
                     <li>
@@ -89,12 +89,6 @@
                             GitHub Repo
                         </a>
                     </li>
-                    <li>
-                        <a href="https://cryptoquantix.github.io/docs" target="_blank" rel="noopener"
-                            class="hover:text-brand-purple transition-colors">
-                            {% if page.lang == 'it' %}Documentazione{% else %}Documentation{% endif %}
-                        </a>
-                    </li>
                 </ul>
             </div>
             <div>
@@ -110,10 +104,6 @@
                             class="hover:text-brand-purple transition-colors">
                             {% if page.lang == 'it' %}Disclaimer Legale{% else %}Legal Disclaimer{% endif %}
                         </a>
-                    </li>
-                    <li>
-                        <a href="{% if page.lang == 'it' %}/it/privacy/{% else %}/en/privacy/{% endif %}"
-                            class="hover:text-brand-purple transition-colors">Privacy</a>
                     </li>
                 </ul>
             </div>

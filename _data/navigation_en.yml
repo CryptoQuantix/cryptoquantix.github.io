@@ -2,6 +2,8 @@
   url: "/en/about/"
 - title: "Strategies"
   url: "/en/strategies/"
+- title: "Architecture"
+  url: "/en/architecture/"
 - title: "Blog"
   url: "/en/blog/"
 - title: "GitHub"
