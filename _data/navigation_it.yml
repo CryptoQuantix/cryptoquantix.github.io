@@ -4,6 +4,8 @@
   url: "/it/strategies/"
 - title: "Architettura"
   url: "/it/architecture/"
+- title: "Docs"
+  url: "https://cryptoquantix.github.io/docs/"
 - title: "Blog"
   url: "/it/blog/"
 - title: "GitHub"
