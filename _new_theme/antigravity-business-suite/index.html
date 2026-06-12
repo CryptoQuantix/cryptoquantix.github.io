@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>Antigravity Business Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+              display: ['Inter', 'system-ui', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                black: '#202124',
+                blue: '#4285F4',
+                red: '#EA4335',
+                yellow: '#FBBC04',
+                green: '#34A853',
+                gray: '#F1F3F4',
+                surface: '#F8F9FA',
+                dark: '#171717',
+                // Dark mode specific palettes
+                darkbg: '#0a0a0a',
+                darksurface: '#171717'
+              }
+            },
+            borderRadius: {
+              'pill': '9999px',
+              'xl': '1.5rem',
+              '2xl': '2rem',
+              '3xl': '3rem',
+              '4xl': '4rem',
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'float-delayed': 'float 6s ease-in-out 3s infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'marquee': 'marquee 25s linear infinite',
+            },
+            keyframes: {
+              marquee: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-100%)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      
+      /* Scroll Reveal Classes */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Staggered delays */
+      .delay-100 { transition-delay: 100ms; }
+      .delay-200 { transition-delay: 200ms; }
+      .delay-300 { transition-delay: 300ms; }
+      .delay-400 { transition-delay: 400ms; }
+
+      /* Custom Animations */
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+      }
+      .animate-float { animation: float 6s ease-in-out infinite; }
+      .animate-float-delayed { animation: float 6s ease-in-out 3s infinite; }
+      
+      /* Accordion Styles */
+      details > summary {
+        list-style: none;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+      details[open] summary ~ * {
+        animation: sweep .3s ease-in-out;
+      }
+      @keyframes sweep {
+        0%    {opacity: 0; transform: translateY(-10px)}
+        100%  {opacity: 1; transform: translateY(0)}
+      }
+
+      .loading-dots:after {
+        content: '.';
+        animation: dots 1.5s steps(5, end) infinite;
+      }
+      @keyframes dots {
+        0%, 20% { content: '.'; }
+        40% { content: '..'; }
+        60% { content: '...'; }
+        80%, 100% { content: ''; }
+      }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "matter-js": "https://aistudiocdn.com/matter-js@^0.20.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="overflow-x-hidden selection:bg-brand-blue selection:text-white bg-white dark:bg-neutral-950 text-brand-black dark:text-white transition-colors duration-300">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-xl border-b border-gray-100 dark:border-white/5 transition-all duration-300" id="navbar">
+      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-full bg-black dark:bg-white group-hover:bg-brand-blue dark:group-hover:bg-brand-blue transition-colors duration-300 relative overflow-hidden flex items-center justify-center">
+             <div class="w-3 h-3 bg-white dark:bg-black rounded-full"></div>
+          </div>
+          <span class="font-bold text-xl tracking-tight">Antigravity<span class="text-gray-400 font-normal">.biz</span></span>
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-2">
+          <a href="#services" class="px-5 py-2 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 hover:text-black dark:hover:text-white transition-all">Services</a>
+          <a href="#features" class="px-5 py-2 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 hover:text-black dark:hover:text-white transition-all">Features</a>
+          <a href="#ai-tools" class="px-5 py-2 rounded-full text-sm font-medium text-brand-blue bg-brand-blue/5 dark:bg-brand-blue/20 hover:bg-brand-blue/10 dark:hover:bg-brand-blue/30 transition-all">AI Tools</a>
+          <a href="#pricing" class="px-5 py-2 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 hover:text-black dark:hover:text-white transition-all">Pricing</a>
+          
+          <!-- Theme Toggle Desktop -->
+          <button id="theme-toggle" class="ml-2 w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors text-gray-600 dark:text-gray-300">
+             <!-- Sun (Show in Dark) -->
+             <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+             <!-- Moon (Show in Light) -->
+             <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          </button>
+
+          <a href="#contact" class="ml-2 px-6 py-2.5 rounded-full bg-black dark:bg-white text-white dark:text-black text-sm font-medium hover:bg-brand-blue dark:hover:bg-brand-blue dark:hover:text-white hover:-translate-y-0.5 transition-all duration-300 shadow-xl shadow-black/10 dark:shadow-white/5">Get Started</a>
+        </div>
+
+        <!-- Mobile Toggle & Menu Btn -->
+        <div class="flex items-center gap-2 md:hidden">
+            <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors text-gray-600 dark:text-gray-300">
+                 <!-- Sun -->
+                 <svg class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                 <!-- Moon -->
+                 <svg class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            </button>
+            <button id="mobile-menu-btn" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-white dark:bg-neutral-900 border-b border-gray-100 dark:border-white/10 p-6 flex-col gap-4 shadow-2xl z-40 transition-colors">
+        <a href="#services" class="text-lg font-medium p-2 hover:bg-gray-50 dark:hover:bg-white/5 rounded-lg">Services</a>
+        <a href="#features" class="text-lg font-medium p-2 hover:bg-gray-50 dark:hover:bg-white/5 rounded-lg">Features</a>
+        <a href="#pricing" class="text-lg font-medium p-2 hover:bg-gray-50 dark:hover:bg-white/5 rounded-lg">Pricing</a>
+        <a href="#ai-tools" class="text-lg font-medium p-2 text-brand-blue hover:bg-brand-blue/5 rounded-lg">AI Tools</a>
+        <a href="#contact" class="px-6 py-4 rounded-full bg-black dark:bg-white text-white dark:text-black text-center font-bold">Get Started</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 overflow-hidden min-h-[90vh] flex flex-col justify-center">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        
+        <div class="relative z-10 reveal active">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100 dark:bg-white/10 border border-transparent dark:border-white/10 text-xs font-bold tracking-wide uppercase mb-8 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors cursor-default">
+            <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
+            System Operational
+          </div>
+          <h1 class="text-6xl lg:text-8xl font-black tracking-tighter leading-[1.05] mb-8">
+            Think outside <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-brand-red to-brand-yellow">the orbit.</span>
+          </h1>
+          <p class="text-xl text-gray-500 dark:text-gray-400 mb-10 max-w-lg leading-relaxed font-light">
+            We build digital infrastructures that defy gravity. Scalable, beautiful, and powered by intelligent logic.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#contact" class="px-10 py-5 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold hover:bg-brand-blue dark:hover:bg-brand-blue dark:hover:text-white hover:scale-105 transition-all duration-300 text-lg shadow-xl shadow-brand-blue/20">
+              Start Building
+            </a>
+            <a href="#ai-tools" class="px-10 py-5 rounded-full border border-gray-200 dark:border-white/20 font-bold hover:border-black dark:hover:border-white hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-lg bg-white dark:bg-transparent flex items-center gap-2 group">
+              <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+              Try AI Tools
+            </a>
+          </div>
+        </div>
+
+        <!-- Decorative Visuals -->
+        <div class="relative h-[400px] lg:h-[600px] flex items-center justify-center select-none pointer-events-none reveal delay-200">
+          <!-- Background Orbit -->
+          <div class="absolute w-[600px] h-[600px] border border-gray-100 dark:border-white/5 rounded-full animate-[spin_60s_linear_infinite]">
+             <div class="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-gray-200 dark:bg-neutral-800 rounded-full"></div>
+             <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-8 bg-brand-gray dark:bg-neutral-800 rounded-full"></div>
+          </div>
+          
+          <!-- Floating Pills -->
+          <div class="relative z-10">
+             <div class="absolute -top-20 -left-20 w-32 h-32 rounded-full bg-brand-yellow/10 dark:bg-brand-yellow/20 animate-float backdrop-blur-sm"></div>
+             <div class="absolute -bottom-32 -right-10 w-48 h-48 rounded-full bg-brand-blue/5 dark:bg-brand-blue/10 animate-float-delayed backdrop-blur-sm"></div>
+             
+             <!-- Card Stack -->
+             <div class="relative w-80 h-96">
+                <div class="absolute inset-0 bg-gray-100 dark:bg-white/5 rounded-[2.5rem] rotate-[-6deg] opacity-60 scale-90 translate-y-4"></div>
+                <div class="absolute inset-0 bg-gray-200 dark:bg-white/10 rounded-[2.5rem] rotate-[-3deg] opacity-80 scale-95 translate-y-2"></div>
+                <div class="absolute inset-0 bg-white dark:bg-neutral-900 rounded-[2.5rem] shadow-2xl flex flex-col p-8 justify-between border border-gray-50 dark:border-white/10 animate-float">
+                   <div class="flex justify-between items-center">
+                     <div class="w-12 h-12 bg-black dark:bg-white rounded-full flex items-center justify-center text-white dark:text-black font-bold">Ag</div>
+                     <div class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-xs font-bold">+245%</div>
+                   </div>
+                   <div>
+                     <div class="h-2 w-full bg-gray-100 dark:bg-white/10 rounded-full mb-3 overflow-hidden"><div class="h-full w-2/3 bg-brand-blue"></div></div>
+                     <div class="h-2 w-full bg-gray-100 dark:bg-white/10 rounded-full mb-8 overflow-hidden"><div class="h-full w-1/3 bg-brand-red"></div></div>
+                     <h3 class="text-3xl font-black mb-1">Growth</h3>
+                     <p class="text-gray-400 text-sm">Automated scaling enabled.</p>
+                   </div>
+                </div>
+             </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Logo Cloud (Trusted By) -->
+    <section class="py-12 border-y border-gray-100 dark:border-white/5 bg-brand-surface/50 dark:bg-neutral-900/30 overflow-hidden transition-colors">
+      <div class="max-w-7xl mx-auto px-6">
+        <p class="text-center text-sm font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-8">Trusted by industry leaders</p>
+        <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60 dark:opacity-40 grayscale hover:grayscale-0 dark:hover:grayscale-0 dark:invert transition-all duration-500">
+           <!-- Logo 1 -->
+           <div class="flex items-center gap-2 font-black text-xl group">
+             <div class="w-8 h-8 bg-black rounded-lg"></div> ACME Corp
+           </div>
+           <!-- Logo 2 -->
+           <div class="flex items-center gap-2 font-black text-xl group">
+             <div class="w-8 h-8 bg-brand-blue rounded-full"></div> Globex
+           </div>
+           <!-- Logo 3 -->
+           <div class="flex items-center gap-2 font-black text-xl group">
+             <div class="w-8 h-8 bg-brand-red rounded-tr-xl rounded-bl-xl"></div> Initech
+           </div>
+           <!-- Logo 4 -->
+           <div class="flex items-center gap-2 font-black text-xl group">
+             <div class="w-8 h-8 bg-brand-yellow rounded-full border-4 border-black box-border"></div> Soylent
+           </div>
+           <!-- Logo 5 -->
+           <div class="flex items-center gap-2 font-black text-xl group">
+             <div class="w-8 h-8 bg-brand-green rounded-lg rotate-45"></div> Umbrella
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-brand-black dark:bg-black text-white reveal">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          <div class="text-center group">
+            <h3 class="text-5xl md:text-6xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500 group-hover:to-white transition-all">10M+</h3>
+            <p class="text-gray-500 font-medium tracking-wide text-sm uppercase">Daily Requests</p>
+          </div>
+          <div class="text-center group">
+            <h3 class="text-5xl md:text-6xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500 group-hover:to-white transition-all">99.9%</h3>
+            <p class="text-gray-500 font-medium tracking-wide text-sm uppercase">Uptime Guarantee</p>
+          </div>
+          <div class="text-center group">
+            <h3 class="text-5xl md:text-6xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500 group-hover:to-white transition-all">150+</h3>
+            <p class="text-gray-500 font-medium tracking-wide text-sm uppercase">Countries Served</p>
+          </div>
+          <div class="text-center group">
+            <h3 class="text-5xl md:text-6xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500 group-hover:to-white transition-all">24/7</h3>
+            <p class="text-gray-500 font-medium tracking-wide text-sm uppercase">AI Support</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-32 px-6 bg-brand-surface dark:bg-neutral-900 transition-colors">
+      <div class="max-w-7xl mx-auto">
+        <div class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6 reveal">
+          <div class="max-w-2xl">
+            <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-6">Core Capabilities.</h2>
+            <p class="text-xl text-gray-500 dark:text-gray-400">We strip away the unnecessary to focus on what drives value. Pure function, elegant form.</p>
+          </div>
+          <a href="#" class="inline-flex items-center font-bold border-b-2 border-black dark:border-white pb-1 hover:text-brand-blue dark:hover:text-brand-blue hover:border-brand-blue dark:hover:border-brand-blue transition-colors">
+            View all services <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div class="group p-10 rounded-[2.5rem] bg-white dark:bg-neutral-800/50 dark:hover:bg-neutral-800 hover:bg-black hover:text-white transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl reveal delay-100 border border-gray-100 dark:border-white/5 hover:border-transparent">
+            <div class="w-16 h-16 rounded-2xl bg-gray-50 dark:bg-white/10 border border-gray-100 dark:border-white/5 flex items-center justify-center mb-8 group-hover:bg-brand-blue group-hover:border-transparent transition-colors">
+              <svg class="w-8 h-8 text-black dark:text-white group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Digital Velocity</h3>
+            <p class="text-gray-500 dark:text-gray-400 group-hover:text-gray-300 leading-relaxed text-lg">
+              Accelerate your go-to-market with our rapid prototyping and deployment frameworks.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="group p-10 rounded-[2.5rem] bg-white dark:bg-neutral-800/50 dark:hover:bg-neutral-800 hover:bg-black hover:text-white transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl reveal delay-200 border border-gray-100 dark:border-white/5 hover:border-transparent">
+            <div class="w-16 h-16 rounded-2xl bg-gray-50 dark:bg-white/10 border border-gray-100 dark:border-white/5 flex items-center justify-center mb-8 group-hover:bg-brand-red group-hover:border-transparent transition-colors">
+              <svg class="w-8 h-8 text-black dark:text-white group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Strategic Gravity</h3>
+            <p class="text-gray-500 dark:text-gray-400 group-hover:text-gray-300 leading-relaxed text-lg">
+              Ground your decisions in data. We provide the architectural solidity your business needs.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="group p-10 rounded-[2.5rem] bg-white dark:bg-neutral-800/50 dark:hover:bg-neutral-800 hover:bg-black hover:text-white transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl reveal delay-300 border border-gray-100 dark:border-white/5 hover:border-transparent">
+            <div class="w-16 h-16 rounded-2xl bg-gray-50 dark:bg-white/10 border border-gray-100 dark:border-white/5 flex items-center justify-center mb-8 group-hover:bg-brand-yellow group-hover:border-transparent transition-colors">
+              <svg class="w-8 h-8 text-black dark:text-white group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Adaptive Scale</h3>
+            <p class="text-gray-500 dark:text-gray-400 group-hover:text-gray-300 leading-relaxed text-lg">
+              Systems that grow with you. Modular, flexible, and ready for whatever the market throws next.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Feature Split Section 1 -->
+    <section id="features" class="py-32 px-6 bg-white dark:bg-neutral-950 overflow-hidden transition-colors">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Text -->
+        <div class="reveal">
+          <div class="inline-block px-4 py-1.5 rounded-full bg-brand-blue/10 dark:bg-brand-blue/20 text-brand-blue dark:text-blue-400 text-xs font-bold tracking-wide uppercase mb-6">Analytics Engine</div>
+          <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-6 leading-tight">Data that speaks your language.</h2>
+          <p class="text-xl text-gray-500 dark:text-gray-400 mb-8">Forget complex dashboards. We provide insights that are actionable immediately. Real-time tracking with zero latency.</p>
+          
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center gap-3 text-lg font-medium">
+              <span class="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 flex items-center justify-center text-sm">✓</span>
+              Real-time user tracking
+            </li>
+            <li class="flex items-center gap-3 text-lg font-medium">
+              <span class="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 flex items-center justify-center text-sm">✓</span>
+              Predictive behavior models
+            </li>
+            <li class="flex items-center gap-3 text-lg font-medium">
+              <span class="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 flex items-center justify-center text-sm">✓</span>
+              Automated reporting
+            </li>
+          </ul>
+
+          <button class="px-8 py-4 rounded-full border-2 border-black dark:border-white font-bold hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors">Learn more about Data</button>
+        </div>
+        <!-- Image/Visual -->
+        <div class="relative h-[500px] bg-gray-100 dark:bg-neutral-900 rounded-[3rem] reveal delay-200 overflow-hidden group border border-transparent dark:border-white/5">
+           <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-200 dark:from-neutral-900 dark:to-neutral-800"></div>
+           <!-- Abstract UI representation -->
+           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-white dark:bg-neutral-950 rounded-2xl shadow-2xl p-6 flex flex-col gap-4 transition-transform duration-700 group-hover:scale-105 border border-transparent dark:border-white/5">
+              <div class="flex justify-between items-center pb-4 border-b border-gray-100 dark:border-white/5">
+                 <div class="h-4 w-24 bg-gray-200 dark:bg-white/10 rounded-full"></div>
+                 <div class="h-8 w-8 rounded-full bg-brand-blue/20"></div>
+              </div>
+              <div class="flex gap-2 items-end h-32 mt-4">
+                 <div class="w-1/5 bg-brand-blue/20 h-[40%] rounded-t-lg"></div>
+                 <div class="w-1/5 bg-brand-blue/40 h-[60%] rounded-t-lg"></div>
+                 <div class="w-1/5 bg-brand-blue/60 h-[30%] rounded-t-lg"></div>
+                 <div class="w-1/5 bg-brand-blue h-[80%] rounded-t-lg relative">
+                    <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black dark:bg-white text-white dark:text-black text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">+80%</div>
+                 </div>
+                 <div class="w-1/5 bg-brand-blue/30 h-[50%] rounded-t-lg"></div>
+              </div>
+              <div class="space-y-2 mt-4">
+                 <div class="h-3 w-full bg-gray-100 dark:bg-white/10 rounded-full"></div>
+                 <div class="h-3 w-2/3 bg-gray-100 dark:bg-white/10 rounded-full"></div>
+              </div>
+           </div>
+           
+           <!-- Floating Badge -->
+           <div class="absolute bottom-10 right-10 bg-white dark:bg-neutral-800 border border-transparent dark:border-white/10 px-6 py-3 rounded-xl shadow-xl flex items-center gap-3 animate-float-delayed">
+              <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+              <span class="font-bold text-sm">Live Sync Active</span>
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Feature Split Section 2 -->
+    <section class="py-32 px-6 bg-brand-surface dark:bg-neutral-900 overflow-hidden transition-colors">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Image/Visual -->
+        <div class="order-2 lg:order-1 relative h-[500px] bg-black rounded-[3rem] reveal overflow-hidden border border-gray-800">
+            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-700 to-black"></div>
+             <!-- Floating Elements -->
+             <div class="absolute inset-0 flex items-center justify-center">
+                <div class="relative w-64 h-64 rounded-full border border-gray-700 animate-[spin_10s_linear_infinite]">
+                   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-blue rounded-full shadow-[0_0_20px_rgba(66,133,244,0.8)]"></div>
+                </div>
+                <div class="absolute w-48 h-48 rounded-full border border-gray-700 animate-[spin_15s_linear_infinite_reverse]">
+                   <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-red rounded-full shadow-[0_0_20px_rgba(234,67,53,0.8)]"></div>
+                </div>
+                <div class="absolute z-10 text-white font-black text-5xl tracking-tighter">CORE</div>
+             </div>
+        </div>
+
+        <!-- Text -->
+        <div class="order-1 lg:order-2 reveal delay-200">
+          <div class="inline-block px-4 py-1.5 rounded-full bg-brand-red/10 dark:bg-brand-red/20 text-brand-red dark:text-red-400 text-xs font-bold tracking-wide uppercase mb-6">Infrastructure</div>
+          <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-6 leading-tight">Built for extreme scale.</h2>
+          <p class="text-xl text-gray-500 dark:text-gray-400 mb-8">Our systems are designed to handle millions of concurrent connections without breaking a sweat. Elasticity is built-in.</p>
+          
+          <div class="grid grid-cols-2 gap-6 mb-8">
+             <div class="p-4 bg-white dark:bg-neutral-800 rounded-2xl shadow-sm border border-transparent dark:border-white/5">
+                <div class="font-bold text-2xl mb-1">99.99%</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">Uptime SLA</div>
+             </div>
+             <div class="p-4 bg-white dark:bg-neutral-800 rounded-2xl shadow-sm border border-transparent dark:border-white/5">
+                <div class="font-bold text-2xl mb-1">50ms</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">Global Latency</div>
+             </div>
+          </div>
+
+          <button class="px-8 py-4 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold hover:bg-brand-blue dark:hover:bg-brand-blue dark:hover:text-white hover:shadow-lg transition-all">Explore Infrastructure</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-32 px-6 bg-white dark:bg-neutral-950 overflow-hidden transition-colors">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <span class="inline-block px-4 py-1.5 rounded-full border border-gray-200 dark:border-white/10 text-xs font-bold tracking-wide uppercase mb-6 text-gray-400">Workflow</span>
+                <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-6">How we operate.</h2>
+                <p class="text-xl text-gray-500 dark:text-gray-400">A simplified pathway to complex results.</p>
+            </div>
+
+            <div class="relative">
+                <!-- Connecting Line (Desktop) -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-100 dark:bg-white/5 -translate-y-1/2 z-0"></div>
+
+                <div class="grid md:grid-cols-3 gap-12 relative z-10">
+                    <!-- Step 1 -->
+                    <div class="bg-white dark:bg-neutral-900 border border-transparent dark:border-white/5 p-6 reveal delay-100 rounded-[2rem] shadow-sm">
+                        <div class="w-20 h-20 bg-black dark:bg-white text-white dark:text-black rounded-[2rem] flex items-center justify-center text-3xl font-black mb-6 mx-auto shadow-xl shadow-brand-blue/20 rotate-3 transform hover:rotate-0 transition-all">1</div>
+                        <h3 class="text-2xl font-bold text-center mb-4">Discovery</h3>
+                        <p class="text-center text-gray-500 dark:text-gray-400">We analyze your trajectory and identify friction points in your current orbit.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="bg-white dark:bg-neutral-900 border border-transparent dark:border-white/5 p-6 reveal delay-200 rounded-[2rem] shadow-sm">
+                         <div class="w-20 h-20 bg-brand-blue text-white rounded-[2rem] flex items-center justify-center text-3xl font-black mb-6 mx-auto shadow-xl shadow-brand-blue/20 -rotate-3 transform hover:rotate-0 transition-all">2</div>
+                        <h3 class="text-2xl font-bold text-center mb-4">Execution</h3>
+                        <p class="text-center text-gray-500 dark:text-gray-400">Rapid deployment of assets using agile methodology and precision engineering.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="bg-white dark:bg-neutral-900 border border-transparent dark:border-white/5 p-6 reveal delay-300 rounded-[2rem] shadow-sm">
+                         <div class="w-20 h-20 bg-white dark:bg-black border-4 border-black dark:border-white text-black dark:text-white rounded-[2rem] flex items-center justify-center text-3xl font-black mb-6 mx-auto shadow-xl rotate-3 transform hover:rotate-0 transition-all">3</div>
+                        <h3 class="text-2xl font-bold text-center mb-4">Launch</h3>
+                        <p class="text-center text-gray-500 dark:text-gray-400">System activation and handover. We ensure stability before leaving the atmosphere.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Interactive Section -->
+    <section id="ai-tools" class="py-32 px-6 bg-black text-white rounded-[3rem] mx-2 lg:mx-6 relative overflow-hidden reveal shadow-2xl">
+      <!-- Background Abstract -->
+      <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/20 rounded-full blur-[100px] pointer-events-none animate-pulse-slow"></div>
+      <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-red/20 rounded-full blur-[100px] pointer-events-none animate-pulse-slow" style="animation-delay: 2s;"></div>
+
+      <div class="max-w-4xl mx-auto relative z-10">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-xs font-bold tracking-wide uppercase mb-6 text-white">
+             <svg class="w-4 h-4 text-brand-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+             Gemini 2.5 Flash
+          </div>
+          <h2 class="text-4xl md:text-7xl font-black tracking-tight mb-6">Strategy Generator.</h2>
+          <p class="text-xl text-gray-400 max-w-2xl mx-auto">Describe your business vision. Our AI extracts key strategic vectors and marketing slogans in real-time.</p>
+        </div>
+
+        <!-- AI Input Interface -->
+        <div class="bg-gray-900/50 backdrop-blur-xl p-2 rounded-[2rem] border border-gray-800 shadow-2xl mb-12 hover:border-gray-600 transition-colors">
+          <div class="relative flex items-center">
+            <input 
+              type="text" 
+              id="ai-input" 
+              placeholder="e.g., A minimalist furniture brand using recycled ocean plastic..." 
+              class="w-full bg-transparent text-white text-lg md:text-xl p-6 rounded-[1.5rem] focus:outline-none placeholder:text-gray-600 font-medium"
+            >
+            <button 
+              id="ai-submit"
+              class="absolute right-2 top-2 bottom-2 bg-white text-black px-8 rounded-full font-bold hover:bg-brand-blue hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              <span>Generate</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Results Container (Pills) -->
+        <div id="ai-results" class="flex flex-wrap justify-center gap-4 min-h-[100px]">
+          <!-- Placeholder State -->
+          <div class="text-gray-600 italic mt-8 flex flex-col items-center">
+            <span class="opacity-50">Results will materialize here...</span>
+          </div>
+        </div>
+
+        <!-- Loader -->
+        <div id="ai-loader" class="hidden text-center py-8">
+          <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gray-800 text-white font-mono text-sm border border-gray-700">
+            <div class="w-2 h-2 bg-brand-green rounded-full animate-bounce"></div>
+            <div class="w-2 h-2 bg-brand-blue rounded-full animate-bounce delay-100"></div>
+            <div class="w-2 h-2 bg-brand-red rounded-full animate-bounce delay-200"></div>
+            Processing Intelligence
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Testimonials (Social Proof) -->
+    <section class="py-32 px-6 bg-brand-surface dark:bg-neutral-900 overflow-hidden transition-colors">
+      <div class="max-w-7xl mx-auto mb-20 text-center reveal">
+          <h2 class="text-4xl font-black mb-4">Client Transmission.</h2>
+          <p class="text-xl text-gray-500 dark:text-gray-400">Signals from satisfied partners.</p>
+      </div>
+      
+      <!-- Scrolling Marquee -->
+      <div class="relative w-full overflow-hidden">
+          <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-brand-surface dark:from-neutral-900 to-transparent z-10"></div>
+          <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-brand-surface dark:from-neutral-900 to-transparent z-10"></div>
+          
+          <div class="flex animate-marquee gap-8 w-max hover:[animation-play-state:paused]">
+              <!-- Testimonial 1 -->
+              <div class="w-[400px] p-8 bg-white dark:bg-neutral-800 border border-transparent dark:border-white/5 rounded-[2rem] shadow-sm hover:shadow-md transition-all">
+                  <div class="text-brand-blue text-6xl font-serif opacity-20 mb-4">"</div>
+                  <p class="text-lg font-medium mb-6 relative z-10">Antigravity completely reshaped our infrastructure. We scaled from 1k to 1M users in three weeks without a glitch.</p>
+                  <div class="flex items-center gap-4">
+                      <div class="w-12 h-12 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Avatar"></div>
+                      <div>
+                          <div class="font-bold">Sarah Jenkins</div>
+                          <div class="text-sm text-gray-500 dark:text-gray-400">CTO, TechFlow</div>
+                      </div>
+                  </div>
+              </div>
+              <!-- Testimonial 2 -->
+              <div class="w-[400px] p-8 bg-white dark:bg-neutral-800 border border-transparent dark:border-white/5 rounded-[2rem] shadow-sm hover:shadow-md transition-all">
+                   <div class="text-brand-red text-6xl font-serif opacity-20 mb-4">"</div>
+                  <p class="text-lg font-medium mb-6 relative z-10">The design language is pure genius. It separates us from the noise. Our conversion rate doubled.</p>
+                  <div class="flex items-center gap-4">
+                      <div class="w-12 h-12 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka" alt="Avatar"></div>
+                      <div>
+                          <div class="font-bold">David Chen</div>
+                          <div class="text-sm text-gray-500 dark:text-gray-400">Founder, StartUp Inc</div>
+                      </div>
+                  </div>
+              </div>
+              <!-- Testimonial 3 -->
+              <div class="w-[400px] p-8 bg-white dark:bg-neutral-800 border border-transparent dark:border-white/5 rounded-[2rem] shadow-sm hover:shadow-md transition-all">
+                   <div class="text-brand-yellow text-6xl font-serif opacity-20 mb-4">"</div>
+                  <p class="text-lg font-medium mb-6 relative z-10">Finally, a business solution that feels like it's from the future, not the 90s. Incredible support team.</p>
+                  <div class="flex items-center gap-4">
+                      <div class="w-12 h-12 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus" alt="Avatar"></div>
+                      <div>
+                          <div class="font-bold">Marcus Reed</div>
+                          <div class="text-sm text-gray-500 dark:text-gray-400">Director, GlobalOps</div>
+                      </div>
+                  </div>
+              </div>
+              <!-- Duplicate for loop -->
+              <div class="w-[400px] p-8 bg-white dark:bg-neutral-800 border border-transparent dark:border-white/5 rounded-[2rem] shadow-sm hover:shadow-md transition-all">
+                  <div class="text-brand-blue text-6xl font-serif opacity-20 mb-4">"</div>
+                  <p class="text-lg font-medium mb-6 relative z-10">Antigravity completely reshaped our infrastructure. We scaled from 1k to 1M users in three weeks without a glitch.</p>
+                  <div class="flex items-center gap-4">
+                      <div class="w-12 h-12 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Avatar"></div>
+                      <div>
+                          <div class="font-bold">Sarah Jenkins</div>
+                          <div class="text-sm text-gray-500 dark:text-gray-400">CTO, TechFlow</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-32 px-6 bg-white dark:bg-neutral-950 transition-colors">
+        <div class="max-w-7xl mx-auto">
+             <div class="mb-16 reveal">
+                <h2 class="text-4xl font-black mb-4">The Crew.</h2>
+                <p class="text-xl text-gray-500 dark:text-gray-400">Architects of the void.</p>
+             </div>
+             
+             <div class="grid md:grid-cols-4 gap-10">
+                 <!-- Member 1 -->
+                 <div class="text-center reveal delay-100 group">
+                     <div class="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-transparent group-hover:border-brand-blue transition-all duration-500">
+                         <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=CEO" class="w-full h-full object-cover bg-gray-100" alt="Team">
+                     </div>
+                     <h3 class="font-bold text-xl">Alex Mercer</h3>
+                     <p class="text-brand-blue text-sm font-bold uppercase tracking-wide mb-2">CEO & Founder</p>
+                     <p class="text-gray-400 dark:text-gray-500 text-sm">Visionary. Ex-NASA engineer turned business strategist.</p>
+                 </div>
+                 <!-- Member 2 -->
+                 <div class="text-center reveal delay-200 group">
+                     <div class="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-transparent group-hover:border-brand-red transition-all duration-500">
+                         <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Designer" class="w-full h-full object-cover bg-gray-100" alt="Team">
+                     </div>
+                     <h3 class="font-bold text-xl">Elena Rostova</h3>
+                     <p class="text-brand-red text-sm font-bold uppercase tracking-wide mb-2">Head of Design</p>
+                     <p class="text-gray-400 dark:text-gray-500 text-sm">Believes white space is the most important element.</p>
+                 </div>
+                 <!-- Member 3 -->
+                 <div class="text-center reveal delay-300 group">
+                     <div class="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-transparent group-hover:border-brand-yellow transition-all duration-500">
+                         <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Dev" class="w-full h-full object-cover bg-gray-100" alt="Team">
+                     </div>
+                     <h3 class="font-bold text-xl">Kenji Sato</h3>
+                     <p class="text-brand-yellow text-sm font-bold uppercase tracking-wide mb-2">Lead Engineer</p>
+                     <p class="text-gray-400 dark:text-gray-500 text-sm">Code poet. Writes algorithms that dream.</p>
+                 </div>
+                 <!-- Member 4 -->
+                 <div class="text-center reveal delay-400 group">
+                     <div class="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-transparent group-hover:border-brand-green transition-all duration-500">
+                         <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ops" class="w-full h-full object-cover bg-gray-100" alt="Team">
+                     </div>
+                     <h3 class="font-bold text-xl">Lisa Ray</h3>
+                     <p class="text-brand-green text-sm font-bold uppercase tracking-wide mb-2">Operations</p>
+                     <p class="text-gray-400 dark:text-gray-500 text-sm">Keeps the station from spinning out of orbit.</p>
+                 </div>
+             </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-32 px-6 bg-brand-surface dark:bg-neutral-900 transition-colors">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-6">Simple Pricing.</h2>
+                <p class="text-xl text-gray-500 dark:text-gray-400">Transparent costs. No hidden gravity.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                <!-- Basic -->
+                <div class="bg-white dark:bg-neutral-800 border border-transparent dark:border-white/5 p-8 rounded-[2rem] shadow-sm hover:shadow-xl transition-all reveal delay-100">
+                    <h3 class="text-xl font-bold text-gray-400 mb-2">Starter</h3>
+                    <div class="text-4xl font-black mb-6">$99<span class="text-lg font-medium text-gray-400">/mo</span></div>
+                    <ul class="space-y-4 mb-8 text-gray-600 dark:text-gray-300">
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> 5 Projects</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Basic Analytics</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> 24h Support</li>
+                    </ul>
+                    <a href="#" class="block w-full py-4 rounded-full border border-gray-200 dark:border-white/20 text-center font-bold hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black hover:border-black dark:hover:border-white transition-colors">Select Plan</a>
+                </div>
+
+                <!-- Pro -->
+                <div class="bg-black dark:bg-white text-white dark:text-black p-10 rounded-[2.5rem] shadow-2xl scale-105 relative reveal z-10 border border-transparent dark:border-white/10">
+                    <div class="absolute top-0 right-0 bg-brand-blue text-white text-xs font-bold px-4 py-2 rounded-bl-2xl rounded-tr-2xl">POPULAR</div>
+                    <h3 class="text-xl font-bold text-gray-400 mb-2">Growth</h3>
+                    <div class="text-5xl font-black mb-6">$299<span class="text-lg font-medium text-gray-400">/mo</span></div>
+                    <ul class="space-y-4 mb-10 text-gray-300 dark:text-gray-600">
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Unlimited Projects</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> AI Strategy Tools</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Priority Support</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Custom Domain</li>
+                    </ul>
+                    <a href="#" class="block w-full py-4 rounded-full bg-brand-blue text-white text-center font-bold hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-colors">Get Started</a>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="bg-white dark:bg-neutral-800 border border-transparent dark:border-white/5 p-8 rounded-[2rem] shadow-sm hover:shadow-xl transition-all reveal delay-200">
+                    <h3 class="text-xl font-bold text-gray-400 mb-2">Scale</h3>
+                    <div class="text-4xl font-black mb-6">$599<span class="text-lg font-medium text-gray-400">/mo</span></div>
+                    <ul class="space-y-4 mb-8 text-gray-600 dark:text-gray-300">
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Everything in Growth</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Dedicated Manager</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> SLA</li>
+                    </ul>
+                    <a href="#" class="block w-full py-4 rounded-full border border-gray-200 dark:border-white/20 text-center font-bold hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black hover:border-black dark:hover:border-white transition-colors">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog / News Section -->
+    <section class="py-32 px-6 bg-white dark:bg-neutral-950 transition-colors">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-16 reveal">
+                <div>
+                    <h2 class="text-4xl font-black mb-2">Latest Transmissions.</h2>
+                    <p class="text-gray-500 dark:text-gray-400 text-lg">Insights from the edge of innovation.</p>
+                </div>
+                <a href="#" class="hidden md:block font-bold text-brand-blue hover:text-black dark:hover:text-white transition-colors">View All Articles →</a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article class="group cursor-pointer reveal delay-100">
+                    <div class="h-60 bg-gray-100 dark:bg-neutral-900 rounded-[2rem] mb-6 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 dark:group-hover:bg-white/5 transition-colors"></div>
+                        <div class="absolute top-4 left-4 bg-white dark:bg-black px-3 py-1 rounded-full text-xs font-bold uppercase">Strategy</div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-brand-blue transition-colors">The end of flat design?</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mb-4 line-clamp-2">Why spatial interfaces and depth are making a comeback in modern business applications.</p>
+                    <div class="flex items-center gap-2 text-sm text-gray-400">
+                        <span>Oct 12, 2023</span> • <span>5 min read</span>
+                    </div>
+                </article>
+                 <!-- Article 2 -->
+                 <article class="group cursor-pointer reveal delay-200">
+                    <div class="h-60 bg-gray-100 dark:bg-neutral-900 rounded-[2rem] mb-6 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 dark:group-hover:bg-white/5 transition-colors"></div>
+                        <div class="absolute top-4 left-4 bg-white dark:bg-black px-3 py-1 rounded-full text-xs font-bold uppercase">AI</div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-brand-red transition-colors">Gemini 2.5 in Enterprise</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mb-4 line-clamp-2">Implementing large language models in secure corporate environments without data leakage.</p>
+                    <div class="flex items-center gap-2 text-sm text-gray-400">
+                        <span>Oct 08, 2023</span> • <span>8 min read</span>
+                    </div>
+                </article>
+                 <!-- Article 3 -->
+                 <article class="group cursor-pointer reveal delay-300">
+                    <div class="h-60 bg-gray-100 dark:bg-neutral-900 rounded-[2rem] mb-6 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 dark:group-hover:bg-white/5 transition-colors"></div>
+                        <div class="absolute top-4 left-4 bg-white dark:bg-black px-3 py-1 rounded-full text-xs font-bold uppercase">Growth</div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-brand-yellow transition-colors">Scaling Past 1M Users</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mb-4 line-clamp-2">Technical lessons learned from our recent infrastructure overhaul.</p>
+                    <div class="flex items-center gap-2 text-sm text-gray-400">
+                        <span>Sep 24, 2023</span> • <span>12 min read</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 px-6 bg-brand-surface dark:bg-neutral-900 transition-colors">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl font-black mb-12 text-center reveal">Answers.</h2>
+            
+            <div class="space-y-4">
+                <details class="group bg-white dark:bg-neutral-800 border border-transparent dark:border-white/5 rounded-[2rem] p-6 hover:shadow-md transition-all cursor-pointer reveal delay-100">
+                    <summary class="flex justify-between items-center font-bold text-xl list-none">
+                        How fast is the integration?
+                        <span class="bg-gray-50 dark:bg-white/10 w-8 h-8 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="mt-4 text-gray-500 dark:text-gray-400 leading-relaxed">
+                        Extremely fast. Our API is designed for plug-and-play architecture, typically taking less than 24 hours for full deployment.
+                    </div>
+                </details>
+
+                <details class="group bg-white dark:bg-neutral-800 border border-transparent dark:border-white/5 rounded-[2rem] p-6 hover:shadow-md transition-all cursor-pointer reveal delay-200">
+                    <summary class="flex justify-between items-center font-bold text-xl list-none">
+                        Is my data secure?
+                        <span class="bg-gray-50 dark:bg-white/10 w-8 h-8 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="mt-4 text-gray-500 dark:text-gray-400 leading-relaxed">
+                        Security is our bedrock. We utilize enterprise-grade encryption and comply with all major international data protection standards including GDPR and SOC2.
+                    </div>
+                </details>
+
+                <details class="group bg-white dark:bg-neutral-800 border border-transparent dark:border-white/5 rounded-[2rem] p-6 hover:shadow-md transition-all cursor-pointer reveal delay-300">
+                    <summary class="flex justify-between items-center font-bold text-xl list-none">
+                        Can I cancel anytime?
+                        <span class="bg-gray-50 dark:bg-white/10 w-8 h-8 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="mt-4 text-gray-500 dark:text-gray-400 leading-relaxed">
+                        Yes. We believe in earning your business every month. There are no lock-in contracts for our Starter and Growth plans.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-24 px-6 bg-white dark:bg-neutral-950 transition-colors">
+        <div class="max-w-5xl mx-auto bg-black dark:bg-neutral-800 text-white rounded-[3rem] p-10 md:p-20 text-center relative overflow-hidden reveal border border-transparent dark:border-white/10">
+            <!-- Decor -->
+             <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-800 to-black dark:from-neutral-800 dark:to-neutral-900 z-0"></div>
+             <div class="absolute -top-24 -left-24 w-64 h-64 bg-brand-blue/20 rounded-full blur-3xl"></div>
+             <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-brand-red/20 rounded-full blur-3xl"></div>
+
+            <div class="relative z-10">
+                <h2 class="text-3xl md:text-5xl font-black mb-6">Stay in orbit.</h2>
+                <p class="text-gray-400 text-lg mb-10 max-w-xl mx-auto">Join 50,000+ strategists receiving our weekly intel briefing. No gravity, just growth.</p>
+                
+                <form id="newsletter-form" class="flex flex-col md:flex-row gap-4 max-w-lg mx-auto">
+                    <input type="email" placeholder="enter@your.email" required class="flex-1 bg-white/10 border border-white/20 rounded-full px-6 py-4 text-white placeholder:text-gray-500 focus:outline-none focus:bg-white/20 transition-colors">
+                    <button type="submit" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-brand-blue hover:text-white transition-colors">Subscribe</button>
+                </form>
+                <p id="newsletter-success" class="hidden text-brand-green font-bold mt-4">Welcome aboard. Transmission received.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-32 px-6 bg-brand-surface dark:bg-neutral-900 transition-colors">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16">
+            <div class="reveal">
+                <h2 class="text-5xl font-black mb-6">Let's Talk.</h2>
+                <p class="text-xl text-gray-500 dark:text-gray-400 mb-12">Ready to launch? Tell us about your mission.</p>
+                
+                <div class="space-y-8">
+                    <div class="flex items-start gap-6">
+                        <div class="w-12 h-12 rounded-full bg-white dark:bg-neutral-800 border border-transparent dark:border-white/5 flex items-center justify-center shadow-sm">
+                            <svg class="w-6 h-6 text-black dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">Email</h4>
+                            <p class="text-gray-500 dark:text-gray-400">hello@antigravity.biz</p>
+                            <p class="text-gray-500 dark:text-gray-400">support@antigravity.biz</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-6">
+                        <div class="w-12 h-12 rounded-full bg-white dark:bg-neutral-800 border border-transparent dark:border-white/5 flex items-center justify-center shadow-sm">
+                            <svg class="w-6 h-6 text-black dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">HQ</h4>
+                            <p class="text-gray-500 dark:text-gray-400">101 Mission Street</p>
+                            <p class="text-gray-500 dark:text-gray-400">San Francisco, CA 94105</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-neutral-800 border border-transparent dark:border-white/5 p-8 md:p-12 rounded-[2.5rem] shadow-xl reveal delay-200">
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold ml-4 text-gray-500 dark:text-gray-400">Name</label>
+                            <input type="text" class="w-full bg-gray-50 dark:bg-white/5 border-none dark:text-white p-4 rounded-2xl focus:ring-2 focus:ring-black dark:focus:ring-white transition-all outline-none" placeholder="John Doe" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold ml-4 text-gray-500 dark:text-gray-400">Company</label>
+                            <input type="text" class="w-full bg-gray-50 dark:bg-white/5 border-none dark:text-white p-4 rounded-2xl focus:ring-2 focus:ring-black dark:focus:ring-white transition-all outline-none" placeholder="Acme Inc.">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold ml-4 text-gray-500 dark:text-gray-400">Email</label>
+                        <input type="email" class="w-full bg-gray-50 dark:bg-white/5 border-none dark:text-white p-4 rounded-2xl focus:ring-2 focus:ring-black dark:focus:ring-white transition-all outline-none" placeholder="john@acme.com" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold ml-4 text-gray-500 dark:text-gray-400">Message</label>
+                        <textarea class="w-full bg-gray-50 dark:bg-white/5 border-none dark:text-white p-4 rounded-2xl focus:ring-2 focus:ring-black dark:focus:ring-white transition-all outline-none h-32 resize-none" placeholder="Tell us about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 bg-black dark:bg-white text-white dark:text-black font-bold rounded-full hover:bg-brand-blue dark:hover:bg-brand-blue dark:hover:text-white transition-colors shadow-lg">Send Message</button>
+                </form>
+                <div id="contact-success" class="hidden bg-green-50 dark:bg-green-900/30 text-green-800 dark:text-green-400 p-4 rounded-2xl mt-4 text-center font-bold">
+                    Message sent successfully. We'll be in touch shortly.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-neutral-950 border-t border-gray-200 dark:border-white/10 py-20 px-6 transition-colors">
+      <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-start gap-12">
+        
+        <div class="max-w-sm">
+          <div class="flex items-center gap-2 mb-6">
+            <div class="w-8 h-8 rounded-full bg-black dark:bg-white flex items-center justify-center"><div class="w-3 h-3 bg-white dark:bg-black rounded-full"></div></div>
+            <span class="font-bold text-2xl">Antigravity</span>
+          </div>
+          <p class="text-gray-500 dark:text-gray-400 mb-6">
+            Designing the future of business logic. San Francisco, CA.
+          </p>
+          <div class="flex gap-4">
+             <a href="#" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+             <a href="#" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-12 lg:gap-20 w-full lg:w-auto">
+           <div>
+             <h4 class="font-bold mb-4">Product</h4>
+             <ul class="space-y-3 text-sm text-gray-500 dark:text-gray-400">
+               <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors">Features</a></li>
+               <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors">Pricing</a></li>
+               <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors">API</a></li>
+             </ul>
+           </div>
+           <div>
+             <h4 class="font-bold mb-4">Company</h4>
+             <ul class="space-y-3 text-sm text-gray-500 dark:text-gray-400">
+               <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors">About</a></li>
+               <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors">Careers</a></li>
+               <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors">Blog</a></li>
+             </ul>
+           </div>
+           <div>
+             <h4 class="font-bold mb-4">Legal</h4>
+             <ul class="space-y-3 text-sm text-gray-500 dark:text-gray-400">
+               <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors">Privacy</a></li>
+               <li><a href="#" class="hover:text-black dark:hover:text-white transition-colors">Terms</a></li>
+             </ul>
+           </div>
+        </div>
+
+      </div>
+      <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-gray-200 dark:border-white/10 text-center text-gray-400 text-sm">
+        &copy; 2024 Antigravity Inc. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- JS Entry Point -->
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

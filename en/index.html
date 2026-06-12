@@ -1,0 +1,272 @@
+---
+layout: default
+title: "CryptoQuantix — Quantitative Trading Engine"
+lang: en
+locale: en_US
+description: "CryptoQuantix is a quantitative trading bot for crypto perpetuals. Fully automated multi-cycle strategies, risk management, and portfolio execution."
+---
+
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden">
+    <div class="absolute inset-0 bg-brand-dark dark:bg-brand-dark transition-colors"></div>
+    <div
+        class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-brand-purple/10 rounded-full blur-[120px] pointer-events-none">
+    </div>
+    <div
+        class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-brand-pink/10 rounded-full blur-[120px] pointer-events-none">
+    </div>
+
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center px-6 w-full relative z-10">
+        <!-- Left: Content -->
+        <div class="reveal active">
+            <div
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-purple/10 border border-brand-purple/30 text-xs font-bold tracking-widest uppercase mb-8 text-brand-purpleLight">
+                <span class="w-2 h-2 rounded-full bg-brand-purple animate-pulse"></span>
+                Quantitative Trading · 4y Validated · Open Source
+            </div>
+            <h1 class="text-5xl lg:text-7xl font-black leading-[0.95] mb-6 font-display text-gray-900 dark:text-white">
+                Alpha generation.<br>
+                <span class="gradient-text text-glow">Fully automated.</span>
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-xl leading-relaxed">
+                CryptoQuantix is a quantitative trading engine for crypto perpetuals. Born from a complete paradigm shift, it abandoned intraday orderflow to focus entirely on robust, multi-cycle strategies validated across 4 years of bull and bear markets. 
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="https://github.com/coinmaker-quant" target="_blank" rel="noopener"
+                    class="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-brand-purple to-brand-pink font-bold text-lg text-white hover:scale-105 transition-transform shadow-xl glow-purple">
+                    <i class="fab fa-github"></i> Star on GitHub
+                </a>
+                <a href="/en/strategies"
+                    class="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl border border-gray-300 dark:border-white/10 font-bold text-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-800 dark:text-white">
+                    Explore Strategies <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+            </div>
+            <div class="mt-8 flex flex-wrap gap-4 text-sm font-medium text-gray-500">
+                <span class="flex items-center gap-2"><i class="fas fa-chart-line text-brand-purpleLight"></i> Binance Data</span>
+                <span class="flex items-center gap-2"><i class="fas fa-bolt text-brand-purpleLight"></i> Deribit Execution</span>
+                <span class="flex items-center gap-2"><i class="fas fa-shield-alt text-brand-purpleLight"></i> 1.5x Gross Exposure</span>
+                <span class="flex items-center gap-2"><i class="fab fa-python text-brand-purpleLight"></i> Async Python</span>
+            </div>
+        </div>
+
+        <!-- Right: Animated Dashboard Mock -->
+        <div class="reveal delay-200 relative">
+            <div class="absolute -inset-4 bg-gradient-to-r from-brand-purple to-brand-pink rounded-3xl blur-2xl opacity-20 animate-pulse"></div>
+
+            <div class="relative bg-white dark:bg-[#16141a] rounded-3xl border border-gray-200 dark:border-white/10 overflow-hidden shadow-2xl transition-colors">
+                <div class="px-6 pt-6 pb-4 flex items-start gap-4 border-b border-gray-100 dark:border-white/5">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-0.5">
+                            <span class="font-bold text-gray-900 dark:text-white text-lg">Live Dashboard</span>
+                            <span class="text-xs text-green-500 font-bold bg-green-500/10 px-2 py-0.5 rounded-full"><i class="fas fa-circle text-[8px] animate-pulse mr-1"></i>System Online</span>
+                        </div>
+                        <div class="text-gray-500 text-sm">Portfolio Management & Risk Control</div>
+                    </div>
+                </div>
+
+                <div class="px-6 py-6 space-y-4">
+                    <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5">
+                        <div>
+                            <div class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Macro Core</div>
+                            <div class="text-gray-900 dark:text-white font-mono text-sm">Long BTCUSDT</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Unrealized P&L</div>
+                            <div class="text-green-500 font-mono font-bold">+12.4%</div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center p-4 bg-gray-50 dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5">
+                        <div>
+                            <div class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Trend Breakdown</div>
+                            <div class="text-gray-900 dark:text-white font-mono text-sm">Short BTCUSDT</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Unrealized P&L</div>
+                            <div class="text-brand-purple font-mono font-bold">+4.1%</div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-100 dark:border-white/5 grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-black font-display text-gray-900 dark:text-white">1.2x</div>
+                            <div class="text-xs text-gray-500 uppercase">Gross Exposure</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-black font-display text-gray-900 dark:text-white">30%</div>
+                            <div class="text-xs text-gray-500 uppercase">Vol Target</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-black font-display text-green-500">Active</div>
+                            <div class="text-xs text-gray-500 uppercase">Kill Switch</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-brand-surface/50 px-6 py-3 border-t border-gray-100 dark:border-white/5 flex items-center justify-between transition-colors">
+                    <div class="flex items-center gap-2 text-xs text-gray-500 font-mono">
+                        <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                        Order Manager synchronized
+                    </div>
+                    <div class="text-xs text-gray-600 font-mono">Deribit API ✓</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Warning Banner -->
+<section class="py-6 px-6 bg-yellow-500/10 border-y border-yellow-500/30">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-4">
+        <div class="text-3xl">⚠️</div>
+        <div class="flex-1">
+            <p class="font-bold text-yellow-600 dark:text-yellow-400 text-sm uppercase tracking-wide mb-1">Trading involves significant risk</p>
+            <p class="text-gray-600 dark:text-gray-400 text-sm">Crypto futures are highly volatile. This software is provided "as is" without warranty. Always backtest on new data and use the dry-run mode before deploying real capital.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Features / What is CryptoQuantix -->
+<section class="py-24 px-6 bg-white dark:bg-brand-dark reveal transition-colors">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <div
+                class="inline-block px-4 py-1.5 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-brand-purpleLight text-xs font-bold tracking-widest uppercase mb-6">
+                The Engine</div>
+            <h2 class="text-4xl lg:text-5xl font-black font-display mb-4 text-gray-900 dark:text-white">How it works</h2>
+            <p class="text-xl text-gray-500 max-w-2xl mx-auto">
+                An advanced infrastructure designed for resilience, automated regime detection, and strict portfolio risk management.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="card-glow bg-gray-50 dark:bg-brand-surface rounded-3xl p-8 relative overflow-hidden transition-colors">
+                <div class="absolute top-4 right-4 text-6xl font-black text-brand-purple/10 font-display">1</div>
+                <div class="w-14 h-14 rounded-2xl bg-brand-purple/20 border border-brand-purple/30 flex items-center justify-center text-2xl mb-6">
+                    📊</div>
+                <h3 class="text-xl font-bold mb-3 font-display text-gray-900 dark:text-white">Market Data</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Consumes live websockets from Binance Futures to ensure zero-lag data ingestion and accurate historical klines for signal generation.</p>
+            </div>
+            <div class="card-glow bg-gray-50 dark:bg-brand-surface rounded-3xl p-8 relative overflow-hidden transition-colors">
+                <div class="absolute top-4 right-4 text-6xl font-black text-brand-pink/10 font-display">2</div>
+                <div class="w-14 h-14 rounded-2xl bg-brand-pink/20 border border-brand-pink/30 flex items-center justify-center text-2xl mb-6">
+                    🔎</div>
+                <h3 class="text-xl font-bold mb-3 font-display text-gray-900 dark:text-white">Regime Detection</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Analyzes market microstructure to classify current conditions into Trend, Range, Expansion, or Compression states.</p>
+            </div>
+            <div class="card-glow bg-gray-50 dark:bg-brand-surface rounded-3xl p-8 relative overflow-hidden transition-colors">
+                <div class="absolute top-4 right-4 text-6xl font-black text-brand-gold/10 font-display">3</div>
+                <div class="w-14 h-14 rounded-2xl bg-brand-gold/20 border border-brand-gold/30 flex items-center justify-center text-2xl mb-6">
+                    🧠</div>
+                <h3 class="text-xl font-bold mb-3 font-display text-gray-900 dark:text-white">Strategy Engine</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Evaluates 3 active quantitative models using a macro-gate (SMA200d) to activate or suppress long/short biases systematically.</p>
+            </div>
+            <div class="card-glow bg-gray-50 dark:bg-brand-surface rounded-3xl p-8 relative overflow-hidden transition-colors">
+                <div class="absolute top-4 right-4 text-6xl font-black text-green-500/10 font-display">4</div>
+                <div class="w-14 h-14 rounded-2xl bg-green-500/20 border border-green-500/30 flex items-center justify-center text-2xl mb-6">
+                    🛡️</div>
+                <h3 class="text-xl font-bold mb-3 font-display text-gray-900 dark:text-white">Risk Control</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Applies 3-factor sizing, enforces a 1.5x gross exposure cap, and actively monitors open positions against a daily kill switch.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Validation section -->
+<section class="py-24 px-6 bg-gray-50 dark:bg-brand-surface reveal transition-colors">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-black font-display mb-2 text-gray-900 dark:text-white">Validated on 4 Years of Data</h2>
+            <p class="text-gray-500">June 2022 to June 2026 — Tested through multiple macro cycles with 0.20% roundtrip costs.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Strategy 1 -->
+            <div class="bg-white dark:bg-brand-dark p-8 rounded-3xl border border-gray-200 dark:border-white/5 shadow-lg">
+                <h3 class="text-xl font-bold font-display text-gray-900 dark:text-white mb-2">Macro Core</h3>
+                <p class="text-brand-purple text-sm font-bold mb-6">Long Core Focus</p>
+                <div class="space-y-4 mb-6">
+                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/5 pb-2">
+                        <span class="text-gray-500 text-sm">Performance (4y)</span>
+                        <span class="font-mono text-green-500 font-bold">+315%</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/5 pb-2">
+                        <span class="text-gray-500 text-sm">Max Drawdown</span>
+                        <span class="font-mono text-red-400 font-bold">24.7%</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/5 pb-2">
+                        <span class="text-gray-500 text-sm">vs Buy & Hold</span>
+                        <span class="font-mono text-gray-900 dark:text-white font-bold">+136%</span>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500">Trend following above SMA200d, exiting via chandelier 5xATR20d with 30% vol-target allocation.</p>
+            </div>
+
+            <!-- Strategy 2 -->
+            <div class="bg-white dark:bg-brand-dark p-8 rounded-3xl border border-gray-200 dark:border-white/5 shadow-lg relative transform md:-translate-y-4 border-t-4 border-t-brand-purple">
+                <div class="absolute top-0 right-8 -mt-3 bg-brand-purple text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Top Performer</div>
+                <h3 class="text-xl font-bold font-display text-gray-900 dark:text-white mb-2">Trend Breakdown</h3>
+                <p class="text-brand-purple text-sm font-bold mb-6">Long/Short Breakouts</p>
+                <div class="space-y-4 mb-6">
+                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/5 pb-2">
+                        <span class="text-gray-500 text-sm">Short PF</span>
+                        <span class="font-mono text-green-500 font-bold">1.26 (123 trades)</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/5 pb-2">
+                        <span class="text-gray-500 text-sm">Long PF</span>
+                        <span class="font-mono text-green-500 font-bold">1.53 (84 trades)</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/5 pb-2">
+                        <span class="text-gray-500 text-sm">Holding Period</span>
+                        <span class="font-mono text-gray-900 dark:text-white font-bold">7 days</span>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500">Short breakdown 48h-low in macro BEAR; LONG breakout 7d-high in macro BULL.</p>
+            </div>
+
+            <!-- Strategy 3 -->
+            <div class="bg-white dark:bg-brand-dark p-8 rounded-3xl border border-gray-200 dark:border-white/5 shadow-lg">
+                <h3 class="text-xl font-bold font-display text-gray-900 dark:text-white mb-2">Funding Squeeze</h3>
+                <p class="text-brand-purple text-sm font-bold mb-6">Contrarian Short</p>
+                <div class="space-y-4 mb-6">
+                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/5 pb-2">
+                        <span class="text-gray-500 text-sm">BTC Profit Factor</span>
+                        <span class="font-mono text-green-500 font-bold">2.65</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/5 pb-2">
+                        <span class="text-gray-500 text-sm">ETH Profit Factor</span>
+                        <span class="font-mono text-green-500 font-bold">1.82</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/5 pb-2">
+                        <span class="text-gray-500 text-sm">Expected Frequency</span>
+                        <span class="font-mono text-gray-900 dark:text-white font-bold">Rare (15 tr/4y)</span>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500">Triggers when funding rate reaches a cap while the SMA200d is declining (deep-bear capitulation).</p>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center">
+            <a href="/en/blog" class="text-brand-purple font-bold hover:underline">Read the full validation reports in our Blog →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to action -->
+<section class="py-24 px-6 bg-brand-dark relative overflow-hidden reveal">
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+        <h2 class="text-4xl lg:text-6xl font-black font-display mb-6 text-white">Ready to deploy?</h2>
+        <p class="text-xl text-gray-400 mb-10">Clone the repository, configure your API keys, and run the asynchronous bot.</p>
+        <div class="bg-[#0a0a0a] rounded-2xl border border-white/10 p-6 text-left code-block max-w-2xl mx-auto mb-10">
+            <span class="cmd">git clone</span> https://github.com/coinmaker-quant/coinmaker-quant.git<br>
+            <span class="cmd">cd</span> coinmaker-quant<br>
+            <span class="cmd">pip install</span> -r requirements.txt<br>
+            <span class="cmd">cp</span> .env.example .env <span class="comment"># Add Deribit Keys</span><br>
+            <span class="cmd">python</span> -m src.async_trading_bot
+        </div>
+        <a href="https://github.com/coinmaker-quant" target="_blank" rel="noopener"
+            class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-white text-black font-bold text-lg hover:bg-gray-200 transition-colors shadow-xl">
+            <i class="fab fa-github"></i> View Repository
+        </a>
+    </div>
+</section>

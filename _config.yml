@@ -1,0 +1,67 @@
+title: "CryptoQuantix"
+description: "Bot di trading quantitativo su futures crypto. Strategie multi-ciclo, risk management e automazione."
+baseurl: ""
+url: "https://cryptoquantix.github.io"
+
+author:
+  name: "Antonio Trento"
+  email: "info@antoniotrento.net"
+  bio: "Algorithmic Trading & AI Solutions"
+
+og_image: "/assets/images/logo/logo-transparent.png"
+
+paginate: 20
+paginate_path: "/blog/page:num"
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-paginate
+
+faq:
+  - question: "Che mercati e strumenti supporta CryptoQuantix?"
+    answer: "CryptoQuantix opera su futures/perpetual crypto. Attualmente usa Deribit per l'esecuzione e Binance Futures per i dati."
+  - question: "Il bot fa trading ad alta frequenza (HFT) o intraday?"
+    answer: "No. Dopo il ribaltamento di giugno 2026, tutte le vecchie strategie intraday sono state sostituite da 3 strategie quantitative multi-ciclo su timeframe più lunghi (es. hold 7 giorni, exit chandelier 5xATR20d)."
+  - question: "Quali sono i meccanismi di Risk Management?"
+    answer: "Il sistema include un sizing 3-factor (basato su volatilità e regime), cap di esposizione lorda a 1.5x l'equity, e un kill switch giornaliero (-3% max daily loss)."
+  - question: "Come funziona la validazione delle strategie?"
+    answer: "Ogni strategia deve passare un backtest su 4 anni reali (bear e bull market), considerando costi dello 0.20% roundtrip senza lookahead, mantenendo un Profit Factor superiore a 1.2."
+  - question: "Posso monitorare le posizioni in tempo reale?"
+    answer: "Sì, il progetto include una Dashboard in Streamlit separata dal bot, che fornisce la riconciliazione su exchange, l'esposizione al rischio e uno storico analitico."
+
+social:
+  github: "https://github.com/coinmaker-quant"
+  twitter: "https://x.com/antoniotrento"
+
+cta:
+  github_url: "https://github.com/coinmaker-quant"
+  docs_url: "https://cryptoquantix.github.io/docs"
+
+popup:
+  url: "https://github.com/coinmaker-quant"
+  en:
+    title: "Discover CryptoQuantix"
+    body: "Quantitative trading strategies and portfolio management for crypto perpetuals."
+    button: "View Source Code"
+  it:
+    title: "Scopri CryptoQuantix"
+    body: "Strategie di trading quantitativo e risk management per crypto futures."
+    button: "Guarda il Codice"
+
+permalink: "/:categories/:title/"
+markdown: kramdown
+highlighter: rouge
+
+include:
+  - assets
+  - robots.txt
+
+keywords:
+  - crypto trading bot
+  - quantitative trading
+  - algorithmic trading
+  - deribit
+  - binance
+  - portfolio management
+  - risk management

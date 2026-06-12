@@ -1,0 +1,332 @@
+# Zirelia — Full Content Index
+
+> Zirelia is a fully autonomous AI virtual influencer engine. Define a persona in a YAML file — it thinks, generates photorealistic images, and posts to Instagram, Facebook, Threads, and X (Twitter) 24/7 without human intervention. Open source under Elastic License 2.0. Self-hostable for ~$8/month.
+
+Built by [Antonio Trento](https://antoniotrento.net).
+GitHub: https://github.com/zirelia/zirelia
+Documentation: https://zirelia.github.io/zirelia/
+
+---
+
+## Overview
+
+Zirelia is a Python autonomous agent that runs a virtual social media persona completely on its own. You write a YAML file describing the persona — name, age, nationality, appearance, personality traits, tone of voice, and daily routine — and the engine takes over from there, forever.
+
+The engine is composed of three coordinated AI systems:
+
+**Brain** → **Imagination** → **Hands** → repeat
+
+### Why Zirelia exists
+
+Managing a social media presence at the volume needed for algorithmic growth (3–5 posts/day across multiple platforms) is unsustainable for individuals. Zirelia automates the entire creative pipeline, from ideation to image generation to publishing, using production-grade AI infrastructure.
+
+---
+
+## Architecture: The Three Systems
+
+### 1. Brain (Thinking Engine)
+
+The Brain orchestrates all content generation using LangChain + LangGraph.
+
+**Process:**
+1. Load persona YAML config (name, traits, voice, routine)
+2. Determine time-of-day context (morning / afternoon / evening) to anchor the post in the persona's daily life
+3. Query ChromaDB for the 50 most semantically similar past posts (RAG) — ensuring zero repetition
+4. Send persona + context + memory to GPT-4 / GPT-4o-mini to generate an on-brand thought
+5. Store the new thought as a vector embedding in ChromaDB
+
+**Components:**
+- LangChain + LangGraph (AI orchestration)
+- OpenAI GPT-4 / GPT-4o-mini (content generation)
+- ChromaDB (vector database, RAG memory)
+- PostgreSQL 15 (persistent post log)
+
+### 2. Imagination (Visual Pipeline)
+
+The Imagination system converts the Brain's text output into a consistent, photorealistic image.
+
+**Process:**
+1. Build a detailed image prompt from the persona's physical description + post context
+2. Submit to FLUX.1 (flux-1.1-pro) via Replicate API
+3. Run automated Visual QC on the generated image
+4. Pass the validated image to the Hands system
+
+**Components:**
+- Replicate API
+- FLUX.1 pro / SDXL
+- Custom LoRA support (train on synthetic dataset for total visual identity lock-in)
+- Visual QA pipeline
+- Typical parameters: lora_scale 0.85, num_inference_steps 28, aspect_ratio 4:5
+
+### 3. Hands (Publishing System)
+
+The Hands system publishes content and manages platform engagement.
+
+**Process:**
+1. Celery scheduler fires post cycles at randomised, human-like intervals (configurable jitter: ±23min typical)
+2. FastAPI REST server accepts manual triggers
+3. Content is published simultaneously to configured platforms
+4. Optional: Replier service replies to Twitter/X mentions; Liker service likes relevant content
+
+**Components:**
+- Meta Graph API v26.0 (Instagram, Facebook)
+- Threads API (graph.threads.net)
+- Tweepy / Twitter API v2 (OAuth 2.0)
+- Celery + Redis (distributed task queue)
+- FastAPI + Uvicorn (REST API, port 8000)
+- Anti-detection timing with randomised jitter
+
+---
+
+## Memory System (ChromaDB RAG)
+
+ChromaDB is the backbone that keeps the influencer coherent over thousands of posts.
+
+- Every post is embedded and stored as a vector
+- Before each new post cycle, the Brain queries for the 50 most semantically similar past posts
+- This prevents topic repetition even after years of daily posting
+- Vector embeddings scale to millions of posts — the persona grows richer and more diverse over time, never more repetitive
+- Ensures consistent voice, themes, and persona coherence across the entire post history
+
+---
+
+## Full Tech Stack
+
+| Component | Technology |
+|-----------|-----------|
+| Language | Python 3.10+ |
+| AI orchestration | LangChain + LangGraph |
+| LLM | OpenAI GPT-4 / GPT-4o-mini |
+| Image generation | FLUX.1 via Replicate API |
+| Visual customisation | Custom LoRA (FLUX / SDXL) |
+| Vector memory | ChromaDB (RAG) |
+| Database | PostgreSQL 15 |
+| Task queue | Celery + Redis |
+| REST API | FastAPI + Uvicorn |
+| Social: Instagram/FB | Meta Graph API v26.0 |
+| Social: Threads | Threads API (graph.threads.net) |
+| Social: Twitter/X | Tweepy + Twitter API v2 |
+| Deployment | Docker Compose |
+| Infrastructure | Any Linux host; Raspberry Pi 4 supported |
+
+---
+
+## Docker Services
+
+All services launch with `docker compose up --build -d`:
+
+| Service | Description |
+|---------|-------------|
+| `api` | FastAPI REST server (port 8000) |
+| `scheduler` | Autonomous posting daemon — runs 24/7 |
+| `worker` | Celery background task worker |
+| `db` | PostgreSQL 15 (persistent storage) |
+| `redis` | Message broker / task queue |
+| `replier` | Reply to Twitter mentions (optional, manual profile) |
+| `liker` | Like relevant content (optional, manual profile) |
+
+---
+
+## Persona Configuration
+
+Personas are defined in `config/persona.yaml`. No code, no prompt engineering.
+
+Example fields:
+- `name` — Display name (e.g. "Sienna Fox")
+- `age`, `nationality` — Demographic anchor
+- `physical_traits` — Hair, eyes, vibe (used to build image prompts)
+- `traits` — Personality array (e.g. Confident, Playful, Witty)
+- `voice.tone` — Writing style (e.g. "Seductive but friendly")
+- `voice.style` — Format preferences (e.g. "Short, punchy, uses emojis")
+- `routine.morning` / `routine.evening` — Time-contextual post anchors
+
+The same YAML drives both text generation (GPT-4) and image generation (FLUX.1 prompt construction). One file = one complete virtual persona.
+
+---
+
+## CLI Reference
+
+```
+python main.py [OPTIONS]
+
+--platform    instagram | facebook | threads | twitter | all
+--mode        hybrid (text + image, default) | text (text only)
+--topic       Optional topic hint. Omit for fully autonomous mode.
+--dry-run     Simulate full pipeline without posting (test/debug)
+```
+
+Examples:
+```bash
+# Dry run — no actual posting
+python main.py --platform twitter --dry-run
+
+# Post now with image to Twitter
+python main.py --platform twitter --mode hybrid
+
+# Text only, custom topic
+python main.py --platform twitter --mode text --topic "morning coffee ritual"
+
+# Post to all platforms simultaneously
+python main.py --platform all --mode hybrid
+```
+
+---
+
+## Quick Start (5 Steps)
+
+**Prerequisites:** Docker Desktop, Git, API keys for OpenAI + Replicate + Twitter/X
+
+```bash
+# 1. Clone
+git clone https://github.com/zirelia/zirelia.git
+cd zirelia
+
+# 2. Configure API keys
+cp .env.template .env
+# Fill in: OPENAI_API_KEY, REPLICATE_API_TOKEN, REPLICATE_MODEL_VERSION,
+# TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN,
+# TWITTER_ACCESS_TOKEN_SECRET, TWITTER_BEARER_TOKEN
+
+# 3. Launch
+docker compose up --build -d
+
+# 4. Verify
+docker compose ps
+docker compose logs scheduler -f
+
+# 5. Optional manual post
+python main.py --platform twitter --dry-run
+```
+
+---
+
+## Roadmap
+
+| Phase | Status | Description |
+|-------|--------|-------------|
+| Phase 1 | ✅ Complete | Meta (IG/FB/Threads), Twitter, FLUX.1, Smart Scheduler, ChromaDB memory |
+| Phase 2 | 🟡 In Progress | PostgreSQL pgvector, Celery integration, engagement automation |
+| Phase 3 | 🔴 Planned | Control Dashboard (Streamlit/React) — manage persona, review posts, analytics |
+| Phase 4 | 🔴 Planned | Multi-Platform: Pinterest, LinkedIn, Telegram |
+| Phase 5 | 🔴 Planned | Multimedia: ElevenLabs voice, video clips (Reels/TikTok) |
+
+---
+
+## Use Cases
+
+### Solo Content Creator
+Run a parallel AI persona that operates independently, growing a second account on autopilot while you focus on your main channel. Deploy in a specific niche (fitness, travel, tech minimalism), let it reach 10k+ followers, monetise through affiliate links in post templates.
+
+### Marketing Agency
+Build a portfolio of AI virtual influencers the agency owns outright. Each persona is an asset generating reach, affiliate revenue, and content deals — no dependency on external talent. Deploy N personas with separate Docker stacks. Train a custom LoRA per persona for unique visual identity. Centralised management via REST API. Direct revenue from affiliates and sponsorships.
+
+*Note: ELv2 license permits internal use. Reselling Zirelia as a managed SaaS service to paying clients is not allowed.*
+
+### AI/ML Developer
+Production-grade reference implementation of an autonomous AI agent with real-world constraints: rate limits, memory management (RAG), visual QA, anti-detection timing. Study LangGraph multi-step agent architecture. Fork and extend with new platforms or LLMs. Real ChromaDB RAG implementation in production.
+
+### AI Researcher
+Controlled environment for studying synthetic media, social influence, deepfake detection, or AI ethics. Full audit trail in PostgreSQL. Configurable persona for controlled experiments. REST API for programmatic data extraction. Every decision, post, and engagement metric is logged.
+
+### Growth Hacker / Startup
+Seed a niche persona in your space that organically builds an audience before your product launch. The influencer is built around your ICP (ideal customer profile), talks your language, and brings the community to you.
+
+Timeline example:
+- Week 1: Deploy persona, start warmup phase. 0 followers.
+- Month 3: 2k+ followers organically. Engagement building.
+- Month 6+: 10k+ audience. Ready for product launch.
+
+---
+
+## Pricing / API Costs
+
+Zirelia itself is free. You only pay for third-party API usage:
+
+- **OpenAI** — GPT-4o-mini for text generation (~$0.15/1M input tokens). Typical cost: < $3/month at 3 posts/day.
+- **Replicate** — FLUX.1 pro image generation (~$0.055/image). At 1 image/post, 3 posts/day = ~$5/month.
+- **Twitter/X Developer** — Free Basic tier sufficient for posting; Pro tier ($100/mo) for higher volume.
+- **Infrastructure** — Raspberry Pi 4 (~$0/month if already owned) or any Linux VPS (~$5/month).
+
+Estimated total: **~$8–15/month** for a single persona at moderate posting frequency.
+
+---
+
+## Platform Status (as of March 2026)
+
+| Component | Technology | Status |
+|-----------|-----------|--------|
+| Instagram, Facebook, Threads, X | Social APIs | ✅ Production Ready |
+| Image Generation | FLUX.1 via Replicate | ✅ Production Ready |
+| LLM Brain | OpenAI GPT-4 / GPT-4o-mini | ✅ Production Ready |
+| Memory | ChromaDB (RAG) | ✅ Active |
+| Threads | Threads API (graph.threads.net) | ✅ Production Ready |
+| Control Dashboard | — | 🔴 Planned — Phase 3 |
+
+---
+
+## Anti-Ban Guidance
+
+Platform Terms of Service vary. Key points:
+
+- **Meta (Instagram/Facebook/Threads)**: Generally permissive for automated posting via official Graph API. Use human-like posting intervals.
+- **Twitter/X**: Starting the bot on a new account without a proper warmup period is the #1 cause of permanent shadowbans. Follow the [Account Warmup Guide](https://zirelia.github.io/zirelia/guides/account_warmup/) before activating the scheduler.
+- Randomised timing jitter (±20–30min around scheduled times) is built in to avoid predictable posting patterns.
+- Always disclose AI-generated content where required by law.
+
+---
+
+## Legal & License
+
+- **License**: Elastic License 2.0 (ELv2)
+  - ✅ Personal projects
+  - ✅ Internal company use
+  - ✅ Fork and modify
+  - ✅ Research
+  - ✅ Deploy N personas for yourself
+  - ❌ Sell as managed service / SaaS to third parties
+- **Disclaimer**: Deploying AI virtual influencers may violate the Terms of Service of social platforms. The author takes no responsibility for account bans or legal consequences.
+- **Author**: Antonio Trento — https://antoniotrento.net
+
+---
+
+## Reference Persona: Sienna Fox
+
+Sienna Fox is the official reference persona that has been running on Zirelia since January 2025. Her persona is publicly documented as a real-world demonstration of the engine's capabilities.
+
+Profile:
+- Name: Sienna Fox
+- Age: 23, American (Los Angeles, CA)
+- Appearance: Light brown / dirty blonde wavy hair, hazel eyes, sun-kissed natural vibe
+- Personality: Confident, playful/flirty, witty
+- Voice: Seductive but friendly, short punchy posts with emojis
+- Niche: California lifestyle, morning routines, beach, self-care
+
+A case study tracking her growth from zero is available at: `/case-study/results/case-study-sienna-fox-building-a-virtual-influencer-from-zero/`
+
+---
+
+## Site Structure
+
+```
+zirelia.github.io/
+├── en/                     # English version
+│   ├── index.html          # Main landing page
+│   ├── features.html       # Feature list and CLI reference
+│   ├── how-it-works.html   # Architecture deep-dive
+│   ├── use-cases.html      # Use case profiles
+│   ├── pricing.html        # Cost breakdown
+│   ├── blog/               # Articles and case studies
+│   ├── docs.html           # Documentation index
+│   ├── terms/              # Terms of service
+│   ├── privacy/            # Privacy policy
+│   └── dpa/                # Data processing agreement
+├── it/                     # Italian version (same structure)
+├── llms.txt                # LLM index (summary)
+├── llms-full.txt           # This file (full content)
+├── sitemap.xml
+└── robots.txt
+```
+
+---
+
+*This file is maintained for AI indexing purposes per the llms.txt standard. Last updated: June 2026.*

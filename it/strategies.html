@@ -1,0 +1,125 @@
+---
+layout: default
+title: "Strategie - CryptoQuantix"
+lang: it
+permalink: /it/strategies/
+---
+
+<section class="py-32 px-6 bg-gray-50 dark:bg-brand-surface min-h-screen transition-colors">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-black font-display mb-4 text-gray-900 dark:text-white">Le Nostre Strategie</h1>
+            <p class="text-xl text-gray-500 max-w-2xl mx-auto">
+                Validate su 4 anni di dati reali. Regole predefinite, assenza di lookahead bias e limiti di rischio rigorosi.
+            </p>
+        </div>
+
+        <div class="space-y-12">
+            <!-- Strategy 1 -->
+            <div class="bg-white dark:bg-brand-dark rounded-3xl p-8 lg:p-12 border border-gray-200 dark:border-white/10 shadow-xl transition-colors">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-bold uppercase tracking-wider mb-4">Holding Principale</div>
+                        <h2 class="text-3xl font-black font-display text-gray-900 dark:text-white mb-4">Macro Core</h2>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6">
+                            Una strategia trend-following progettata per catturare i principali cicli di mercato. Entra in posizione long quando il prezzo supera la Media Mobile Semplice a 200 giorni (SMA200d) e gestisce il rischio usando un'uscita Chandelier impostata a 5x l'Average True Range a 20 giorni (ATR20d).
+                        </p>
+                        <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Attiva solo su BTC (ETH bocciato in validazione)</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Sizing basato su target di volatilità (30%)</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> +315% in 4 anni (Max Drawdown: 24.7%)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-[#16141a] rounded-2xl p-6 border border-gray-100 dark:border-white/5 transition-colors">
+                        <h4 class="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Logica di Esecuzione</h4>
+                        <div class="space-y-4 font-mono text-xs">
+                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                                <span class="text-gray-500">Condizione d'Ingresso</span>
+                                <span class="text-brand-purple font-bold">Prezzo > SMA(200d)</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                                <span class="text-gray-500">Condizione d'Uscita</span>
+                                <span class="text-brand-pink font-bold">Prezzo < Chandelier(5xATR20d)</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                                <span class="text-gray-500">Frequenza Trade</span>
+                                <span class="text-gray-900 dark:text-white">~2 trade / anno</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategy 2 -->
+            <div class="bg-white dark:bg-brand-dark rounded-3xl p-8 lg:p-12 border border-gray-200 dark:border-white/10 shadow-xl transition-colors relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-brand-purple to-brand-pink"></div>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-pink/10 text-brand-pink text-xs font-bold uppercase tracking-wider mb-4">Miglior Performance</div>
+                        <h2 class="text-3xl font-black font-display text-gray-900 dark:text-white mb-4">Trend Breakdown</h2>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6">
+                            Un sistema di breakout/breakdown altamente efficace che si adatta al regime macro. Va short sul breakdown del minimo a 48 ore in un mercato macro BEAR, e long sul breakout del massimo a 7 giorni in un mercato macro BULL.
+                        </p>
+                        <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Nessun Take Profit — periodo di hold fisso a 7 giorni</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Profit Factor Short: 1.26 (123 trade)</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Profit Factor Long: 1.53 (84 trade)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-[#16141a] rounded-2xl p-6 border border-gray-100 dark:border-white/5 transition-colors">
+                        <h4 class="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Logica di Esecuzione</h4>
+                        <div class="space-y-4 font-mono text-xs">
+                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                                <span class="text-gray-500">Macro Gate (Long)</span>
+                                <span class="text-brand-purple font-bold">BULL (Prezzo > SMA200d)</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                                <span class="text-gray-500">Macro Gate (Short)</span>
+                                <span class="text-brand-pink font-bold">BEAR (Prezzo < SMA200d)</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                                <span class="text-gray-500">Condizione d'Uscita</span>
+                                <span class="text-gray-900 dark:text-white font-bold">Temporale (168 ore)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategy 3 -->
+            <div class="bg-white dark:bg-brand-dark rounded-3xl p-8 lg:p-12 border border-gray-200 dark:border-white/10 shadow-xl transition-colors">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/10 text-brand-gold text-xs font-bold uppercase tracking-wider mb-4">Contrarian</div>
+                        <h2 class="text-3xl font-black font-display text-gray-900 dark:text-white mb-4">Funding Squeeze</h2>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6">
+                            Una strategia contrarian rara ma altamente profittevole. Innesca posizioni short quando il funding rate dei perpetual tocca il suo limite massimo mentre la SMA200d è attivamente in declino, segnalando un evento di "capitolazione in deep-bear".
+                        </p>
+                        <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Attiva sia su BTC che ETH</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Profit Factor BTC: 2.65</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Cattura estremi dislocamenti di mercato</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-[#16141a] rounded-2xl p-6 border border-gray-100 dark:border-white/5 transition-colors">
+                        <h4 class="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Logica di Esecuzione</h4>
+                        <div class="space-y-4 font-mono text-xs">
+                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                                <span class="text-gray-500">Condizione Funding</span>
+                                <span class="text-brand-purple font-bold">Funding Rate == Cap</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                                <span class="text-gray-500">Condizione Trend</span>
+                                <span class="text-brand-pink font-bold">SMA200d in calo</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                                <span class="text-gray-500">Frequenza Trade</span>
+                                <span class="text-gray-900 dark:text-white">~3-4 trade / anno</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

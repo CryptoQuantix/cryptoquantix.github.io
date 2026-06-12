@@ -1,0 +1,102 @@
+---
+layout: default
+title: Data Processing Agreement (DPA) - Zirelia
+lang: it
+locale: it_IT
+description: "Data Processing Agreement di Zirelia — architettura self-hosted e zero-retention."
+---
+
+<section class="pt-32 pb-20 px-6">
+    <div class="max-w-4xl mx-auto prose dark:prose-invert">
+        <h1 class="text-4xl font-black mb-8">Data Processing Agreement (DPA)</h1>
+        <p class="lead text-xl text-gray-500 mb-12">Ultimo aggiornamento: {{ site.time | date: "%d %B %Y" }}</p>
+
+        <div class="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-2xl border border-purple-100 dark:border-purple-800 mb-12">
+            <h4 class="font-bold mb-2 flex items-center gap-2">
+                <i class="fas fa-shield-alt"></i> Architettura Self-Hosted, Zero-Retention
+            </h4>
+            <p class="m-0 text-gray-600 dark:text-gray-300">
+                Zirelia opera su un modello <strong>"Bring Your Own Infrastructure"</strong>. Il Software gira
+                interamente sulla tua infrastruttura — l'Autore non ha accesso ai tuoi dati, credenziali o contenuti
+                generati.
+            </p>
+        </div>
+
+        <h3>1. Definizioni e Ruoli</h3>
+        <p>Ai fini del GDPR e delle normative applicabili sulla privacy:</p>
+        <ul>
+            <li><strong>Titolare (Controller):</strong> L'Utente che scarica, installa e gestisce il Software,
+                responsabile dei dati personali elaborati dalla propria istanza.</li>
+            <li><strong>Autore:</strong> Antonio Trento — fornisce il Software sotto licenza ELv2 ma non ha accesso
+                ai dati dell'Utente.</li>
+            <li><strong>Dati dell'Utente:</strong> Qualsiasi informazione elaborata dall'istanza del Software,
+                incluse configurazioni persona, credenziali API, post generati e immagini archiviati nel database
+                dell'Utente.</li>
+        </ul>
+
+        <h3>2. Natura del Trattamento (Zero-Retention)</h3>
+        <p>Il Software è progettato per operare in modalità completamente autonoma:</p>
+        <ol>
+            <li><strong>Elaborazione Locale:</strong> I dati (configurazioni persona, prompt, contenuti generati)
+                vengono elaborati esclusivamente sull'infrastruttura dell'Utente (RAM e database PostgreSQL).</li>
+            <li><strong>Nessun Storage Remoto:</strong> L'Autore non possiede, gestisce o ha accesso a database
+                contenenti i Dati dell'Utente.</li>
+            <li><strong>API di Terze Parti:</strong> I dati transitano dal server dell'Utente verso API di terze
+                parti (OpenAI, Replicate, Twitter/X) configurate dall'Utente tramite i propri account e credenziali.
+            </li>
+            <li><strong>Log Locali:</strong> I log operativi sono salvati localmente sul filesystem dell'Utente e
+                non vengono mai inviati all'Autore.</li>
+        </ol>
+
+        <h3>3. Contenuti AI e Protezione dei Dati</h3>
+        <p>Zirelia genera testi e immagini tramite modelli AI. Dal punto di vista della protezione dei dati:</p>
+        <ul>
+            <li>Le configurazioni persona sono archiviate solo nel file <code>config/persona.yaml</code> e nel
+                database dell'Utente.</li>
+            <li>Le immagini generate sono archiviate nel filesystem o cloud storage dell'Utente.</li>
+            <li>Se la persona coinvolge dati o somiglianza di persone reali, l'Utente (come Titolare) è responsabile
+                di garantire una base giuridica ai sensi del GDPR Art. 6.</li>
+            <li>L'Utente deve assicurarsi che i contenuti AI non violino le leggi sui media sintetici applicabili
+                (es. AI Act UE, normative locali sui deepfake).</li>
+        </ul>
+
+        <h3>4. Misure di Sicurezza</h3>
+        <p>Il Software incorpora misure di sicurezza fin dalla progettazione (Privacy by Design):</p>
+        <ul>
+            <li>Tutte le connessioni API esterne utilizzano HTTPS/TLS.</li>
+            <li>Le credenziali sono gestite tramite Variabili d'Ambiente (<code>.env</code>), mai hard-coded.</li>
+            <li>Nessun meccanismo di telemetria nascosta o esfiltrazione dati è incluso nel Software.</li>
+            <li>Il Software è open-source — gli utenti possono verificare il codice sorgente completo su GitHub.</li>
+        </ul>
+
+        <h3>5. Sub-processori</h3>
+        <p>Poiché il Software è self-hosted, l'Utente ha il controllo diretto su tutti i sub-processori tramite le
+            chiavi API che configura. I principali sub-processori (configurati dall'Utente, non dall'Autore):</p>
+        <ul>
+            <li><strong>OpenAI / Anthropic:</strong> Inferenza LLM per la generazione di contenuti.</li>
+            <li><strong>Replicate (Black Forest Labs FLUX.1):</strong> Generazione immagini.</li>
+            <li><strong>Twitter/X API:</strong> Pubblicazione social media.</li>
+            <li><strong>PostgreSQL:</strong> Persistenza dati locale (sull'infrastruttura dell'Utente).</li>
+        </ul>
+        <p>L'Autore non agisce da intermediario contrattuale verso questi fornitori.</p>
+
+        <h3>6. Responsabilità dell'Utente come Titolare</h3>
+        <p>In qualità di Titolare, l'Utente è responsabile di:</p>
+        <ul>
+            <li>Garantire una base giuridica per tutti i trattamenti effettuati dalla propria istanza.</li>
+            <li>Proteggere il file <code>.env</code> e le credenziali API.</li>
+            <li>Rispettare GDPR, CCPA e altre normative applicabili per qualsiasi dato personale trattato.</li>
+            <li>Verificare i contenuti AI prima della pubblicazione per garantire conformità ai ToS delle piattaforme.
+            </li>
+            <li>Implementare politiche di conservazione appropriate per i dati nel database locale.</li>
+        </ul>
+
+        <h3>7. Audit e Compliance</h3>
+        <p>Il Software è completamente open-source sotto la licenza Elastic License 2.0. Gli utenti possono
+            verificare il codice sorgente completo su GitHub per accertare l'assenza di backdoor, raccolta dati
+            nascosta o meccanismi di esfiltrazione.</p>
+
+        <h3>8. Contatti</h3>
+        <p>Per richieste DPA: <a href="mailto:info@antoniotrento.net">info@antoniotrento.net</a></p>
+    </div>
+</section>

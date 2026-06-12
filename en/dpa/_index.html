@@ -1,0 +1,65 @@
+---
+layout: default
+title: Data Processing Agreement (DPA) - KineticMCP
+lang: en
+locale: en_US
+description: "Data Processing Addendum for KineticMCP Enterprise."
+---
+
+<section class="pt-32 pb-20 px-6">
+    <div class="max-w-4xl mx-auto prose dark:prose-invert">
+        <h1 class="text-4xl font-black mb-8">Data Processing Agreement (DPA)</h1>
+        <p class="lead text-xl text-gray-500 mb-12">Last Updated: {{ site.time | date: "%B %d, %Y" }}</p>
+
+        <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-2xl border border-blue-100 dark:border-blue-800 mb-12">
+            <h4 class="text-brand-blue font-bold mb-2 flex items-center gap-2">
+                <i class="fas fa-shield-alt"></i> Stateless Architecture
+            </h4>
+            <p class="m-0 text-gray-600 dark:text-gray-300">
+                KineticMCP operates on a <strong>"Bring Your Own Infrastructure"</strong> model.
+                Technically, KineticMCP does not "process" your data in the traditional Cloud SaaS sense, as the
+                software resides on your servers.
+                However, this document formally defines the security guarantees of the provided code.
+            </p>
+        </div>
+
+        <h3>1. Definitions and Roles</h3>
+        <p>For the purposes of GDPR and applicable privacy regulations:</p>
+        <ul>
+            <li><strong>Controller:</strong> The Customer who downloads and installs the Software.</li>
+            <li><strong>Processor:</strong> KineticMCP (limited to providing updates and licenses).</li>
+            <li><strong>Customer Data:</strong> Any information processed by the Software instance installed by the
+                Customer.</li>
+        </ul>
+
+        <h3>2. Nature of Processing (Zero-Retention)</h3>
+        <p>The Software is designed to operate in an ephemeral mode:</p>
+        <ol>
+            <li><strong>Transit:</strong> Data transits from the volatile memory (RAM) of the Customer's server
+                directly to Third-Party APIs (Salesforce, LLM Providers).</li>
+            <li><strong>No Remote Storage:</strong> KineticMCP does not own, manage, or have access to remote databases
+                containing Customer Data.</li>
+            <li><strong>Local Logs:</strong> Any operational logs are saved locally on the Customer's filesystem
+                and are not sent to KineticMCP, unless explicitly done for technical support.</li>
+        </ol>
+
+        <h3>3. Security Measures</h3>
+        <p>Licensor guarantees that the Software incorporates security measures by design (Privacy by Design):</p>
+        <ul>
+            <li>Exclusive use of HTTPS/TLS 1.3 protocols for all external connections.</li>
+            <li>Credential management via Environment Variables (.env) and not hard-coded.</li>
+            <li>No hidden telemetry mechanisms on the content of processed data.</li>
+        </ul>
+
+        <h3>4. Sub-processors</h3>
+        <p>Since the Software is self-hosted, the Customer has direct control over Sub-processors (e.g., OpenAI,
+            Anthropic, Salesforce) by configuring the respective API keys. KineticMCP does not act as a contractual
+            intermediary
+            towards these providers.</p>
+
+        <h3>5. Audits and Compliance</h3>
+        <p>The Customer has the right to perform security audits on the provided source code (for Enterprise
+            Source-Available licenses) to verify the absence of backdoors or data exfiltration mechanisms.</p>
+
+    </div>
+</section>

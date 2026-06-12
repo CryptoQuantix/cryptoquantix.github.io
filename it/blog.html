@@ -1,0 +1,67 @@
+---
+layout: default
+title: "Blog - CryptoQuantix"
+description: "Casi di studio, risultati dei backtest e approfondimenti sul nostro motore di trading quantitativo."
+lang: it
+permalink: /it/blog/
+---
+
+<div class="py-32 px-6 bg-white dark:bg-brand-dark transition-colors min-h-screen">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="text-center mb-20 reveal">
+      <h1 class="text-4xl md:text-6xl font-black font-display tracking-tight mb-6 leading-tight text-gray-900 dark:text-white">{{ page.title }}</h1>
+      {% if page.description %}
+      <p class="text-xl text-gray-500 max-w-2xl mx-auto">{{ page.description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+      {%- assign date_format = "%d %B %Y" -%}
+      {%- assign it_posts = site.posts | where: "lang", "it" -%}
+      {%- for post in it_posts -%}
+      <article
+        class="group bg-gray-50 dark:bg-brand-surface rounded-[2rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl transition-all duration-300 reveal delay-100 flex flex-col">
+        {%- if post.image %}
+        <a href="{{ post.url | relative_url }}" class="block h-60 overflow-hidden relative">
+          <img src="{{ post.image | relative_url }}"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            alt="{{ post.title }}">
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 dark:group-hover:bg-white/5 transition-colors">
+          </div>
+        </a>
+        {%- endif %}
+
+        <div class="p-8 flex flex-col flex-grow">
+          <div class="mb-4 text-sm text-brand-purple font-bold">
+            {{ post.date | date: date_format }}
+          </div>
+
+          <h2 class="text-2xl font-bold font-display mb-4 text-gray-900 dark:text-white group-hover:text-brand-purple transition-colors">
+            <a href="{{ post.url | relative_url }}">
+              {{ post.title }}
+            </a>
+          </h2>
+
+          <div class="text-gray-600 dark:text-gray-400 mb-6 line-clamp-3 flex-grow">
+            {%- if post.description %}
+            {{ post.description | truncate: 120 }}
+            {%- elsif post.excerpt %}
+            {{ post.excerpt | strip_html | truncate: 120 }}
+            {%- endif %}
+          </div>
+
+          <div class="mt-auto pt-6 border-t border-gray-200 dark:border-white/10">
+            <a href="{{ post.url | relative_url }}"
+              class="inline-flex items-center gap-2 font-bold text-brand-purple hover:text-black dark:hover:text-white transition-colors">
+              Leggi l'articolo
+              <i class="fas fa-arrow-right text-sm"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>

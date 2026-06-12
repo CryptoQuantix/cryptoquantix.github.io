@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zirelia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: #0D0D0F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    /* Logo + Name row */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand img {
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-size: 11rem;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      background: linear-gradient(135deg, #A78BFA 0%, #EC4899 50%, #F59E0B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Slogan */
+    .slogan {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #71717A;
+      letter-spacing: -0.01em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <img src="assets/images/logo/zirelia-logo-1110x1110.png" alt="Zirelia" />
+      <span class="brand-name">Zirelia</span>
+    </div>
+    <p class="slogan">Define a persona. Zirelia does the rest &mdash; 24/7.</p>
+  </div>
+</body>
+</html>

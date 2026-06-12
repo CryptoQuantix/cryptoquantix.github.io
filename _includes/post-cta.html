@@ -1,0 +1,55 @@
+<!-- Post CTA -->
+<div class="my-20 relative rounded-[2.5rem] overflow-hidden bg-neutral-900 text-white shadow-2xl reveal">
+    <!-- Background Effects -->
+    <div
+        class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-purple/20 blur-[120px] rounded-full pointer-events-none">
+    </div>
+    <div
+        class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-brand-pink/20 blur-[100px] rounded-full pointer-events-none">
+    </div>
+
+    <div class="relative z-10 p-8 md:p-12 lg:p-16 text-center">
+        <div
+            class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-8 backdrop-blur-sm border border-white/10">
+            <i class="fas fa-robot text-3xl text-brand-purple"></i>
+        </div>
+
+        {% if page.lang == 'it' %}
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black mb-6 tracking-tight">
+            Pronto a lanciare il tuo <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple via-brand-pink to-brand-gold">Virtual Influencer?</span>
+        </h2>
+        <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Smetti di leggere. Inizia a costruire. Definisci una persona e Zirelia gestisce post, immagini e scheduling — 24/7, in automatico.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{{ site.cta.github_url }}"
+                class="px-8 py-4 bg-white text-black rounded-xl font-bold text-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+                <i class="fab fa-github mr-2"></i> Metti una stella su GitHub
+            </a>
+            <a href="{{ site.cta.docs_url }}"
+                class="px-8 py-4 bg-white/10 text-white border border-white/20 rounded-xl font-bold text-lg hover:bg-white/20 transition-all backdrop-blur-sm">
+                <i class="fas fa-book mr-2"></i> Leggi la Documentazione
+            </a>
+        </div>
+        {% else %}
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black mb-6 tracking-tight">
+            Ready to Launch Your <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple via-brand-pink to-brand-gold">Virtual Influencer?</span>
+        </h2>
+        <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Stop reading. Start building. Define a persona and Zirelia handles posting, images, and scheduling — 24/7, automatically.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{{ site.cta.github_url }}"
+                class="px-8 py-4 bg-white text-black rounded-xl font-bold text-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+                <i class="fab fa-github mr-2"></i> Star on GitHub
+            </a>
+            <a href="{{ site.cta.docs_url }}"
+                class="px-8 py-4 bg-white/10 text-white border border-white/20 rounded-xl font-bold text-lg hover:bg-white/20 transition-all backdrop-blur-sm">
+                <i class="fas fa-book mr-2"></i> Read the Docs
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>

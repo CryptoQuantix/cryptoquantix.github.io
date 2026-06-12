@@ -1,0 +1,54 @@
+# Zirelia
+
+> Zirelia is a fully autonomous AI virtual influencer engine. Define a persona in a YAML file — it thinks, generates photorealistic images, and posts to Instagram, Facebook, Threads, and X (Twitter) 24/7 without human intervention.
+
+Open source (Elastic License 2.0), self-hostable on a Raspberry Pi for ~$8/month.
+
+## What is Zirelia?
+
+Zirelia is a Python-based autonomous agent that operates a virtual social media persona end-to-end. You describe who the influencer is (name, appearance, personality, daily routine) in a single YAML file. The engine then:
+
+1. **Thinks** — GPT-4 generates contextual, on-brand post ideas based on the persona's routine and a ChromaDB vector memory of past posts (no repetition ever).
+2. **Visualises** — FLUX.1 via Replicate API generates a consistent photorealistic face for every post. Custom LoRA support for total visual identity lock-in.
+3. **Posts** — A Celery + Redis scheduler publishes to Instagram, Facebook, Threads, and Twitter/X at randomised, human-like times with anti-detection timing jitter.
+4. **Engages** — Optional Replier and Liker services grow the account organically.
+
+Reference persona: **Sienna Fox** — a real virtual influencer running on Zirelia since January 2025.
+
+## Key Pages
+
+- [Home (EN)](https://zirelia.github.io/en/): Overview, quick start, architecture, roadmap
+- [Home (IT)](https://zirelia.github.io/it/): Italian version
+- [Features](https://zirelia.github.io/en/features/): Full feature list and CLI reference
+- [How it Works](https://zirelia.github.io/en/how-it-works/): Deep dive — Brain, Imagination, Hands pipeline
+- [Use Cases](https://zirelia.github.io/en/use-cases/): Solo creators, agencies, developers, researchers, growth hackers
+- [Pricing](https://zirelia.github.io/en/pricing/): Self-host vs managed setup
+- [Blog (EN)](https://zirelia.github.io/en/blog/): Articles and case studies
+- [GitHub Repository](https://github.com/zirelia/zirelia): Source code
+- [Full Documentation](https://zirelia.github.io/zirelia/): Installation, configuration, guides
+
+## Tech Stack
+
+- **Language**: Python 3.10+
+- **AI/LLM**: LangChain + LangGraph, OpenAI GPT-4 / GPT-4o-mini
+- **Image Generation**: FLUX.1 via Replicate API, custom LoRA support
+- **Memory**: ChromaDB (vector embeddings / RAG)
+- **Scheduler**: Celery + Redis
+- **Database**: PostgreSQL 15
+- **API**: FastAPI + Uvicorn
+- **Social APIs**: Meta Graph API v26.0 (Instagram/Facebook), Threads API, Tweepy (Twitter/X)
+- **Deployment**: Docker Compose (one-command setup)
+
+## Who is it for?
+
+- **Solo content creators** — run a parallel persona that grows while you sleep
+- **Marketing agencies** — build a portfolio of AI influencers you own outright
+- **AI/ML developers** — production-grade LangGraph + RAG + Replicate reference implementation
+- **AI researchers** — controlled environment for studying synthetic media and virtual influence
+- **Growth hackers / startups** — seed a niche audience before a product launch
+
+## License & Author
+
+- Elastic License 2.0 (ELv2) — free for personal and internal business use
+- Built by [Antonio Trento](https://antoniotrento.net)
+- GitHub: https://github.com/zirelia/zirelia
