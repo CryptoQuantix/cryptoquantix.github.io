@@ -28,6 +28,11 @@
       {% if page.url == item.url or page.permalink == item.url %}
         {% assign is_active = true %}
       {% endif %}
+      {% assign url_parts = item.url | split: '/' %}
+      {% assign last_part = url_parts | last %}
+      {% if last_part and last_part != "" and page.url contains last_part %}
+        {% assign is_active = true %}
+      {% endif %}
       <a href="{{ item.url | relative_url }}"
         class="text-sm font-bold uppercase tracking-wide transition-colors relative group {% if is_active %}text-brand-purple{% else %}text-gray-400 hover:text-white{% endif %}">
         {{ item.title }}
@@ -88,6 +93,11 @@
   {% else %}
   {% assign is_active = false %}
   {% if page.url == item.url or page.permalink == item.url %}
+    {% assign is_active = true %}
+  {% endif %}
+  {% assign url_parts = item.url | split: '/' %}
+  {% assign last_part = url_parts | last %}
+  {% if last_part and last_part != "" and page.url contains last_part %}
     {% assign is_active = true %}
   {% endif %}
   <a href="{{ item.url | relative_url }}"
