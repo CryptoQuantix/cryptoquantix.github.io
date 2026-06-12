@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#le-strategie-attive-trend-breakdown-funding-squeeze-macro-core" class="md-skip">
+        <a href="#le-strategie-attive-panoramica" class="md-skip">
           Vai al contenuto
         </a>
       
@@ -466,60 +466,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-trend-breakdown-srcstrategiestrend_breakdownpy" class="md-nav__link">
+  <a href="#le-tre-strategie" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Trend Breakdown (src/strategies/trend_breakdown.py)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. Trend Breakdown (src/strategies/trend_breakdown.py)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#lato-short-breakdown-del-minimo-48h-solo-macro-bear" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Lato SHORT — breakdown del minimo 48h (solo macro BEAR)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lato-long-breakout-del-massimo-7-giorni-solo-macro-bull" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Lato LONG — breakout del massimo 7 giorni (solo macro BULL)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#note-operative" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Note operative
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-funding-squeeze-srcstrategiesfunding_squeezepy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Funding Squeeze (src/strategies/funding_squeeze.py)
+        Le tre strategie
       
     </span>
   </a>
@@ -527,10 +477,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-macro-core-srcstrategiesmacro_corepy" class="md-nav__link">
+  <a href="#il-gating-automatico-a-3-livelli" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Macro Core (src/strategies/macro_core.py)
+        Il gating automatico a 3 livelli
       
     </span>
   </a>
@@ -538,10 +488,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#portafoglio-e-gating-automatico" class="md-nav__link">
+  <a href="#il-processo-di-validazione-perche-fidarsi-dei-numeri" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Portafoglio e gating automatico
+        Il processo di validazione (perché fidarsi dei numeri)
       
     </span>
   </a>
@@ -549,10 +499,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#strategie-disattivate-bocciate-coi-dati" class="md-nav__link">
+  <a href="#le-strategie-bocciate-trasparenza" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Strategie disattivate (bocciate coi dati)
+        Le strategie bocciate (trasparenza)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#licenza-e-accesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Licenza e accesso
       
     </span>
   </a>
@@ -809,161 +770,139 @@
 
 
 
-<h1 id="le-strategie-attive-trend-breakdown-funding-squeeze-macro-core">Le strategie attive — Trend Breakdown, Funding Squeeze, Macro Core</h1>
+<h1 id="le-strategie-attive-panoramica">Le strategie attive — panoramica</h1>
 <blockquote>
-<p>Aggiornato: giugno 2026. Fonte di verità per i numeri:
-<a href="../microevolutive/PLAN_BULL_EVOLUTION.md">../microevolutive/PLAN_BULL_EVOLUTION.md</a>
-e i report in <code>data/research/</code> (multicycle_report.txt, eth_validation.txt,
-legacy_validation_btc.txt). Questo documento descrive la LOGICA; i numeri
-citati sono gli headline della validazione 4 anni (giu 2022 → giu 2026,
-backtest sul codice reale, costi 0.20% roundtrip, no lookahead).</p>
+<p>Aggiornato: giugno 2026. CryptoQuantix esegue <strong>tre strategie
+quantitative validate</strong> su 4 anni di dati multi-ciclo (giu 2022 → giu
+2026: bear, bull e di nuovo bear), con backtest eseguiti sul <strong>codice di
+produzione reale</strong> — non su una reimplementazione — a costi realistici
+(0.20% roundtrip) e senza lookahead.</p>
+<p>🔒 <strong>Le specifiche operative complete</strong> (regole esatte di ingresso/uscita
+e parametri validati) <strong>sono riservate</strong> e disponibili nell'ambito di un
+accordo di licenza commerciale — vedi <a href="#licenza-e-accesso">licenza</a>.</p>
 </blockquote>
-<p>Tutte le strategie implementano l'interfaccia immutabile <code>BaseStrategy</code>
-(<code>scan</code> / <code>execute_entry</code> / <code>manage_positions</code>) e ricevono il
-<code>KlineProvider</code> <strong>iniettabile</strong>: lo stesso identico codice gira live (klines
-REST Binance) e in backtest (provider storico a finestra). Questo elimina la
-classe di bug "il backtest fa una cosa, il live un'altra".</p>
+<p>Tutte le strategie implementano l'interfaccia plugin <code>BaseStrategy</code>
+(<code>scan</code> / <code>execute_entry</code> / <code>manage_positions</code>) e ricevono un provider
+dati <strong>iniettabile</strong>: lo stesso identico codice gira live e in backtest,
+eliminando per costruzione la classe di bug "il backtest fa una cosa, il
+live un'altra".</p>
 <hr />
-<h2 id="1-trend-breakdown-srcstrategiestrend_breakdownpy">1. Trend Breakdown (<code>src/strategies/trend_breakdown.py</code>)</h2>
-<p>Strategia tattica <strong>bidirezionale macro-gated</strong>: ogni lato esiste solo
-nella fase macro in cui è stato validato.</p>
-<h3 id="lato-short-breakdown-del-minimo-48h-solo-macro-bear">Lato SHORT — breakdown del minimo 48h (solo macro BEAR)</h3>
-<p>Condizioni (valutate una volta per barra 1h CHIUSA):
-1. close 1h &lt; minimo delle 48 barre precedenti (Donchian low)
-2. close &lt; SMA48 oraria (filtro trend)
-3. <code>buy_ratio</code> della barra &lt; 0.50 (i taker stanno vendendo)
-4. <strong>Macro gate: close daily &lt; SMA200d</strong> (senza: -24 bps/trade in bull)</p>
-<p>Uscite: SL = entry + 2×ATR(1h,14) · TP = 2R · time exit 24h.
-Validazione BTC: <strong>+22 bps/trade, PF 1.26, 123 trade</strong>; sul solo bear
-2025-26: +50 bps PF 1.8 (IS/OOS). <strong>ETH: BOCCIATO</strong> (PF 0.87) → short
-attivo solo su BTC (<code>TB_SHORT_SYMBOLS</code>).</p>
-<h3 id="lato-long-breakout-del-massimo-7-giorni-solo-macro-bull">Lato LONG — breakout del massimo 7 giorni (solo macro BULL)</h3>
-<p>Condizioni: close 1h &gt; massimo delle 168 barre precedenti, close &gt; SMA48,
-<code>buy_ratio</code> &gt; 0.50, <strong>close daily &gt; SMA200d</strong>.</p>
-<p>Uscite: SL = entry − 2×ATR · <strong>nessun TP</strong> (<code>TB_RR_LONG=0</code>) · time exit
-7 giorni. Lasciar correre i winner raddoppia l'edge rispetto a TP 3R/48h.
-Validazione: <strong>BTC +68 bps PF 1.53 (84 trade) · ETH +183 bps PF 2.32 (58
-trade)</strong>. Lookback più corti (48h) sono breakeven; pullback-buy e momentum
-3d testati NEGATIVI — solo il breakout 168h sopravvive.</p>
-<h3 id="note-operative">Note operative</h3>
-<ul>
-<li>Un trade alla volta per istanza; un segnale per barra 1h.</li>
-<li>Entry <strong>market</strong> (una limit non fillata lascerebbe SL/TP orfani).</li>
-<li>Sizing: <code>RiskManager.calculate_dynamic_size</code> (vedi
-  <a href="../05_risk_sizing/">05_risk_sizing.md</a>).</li>
-</ul>
-<hr />
-<h2 id="2-funding-squeeze-srcstrategiesfunding_squeezepy">2. Funding Squeeze (<code>src/strategies/funding_squeeze.py</code>)</h2>
-<p><strong>Specialista della capitolazione deep-bear</strong>, bassa frequenza per design
-(~4 trade/anno). Short contrarian quando i long pagano funding al cap
-mentre il downtrend macro accelera.</p>
-<p>Condizioni (solo entro 60 min da un settlement funding — 00/08/16 UTC,
-il timing su cui l'edge è stato validato):
-1. Funding rate ≥ 0.01%/8h (= cap dell'exchange su BTC)
-2. close 1h &lt; SMA48 oraria
-3. <strong>Macro gate doppio: close daily &lt; SMA200d E SMA200d più bassa di 30
-   giorni fa</strong> (SMA in discesa = downtrend in forza, non un dip)</p>
-<p>Uscite: SL = entry + 2×ATR(1h) · TP 2R · time exit 24h · cooldown 8h
-(un trade per finestra funding).</p>
-<p>Validazione: <strong>BTC +74 bps/trade, PF 2.65, 15 trade/4y · ETH +64 bps,
-PF 1.82, 39 trade</strong>. La versione naive (senza il gate doppio) perdeva
--23 bps in bull e sanguinava nelle transizioni di trend — i due failure
-mode sono eliminati per costruzione.</p>
-<hr />
-<h2 id="3-macro-core-srcstrategiesmacro_corepy">3. Macro Core (<code>src/strategies/macro_core.py</code>)</h2>
-<p><strong>Posizione core long di regime</strong> (hold settimane/mesi), non una tattica.
-Cattura il grosso del bull market con un'uscita disciplinata.</p>
-<ul>
-<li><strong>Entry</strong>: close daily &gt; SMA200d (valutato una volta per barra daily chiusa)</li>
-<li><strong>Exit</strong>: chandelier — close daily &lt; (max close dall'entry − 5×ATR20d).
-  Esce dal blow-off top ~5 ATR sotto il picco, mesi prima della croce SMA200
-  che costava -17% alla versione naive.</li>
-<li><strong>Stop disastro</strong> sul venue a entry×(1−25%): protegge da crash col bot
-  offline. L'uscita vera è il chandelier in <code>manage_positions()</code>.</li>
-<li><strong>Vol-target 30%</strong> (C4): esposizione = clip(0.30 / vol realizzata 30d,
-  0, 1) quantizzata a step 0.25; ribilancio solo al cambio di bucket.</li>
-<li><strong>Stato persistente</strong> (<code>data/macro_core_state.json</code>): la posizione vive
-  mesi attraverso i restart; riconciliata col venue al primo
-  <code>manage_positions</code>.</li>
-</ul>
-<p>Validazione BTC: <strong>+315%/4y vs +136% buy&amp;hold, maxDD 24.7%, 9 trade</strong>,
-2025 -1%. Plateau robusto k∈[4.5, 6]. <strong>ETH: BOCCIATA</strong> (= buy&amp;hold con
-maxDD 58%) → solo BTC. Con più simboli in <code>MC_SYMBOLS</code> il budget di
-esposizione si DIVIDE (BTC/ETH correlano ~0.8).</p>
-<hr />
-<h2 id="portafoglio-e-gating-automatico">Portafoglio e gating automatico</h2>
-<p>Equity sim 4y delle 5 istanze insieme (C4, <code>scripts/equity_sim.py</code>):
-baseline +770% maxDD 29.6%; <strong>con vol-target 30% su MC (adottato):
-+491%, maxDD 21.5%, Calmar 2.61, peggior anno 0.0%</strong>. Kelly 0.25× e
-de-risk su DD testati e BOCCIATI (Calmar peggiore).</p>
-<p>Tre livelli di attivazione automatica (nessun intervento manuale):</p>
-<table>
-<thead>
-<tr>
-<th>Livello</th>
-<th>Meccanismo</th>
-<th>Dove</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Macro (giorni-mesi)</td>
-<td>SMA200d daily: bear→TB short+FS, bull→TB long+MC</td>
-<td>dentro ogni strategia</td>
-</tr>
-<tr>
-<td>Regime (ore)</td>
-<td>REGIME_RULES per TREND/RANGE/COMPRESSION/EXPANSION</td>
-<td><code>src/engine/scoring.py</code></td>
-</tr>
-<tr>
-<td>Performance (rolling)</td>
-<td>score = WR×expectancy×Sharpe sotto soglia → off</td>
-<td><code>ScoringEngine.should_trade</code></td>
-</tr>
-</tbody>
-</table>
-<p>Guardrail live (dal piano): PF rolling &lt; 0.8 dopo ≥30 trade → disattivare
-e rivalidare; DD &gt; 1.5× il maxDD di backtest → disattivare subito.</p>
-<hr />
-<h2 id="strategie-disattivate-bocciate-coi-dati">Strategie disattivate (bocciate coi dati)</h2>
-<p>Tutte validate con la stessa pipeline e tenute nel codice come riferimento.
-Verdetti completi nel <code>.env</code> e nei report citati in testa.</p>
+<h2 id="le-tre-strategie">Le tre strategie</h2>
 <table>
 <thead>
 <tr>
 <th>Strategia</th>
-<th>Verdetto 4y</th>
+<th>Categoria</th>
+<th>Validazione (BTC, 4 anni)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trend Breakdown</strong></td>
+<td>Tattica bidirezionale macro-gated: breakdown in fase bear, breakout in fase bull</td>
+<td>short +22 bps/trade PF 1.26 · long +68 bps PF 1.53</td>
+</tr>
+<tr>
+<td><strong>Funding Squeeze</strong></td>
+<td>Specialista contrarian della capitolazione deep-bear (crowding del funding)</td>
+<td>+74 bps/trade PF 2.65 · ETH +64 bps PF 1.82</td>
+</tr>
+<tr>
+<td><strong>Macro Core</strong></td>
+<td>Posizione core di regime con uscita disciplinata e vol-targeting</td>
+<td>+315%/4y vs +136% buy&amp;hold, maxDD 24.7%</td>
+</tr>
+</tbody>
+</table>
+<p>Istanze live: 5 (Trend Breakdown e Funding Squeeze su BTC+ETH, Macro Core
+su BTC). Ogni lato di ogni strategia è attivo SOLO sul mercato e nella
+fase macro in cui ha superato la validazione.</p>
+<p><strong>Portafoglio</strong> (equity simulation 4 anni, tutte le istanze insieme):
++491% con maxDD 21.5%, Calmar 2.61, peggior anno 0.0% — dopo l'adozione
+del vol-targeting sul core (testati e bocciati coi dati: Kelly frazionario
+e de-risking sul drawdown).</p>
+<h2 id="il-gating-automatico-a-3-livelli">Il gating automatico a 3 livelli</h2>
+<p>Il sistema decide da solo cosa può tradare, quando:</p>
+<table>
+<thead>
+<tr>
+<th>Livello</th>
+<th>Orizzonte</th>
+<th>Meccanismo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Macro</td>
+<td>giorni-mesi</td>
+<td>filtro di fase sul trend primario: ogni lato è strutturalmente spento nella fase avversa</td>
+</tr>
+<tr>
+<td>Regime</td>
+<td>ore</td>
+<td>classificazione TREND/RANGE/COMPRESSION/EXPANSION con regole per strategia</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>rolling</td>
+<td>una strategia che sotto-performa live viene disattivata automaticamente</td>
+</tr>
+</tbody>
+</table>
+<p>Guardrail live: profit factor rolling sotto soglia dopo un campione
+minimo di trade → disattivazione e rivalidazione; drawdown oltre 1.5× il
+massimo di backtest → disattivazione immediata.</p>
+<h2 id="il-processo-di-validazione-perche-fidarsi-dei-numeri">Il processo di validazione (perché fidarsi dei numeri)</h2>
+<p>Ogni strategia, prima del deploy, supera una pipeline rigida:</p>
+<ol>
+<li><strong>Backtest sul codice reale</strong> — il provider dati è iniettabile, il
+   codice di strategia è identico tra live e simulazione</li>
+<li><strong>4 anni multi-ciclo</strong> — l'edge deve sopravvivere a bear, bull e
+   transizioni, non a una singola fase fortunata</li>
+<li><strong>Costi realistici</strong> (fee + slippage) e <strong>nessun lookahead</strong></li>
+<li><strong>In-sample / out-of-sample</strong> temporale</li>
+<li><strong>Robustezza ai parametri vicini</strong> — niente edge che vive solo su una
+   combinazione magica</li>
+<li><strong>Profit factor minimo</strong> sul campione completo</li>
+</ol>
+<h2 id="le-strategie-bocciate-trasparenza">Le strategie bocciate (trasparenza)</h2>
+<p>La stessa pipeline ha <strong>bocciato coi dati</strong> otto strategie storiche —
+restano nel codice, disattivate, col verdetto documentato:</p>
+<table>
+<thead>
+<tr>
+<th>Strategia</th>
+<th>Verdetto 4 anni</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Volume Breakout</td>
-<td>PF 0.42-0.74, -13/-20 bps, negativa in OGNI fase e anno</td>
+<td>PF 0.42-0.74 — nessun edge, negativa in ogni fase e anno</td>
 </tr>
 <tr>
 <td>Mean Reversion (VWAP fade)</td>
-<td>PF 0.28-0.53, -22/-47 bps</td>
+<td>PF 0.28-0.53</td>
 </tr>
 <tr>
 <td>Liquidation Squeeze</td>
-<td>PF 0.06-0.30 — quando la cascata è visibile, il movimento è finito</td>
+<td>quando la cascata è visibile, il movimento è finito</td>
 </tr>
 <tr>
 <td>Imbalance Scalp</td>
-<td>PF 0.18-0.50 su 29k+ trade — fee-bound, edge lordo zero</td>
+<td>fee-bound su 29k+ trade — edge lordo zero</td>
 </tr>
 <tr>
 <td>NY Brings</td>
-<td>PF 0.64, -17.5 bps, negativa ogni anno (718 trade)</td>
+<td>negativa ogni anno (718 trade)</td>
 </tr>
 <tr>
 <td>W/M Formation</td>
-<td>unica con edge BTC (+17 bps PF 1.21) ma 2024 negativa e ETH negativa → non strutturale</td>
+<td>edge non strutturale (non replica cross-asset)</td>
 </tr>
 <tr>
 <td>Smart Money</td>
-<td>componenti testabili già falliti (stagionalità)</td>
+<td>componenti già falsificati</td>
 </tr>
 <tr>
 <td>Iron Condor</td>
@@ -971,6 +910,15 @@ Verdetti completi nel <code>.env</code> e nei report citati in testa.</p>
 </tr>
 </tbody>
 </table>
+<p>Un sistema che pubblica anche ciò che NON funziona è un sistema di cui
+puoi verificare il metodo.</p>
+<h2 id="licenza-e-accesso">Licenza e accesso</h2>
+<p>Il codice è <strong>source-available</strong> con doppia licenza: libero per uso non
+commerciale (incluso il trading del proprio capitale personale), mentre
+<strong>qualsiasi uso commerciale richiede una licenza a pagamento</strong> — che
+include l'accesso alle specifiche operative complete delle strategie e ai
+report di validazione integrali.</p>
+<p>Contatto: <strong>lantoniotrento@gmail.com</strong></p>
 
 
 
