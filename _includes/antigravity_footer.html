@@ -5,58 +5,42 @@
         <div class="max-w-sm">
             <a href="{{ '/' | relative_url }}{% if page.lang == 'it' %}it/{% else %}en/{% endif %}"
                 class="flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity">
-                <img src="/assets/images/logo/zirelia-logo-200x200.png" alt="Zirelia" class="h-12 w-auto">
-                <span class="text-2xl font-black tracking-tighter gradient-text font-display">Zirelia</span>
+                <img src="/assets/images/logo/logo-transparent.png" alt="CryptoQuantix" class="h-12 w-auto">
+                <span class="text-2xl font-black tracking-tighter gradient-text font-display">CryptoQuantix</span>
             </a>
             <p class="text-gray-500 mb-2 text-sm font-bold uppercase tracking-widest">
                 {% if page.lang == 'it' %}
-                Engine Autonomo per Virtual Influencer AI
+                Motore di Trading Quantitativo
                 {% else %}
-                Autonomous AI Virtual Influencer Engine
+                Quantitative Trading Engine
                 {% endif %}
             </p>
             <p class="text-gray-600 text-sm mb-6">
                 {% if page.lang == 'it' %}
-                Definisci una persona. Zirelia pensa, crea immagini e pubblica da sola — 24/7.
+                Strategie multi-ciclo, risk management e automazione di portafoglio.
                 {% else %}
-                Define a persona. Zirelia thinks, generates images, and posts autonomously — 24/7.
+                Multi-cycle strategies, risk management, and portfolio automation.
                 {% endif %}
             </p>
             <div class="flex flex-col sm:flex-row gap-6">
-                <!-- Zirelia Project -->
+                <!-- CryptoQuantix Project -->
                 <div>
                     <p class="text-gray-600 text-[10px] font-bold uppercase tracking-widest mb-2">
                         {% if page.lang == 'it' %}Progetto{% else %}Project{% endif %}
                     </p>
                     <div class="flex gap-2">
-                        <a href="https://github.com/zirelia/zirelia" target="_blank" rel="noopener"
+                        <a href="https://github.com/CryptoQuantix/CryptoQuantix" target="_blank" rel="noopener"
                             class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-purple hover:border-brand-purple transition-all text-gray-400 hover:text-white"
                             title="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
                     </div>
                 </div>
-                <!-- Sienna Fox -->
+                <!-- Links -->
                 <div>
-                    <p class="text-gray-600 text-[10px] font-bold uppercase tracking-widest mb-2">Sienna Fox</p>
+                    <p class="text-gray-600 text-[10px] font-bold uppercase tracking-widest mb-2">Antonio Trento</p>
                     <div class="flex gap-2">
-                        <a href="https://www.instagram.com/itssiennafox/" target="_blank" rel="noopener"
-                            class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-pink-500 hover:to-purple-600 hover:border-pink-500 transition-all text-gray-400 hover:text-white"
-                            title="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://www.facebook.com/people/Itssiennafox/61588032203458/" target="_blank"
-                            rel="noopener"
-                            class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#1877F2] hover:border-[#1877F2] transition-all text-gray-400 hover:text-white"
-                            title="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.threads.com/@itssiennafox" target="_blank" rel="noopener"
-                            class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-black hover:border-white/30 transition-all text-gray-400 hover:text-white"
-                            title="Threads">
-                            <i class="fab fa-threads"></i>
-                        </a>
-                        <a href="https://x.com/ItsSiennaFox" target="_blank" rel="noopener"
+                        <a href="https://x.com/antoniotrento" target="_blank" rel="noopener"
                             class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-purple hover:border-brand-purple transition-all text-gray-400 hover:text-white"
                             title="X / Twitter">
                             <i class="fab fa-x-twitter"></i>
@@ -99,22 +83,16 @@
                 <h4 class="font-bold mb-4 text-white text-sm uppercase tracking-wider">Open Source</h4>
                 <ul class="space-y-3 text-sm text-gray-500">
                     <li>
-                        <a href="https://github.com/zirelia/zirelia" target="_blank" rel="noopener"
+                        <a href="https://github.com/CryptoQuantix/CryptoQuantix" target="_blank" rel="noopener"
                             class="hover:text-brand-purple transition-colors flex items-center gap-2">
                             <i class="fab fa-github text-xs"></i>
                             GitHub Repo
                         </a>
                     </li>
                     <li>
-                        <a href="https://zirelia.github.io/zirelia/" target="_blank" rel="noopener"
+                        <a href="https://cryptoquantix.github.io/docs" target="_blank" rel="noopener"
                             class="hover:text-brand-purple transition-colors">
                             {% if page.lang == 'it' %}Documentazione{% else %}Documentation{% endif %}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% if page.lang == 'it' %}/it/pricing/{% else %}/en/pricing/{% endif %}"
-                            class="hover:text-brand-purple transition-colors">
-                            {% if page.lang == 'it' %}Costi API{% else %}API Costs{% endif %}
                         </a>
                     </li>
                 </ul>
@@ -147,19 +125,13 @@
         <p>
             © {{ site.time | date: '%Y' }} <a href="https://antoniotrento.net"
                 class="hover:text-brand-purple transition-colors">Antonio Trento</a>.
-            {% if page.lang == 'it' %}Rilasciato sotto Elastic License 2.0.{% else %}Released under Elastic License
-            2.0.{% endif %}
+            {% if page.lang == 'it' %}Rilasciato sotto MIT License.{% else %}Released under MIT License.{% endif %}
         </p>
         <p class="text-center md:text-right max-w-lg">
             {% if page.lang == 'it' %}
-            ⚠️ I contenuti pubblicati dalle persona virtuali sono generati da AI. Nessuna persona reale è
-            rappresentata. L'automazione dei social media può violare i ToS delle piattaforme. Usare a
-            proprio rischio. <a href="/it/terms/"
-                class="underline hover:text-brand-purple transition-colors">Termini</a>
+            ⚠️ Il trading comporta rischi significativi. Usare a proprio rischio.
             {% else %}
-            ⚠️ Content published by virtual personas is AI-generated. No real person is represented.
-            Automating social media may violate platform ToS. Use at your own risk.
-            <a href="/en/terms/" class="underline hover:text-brand-purple transition-colors">Terms</a>
+            ⚠️ Trading involves significant risk. Use at your own risk.
             {% endif %}
         </p>
     </div>

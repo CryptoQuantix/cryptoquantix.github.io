@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <title>{{ page.title | default: site.title }}</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/logo/favicon.ico">
-    <link rel="apple-touch-icon" href="/assets/images/logo/zirelia-logo-200x200.png">
+    <link rel="apple-touch-icon" href="/assets/images/logo/logo-transparent.png">
     {% include seo.html %}
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <script>
@@ -20,17 +20,17 @@
                     },
                     colors: {
                         brand: {
-                            purple: '#7C3AED',
-                            purpleLight: '#A78BFA',
-                            pink: '#EC4899',
-                            pinkLight: '#F9A8D4',
+                            purple: '#0ea5e9', // Changed to Sky Blue for Crypto
+                            purpleLight: '#38bdf8',
+                            pink: '#10b981', // Changed to Emerald Green for Crypto
+                            pinkLight: '#34d399',
                             gold: '#F59E0B',
                             dark: '#0D0D0F',
                             surface: '#18181B',
                             muted: '#71717A',
                             // keep compat aliases
-                            blue: '#7C3AED',
-                            green: '#EC4899',
+                            blue: '#0ea5e9',
+                            green: '#10b981',
                             black: '#0D0D0F',
                             gray: '#18181B',
                         }
@@ -57,8 +57,8 @@
                             '100%': { transform: 'translateX(-100%)' },
                         },
                         glowPulse: {
-                            '0%, 100%': { boxShadow: '0 0 20px rgba(124, 58, 237, 0.4)' },
-                            '50%': { boxShadow: '0 0 60px rgba(124, 58, 237, 0.8), 0 0 120px rgba(236, 72, 153, 0.3)' },
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(14, 165, 233, 0.4)' },
+                            '50%': { boxShadow: '0 0 60px rgba(14, 165, 233, 0.8), 0 0 120px rgba(16, 185, 129, 0.3)' },
                         }
                     }
                 },
@@ -154,15 +154,15 @@
 
         /* Neon glow utilities */
         .glow-purple {
-            box-shadow: 0 0 30px rgba(124, 58, 237, 0.5), 0 0 60px rgba(124, 58, 237, 0.2);
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.5), 0 0 60px rgba(14, 165, 233, 0.2);
         }
 
         .glow-pink {
-            box-shadow: 0 0 30px rgba(236, 72, 153, 0.5), 0 0 60px rgba(236, 72, 153, 0.2);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.5), 0 0 60px rgba(16, 185, 129, 0.2);
         }
 
         .text-glow {
-            text-shadow: 0 0 30px rgba(167, 139, 250, 0.6);
+            text-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
         }
 
         /* Noise overlay */
@@ -186,11 +186,11 @@
         /* Code block styles */
         .code-block {
             background: #0a0a0a;
-            border: 1px solid rgba(124, 58, 237, 0.3);
+            border: 1px solid rgba(14, 165, 233, 0.3);
             border-radius: 12px;
             font-family: 'Courier New', monospace;
             font-size: 0.875rem;
-            color: #a78bfa;
+            color: #38bdf8;
             padding: 1.5rem;
             overflow-x: auto;
         }
@@ -235,12 +235,12 @@
         /* Card hover glow */
         .card-glow {
             transition: all 0.3s ease;
-            border: 1px solid rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.1);
         }
 
         .card-glow:hover {
-            border-color: rgba(124, 58, 237, 0.4);
-            box-shadow: 0 0 30px rgba(124, 58, 237, 0.15), 0 20px 60px rgba(0, 0, 0, 0.5);
+            border-color: rgba(14, 165, 233, 0.4);
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.15), 0 20px 60px rgba(0, 0, 0, 0.5);
             transform: translateY(-4px);
         }
 

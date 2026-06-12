@@ -31,15 +31,15 @@ faq:
     answer: "Sì, il progetto include una Dashboard in Streamlit separata dal bot, che fornisce la riconciliazione su exchange, l'esposizione al rischio e uno storico analitico."
 
 social:
-  github: "https://github.com/coinmaker-quant"
+  github: "https://github.com/CryptoQuantix/CryptoQuantix"
   twitter: "https://x.com/antoniotrento"
 
 cta:
-  github_url: "https://github.com/coinmaker-quant"
+  github_url: "https://github.com/CryptoQuantix/CryptoQuantix"
   docs_url: "https://cryptoquantix.github.io/docs"
 
 popup:
-  url: "https://github.com/coinmaker-quant"
+  url: "https://github.com/CryptoQuantix/CryptoQuantix"
   en:
     title: "Discover CryptoQuantix"
     body: "Quantitative trading strategies and portfolio management for crypto perpetuals."

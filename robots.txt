@@ -24,4 +24,4 @@ Disallow: /*?*ref=
 Disallow: /*?*s=
 
 # Sitemap
-Sitemap: https://zirelia.github.io/sitemap.xml
+Sitemap: https://cryptoquantix.github.io/sitemap.xml

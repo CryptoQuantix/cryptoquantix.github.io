@@ -1,12 +1,12 @@
-<nav class="fixed w-full z-50 transition-all duration-300 bg-brand-dark/80 backdrop-blur-md border-b border-white/5"
+<nav class="fixed w-full z-50 transition-all duration-300 bg-white/80 dark:bg-brand-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-white/5"
   id="navbar">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
     <!-- Logo -->
     <a href="{{ '/' | relative_url }}{% if page.lang == 'it' %}it/{% else %}en/{% endif %}"
-      class="flex items-center gap-3 text-2xl font-black tracking-tighter hover:scale-105 transition-transform font-display">
-      <img src="/assets/images/logo/zirelia-logo-100x100.png" alt="Zirelia" class="h-9 w-auto">
-      <span class="gradient-text">Zirelia</span>
+      class="flex items-center gap-3 text-2xl font-black tracking-tighter hover:scale-105 transition-transform font-display text-gray-900 dark:text-white">
+      <img src="/assets/images/logo/logo-transparent.png" alt="CryptoQuantix" class="h-9 w-auto">
+      <span class="gradient-text">CryptoQuantix</span>
     </a>
 
     <!-- Desktop Menu -->
@@ -58,7 +58,7 @@
     </div>
 
     <!-- Mobile Menu Button -->
-    <button class="md:hidden text-2xl text-white" onclick="toggleMobileMenu()" aria-label="Menu">
+    <button class="md:hidden text-2xl text-gray-900 dark:text-white" onclick="toggleMobileMenu()" aria-label="Menu">
       <i class="fas fa-bars"></i>
     </button>
   </div>
@@ -66,8 +66,8 @@
 
 <!-- Mobile Menu Overlay -->
 <div id="mobile-menu"
-  class="fixed inset-0 bg-brand-dark z-[60] transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8">
-  <button class="absolute top-6 right-6 text-3xl text-white" onclick="toggleMobileMenu()">
+  class="fixed inset-0 bg-white dark:bg-brand-dark z-[60] transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8">
+  <button class="absolute top-6 right-6 text-3xl text-gray-900 dark:text-white" onclick="toggleMobileMenu()">
     <i class="fas fa-times"></i>
   </button>
 
@@ -79,11 +79,11 @@
   {% for item in nav_items %}
   {% if item.url contains 'github.com' %}
   <a href="{{ item.url }}" target="_blank" rel="noopener"
-    class="text-2xl font-black flex items-center gap-3 hover:text-brand-purple transition-colors"
+    class="text-2xl font-black flex items-center gap-3 text-gray-900 dark:text-white hover:text-brand-purple transition-colors"
     onclick="toggleMobileMenu()"><i class="fab fa-github"></i> {{ item.title }}</a>
   {% else %}
   <a href="{{ item.url | relative_url }}"
-    class="text-3xl font-black hover:text-brand-purple transition-colors font-display" onclick="toggleMobileMenu()">{{
+    class="text-3xl font-black text-gray-900 dark:text-white hover:text-brand-purple transition-colors font-display" onclick="toggleMobileMenu()">{{
     item.title }}</a>
   {% endif %}
   {% endfor %}
