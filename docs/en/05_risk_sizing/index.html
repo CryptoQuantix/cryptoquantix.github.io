@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="it" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -12,35 +12,35 @@
         <meta name="author" content="CryptoQuantix Team">
       
       
-        <link rel="canonical" href="https://cryptoquantix.github.io/docs/03_configuration/">
+        <link rel="canonical" href="https://cryptoquantix.github.io/docs/en/05_risk_sizing/">
       
       
-        <link rel="prev" href="../02_strategies/">
+        <link rel="prev" href="../03_configuration/">
       
       
-        <link rel="next" href="../05_risk_sizing/">
+        <link rel="next" href="../02_data_microstructure/">
       
       
         
-          <link rel="alternate" href="./" hreflang="it">
+          <link rel="alternate" href="../../05_risk_sizing/" hreflang="it">
         
-          <link rel="alternate" href="../en/03_configuration/" hreflang="en">
+          <link rel="alternate" href="./" hreflang="en">
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
-        <title>Configurazione (.env) - CryptoQuantix — Docs</title>
+        <title>Risk & Sizing - CryptoQuantix — Docs</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -59,7 +59,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -84,8 +84,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#configurazione-il-file-env" class="md-skip">
-          Vai al contenuto
+        <a href="#risk-management-sizing-portfolio-caps-kill-switch" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -97,8 +97,8 @@
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Intestazione">
-    <a href=".." title="CryptoQuantix — Docs" class="md-header__button md-logo" aria-label="CryptoQuantix — Docs" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../" title="CryptoQuantix — Docs" class="md-header__button md-logo" aria-label="CryptoQuantix — Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Configurazione (.env)
+              Risk & Sizing
             
           </span>
         </div>
@@ -144,20 +144,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="Seleziona la lingua">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="it" class="md-select__link">
+            <a href="../../05_risk_sizing/" hreflang="it" class="md-select__link">
               Italiano
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../en/03_configuration/" hreflang="en" class="md-select__link">
+            <a href="./" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -178,16 +178,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Cerca" placeholder="Cerca" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Cerca">
+      <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="Cancella" aria-label="Cancella" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -198,7 +198,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Inizializza la ricerca
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -229,7 +229,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../" class="md-tabs__link">
         
   
   
@@ -254,7 +254,7 @@
   
     
   
-  Architettura
+  Architecture
 
       </a>
     </li>
@@ -273,7 +273,26 @@
   
     
   
-  Strategie attive
+  Active strategies
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03_configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration (.env)
 
       </a>
     </li>
@@ -289,25 +308,6 @@
   
     <li class="md-tabs__item md-tabs__item--active">
       <a href="./" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Configurazione (.env)
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../05_risk_sizing/" class="md-tabs__link">
         
   
   
@@ -332,7 +332,7 @@
           
   
   
-  Infrastruttura
+  Infrastructure
 
         </a>
       </li>
@@ -362,9 +362,9 @@
 
   
 
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigazione" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="CryptoQuantix — Docs" class="md-nav__button md-logo" aria-label="CryptoQuantix — Docs" data-md-component="logo">
+    <a href="../" title="CryptoQuantix — Docs" class="md-nav__button md-logo" aria-label="CryptoQuantix — Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -382,7 +382,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -416,7 +416,7 @@
   <span class="md-ellipsis">
     
   
-    Architettura
+    Architecture
   
 
     
@@ -443,7 +443,34 @@
   <span class="md-ellipsis">
     
   
-    Strategie attive
+    Active strategies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration (.env)
   
 
     
@@ -479,7 +506,7 @@
   <span class="md-ellipsis">
     
   
-    Configurazione (.env)
+    Risk & Sizing
   
 
     
@@ -497,7 +524,7 @@
   <span class="md-ellipsis">
     
   
-    Configurazione (.env)
+    Risk & Sizing
   
 
     
@@ -509,7 +536,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Indice">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -518,15 +545,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Indice
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#blocco-operativo" class="md-nav__link">
+  <a href="#1-per-trade-sizing-dynamic-3-factor" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Blocco operativo
+        1. Per-trade sizing: dynamic 3-factor
       
     </span>
   </a>
@@ -534,38 +561,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#strategie-attive" class="md-nav__link">
+  <a href="#2-portfolio-caps-multi-strategy-anti-oversizing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Strategie attive
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Strategie attive">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#multi-symbol" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Multi-symbol
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#strategie-disattivate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Strategie disattivate
+        2. Portfolio caps (multi-strategy anti-oversizing)
       
     </span>
   </a>
@@ -573,10 +572,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#note" class="md-nav__link">
+  <a href="#3-daily-kill-switch" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Note
+        3. Daily kill switch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-order-lifecycle-never-naked-positions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Order lifecycle: never naked positions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-vol-targeting-on-the-core-position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Vol-targeting on the core position
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-equity-and-testnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Equity and testnet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#live-guardrails-continuous-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live guardrails (continuous monitoring)
       
     </span>
   </a>
@@ -587,33 +630,6 @@
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05_risk_sizing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Risk & Sizing
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -648,7 +664,7 @@
   <span class="md-ellipsis">
     
   
-    Infrastruttura
+    Infrastructure
   
 
     
@@ -664,7 +680,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Infrastruttura
+    Infrastructure
   
 
           </label>
@@ -684,7 +700,7 @@
   <span class="md-ellipsis">
     
   
-    Dati & Microstruttura
+    Data & Microstructure
   
 
     
@@ -768,7 +784,7 @@
   <span class="md-ellipsis">
     
   
-    Esecuzione & Deployment
+    Execution & Deployment
   
 
     
@@ -806,77 +822,117 @@
 
 
 
-<h1 id="configurazione-il-file-env">Configurazione — il file <code>.env</code></h1>
+<h1 id="risk-management-sizing-portfolio-caps-kill-switch">Risk management — sizing, portfolio caps, kill switch</h1>
 <blockquote>
-<p>Aggiornato: giugno 2026. Il <code>.env</code> è organizzato in tre blocchi:
-<strong>operativo</strong> (API, rischio, monitoring), <strong>STRATEGIE ATTIVE</strong> (parametri
-validati — non toccare senza rivalidare) e <strong>STRATEGIE DISATTIVATE</strong>
-(bocciate coi dati, col verdetto in commento). Il bot legge il <code>.env</code>
-SOLO all'avvio: ogni modifica richiede un riavvio.</p>
+<p>Updated: June 2026. Implementation: <code>src/core/risk_manager.py</code>.</p>
 </blockquote>
-<h2 id="blocco-operativo">Blocco operativo</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a># Deribit
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>DERIBIT_API_KEY=...           # mai committare; la dashboard non li mostra
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>DERIBIT_API_SECRET=...
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>DERIBIT_ENV=test              # test | live
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a># Risk management (vedi 05_risk_sizing.md)
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>INITIAL_EQUITY=10000
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>BASE_RISK_PCT=0.01            # 1% rischio per trade tattico
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>MAX_DAILY_LOSS_PCT=0.03       # kill switch dopo -3% giornaliero
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>MAX_OPEN_TRADES=3             # max posizioni aperte sul venue
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>MAX_GROSS_EXPOSURE=1.5        # nozionale lordo aggregato max 1.5x equity
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a># Monitoring
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>MONITORING_INTERVAL_MINUTES=15   # frequenza scan segnali
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>HEALTH_CHECK_INTERVAL_SEC=5
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>MAX_API_DOWN_SEC=30              # emergency close dopo 30s di API down
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>LOG_LEVEL=INFO
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a># Telegram (opzionale, vuoto = disabilitato)
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>TELEGRAM_BOT_TOKEN=
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>TELEGRAM_CHAT_ID=
+<p>Risk is managed on <strong>four independent levels</strong>: per-trade (sizing),
+per-portfolio (gross cap + max positions), per-day (kill switch) and
+per-position (never without a stop on the venue).</p>
+<h2 id="1-per-trade-sizing-dynamic-3-factor">1. Per-trade sizing: dynamic 3-factor</h2>
+<p><code>RiskManager.calculate_dynamic_size()</code> — used by the tactical strategies:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>base_risk = equity × BASE_RISK_PCT          (default 1%)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>adj_risk  = base_risk × vol_scalar × regime_scalar × kelly_scalar
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>quantity  = adj_risk / |entry − SL|
 </code></pre></div>
-<h2 id="strategie-attive">Strategie attive</h2>
-<p>Ogni strategia si abilita con <code>TB_ENABLED</code> / <code>FS_ENABLED</code> / <code>MC_ENABLED</code> e
-ha il proprio blocco di parametri nel <code>.env</code> (prefissi <code>TB_</code>, <code>FS_</code>, <code>MC_</code>).
-I default sono i valori <strong>validati sui 4 anni</strong>: cambiare un parametro
-significa uscire dalla validazione → ripassare la pipeline prima di
-fidarsi dei risultati.</p>
-<h3 id="multi-symbol">Multi-symbol</h3>
-<p><code>TB_SYMBOLS</code> / <code>FS_SYMBOLS</code> / <code>MC_SYMBOLS</code> accettano una lista
-(<code>BTCUSDT,ETHUSDT</code>): il bot crea UN'ISTANZA per simbolo con lo strumento
-Deribit derivato (<code>ETHUSDT</code> → <code>ETH-PERPETUAL</code>). Ogni lato di ogni
-strategia è abilitato solo sui simboli dove la validazione è positiva.</p>
-<blockquote>
-<p>🔒 <strong>Le tabelle complete dei parametri di strategia</strong> (lookback, soglie,
-moltiplicatori e relativi range validati) <strong>sono riservate</strong> —
-disponibili con la licenza commerciale (contatto:
-lantoniotrento@gmail.com). L'editor della dashboard le espone comunque
-all'operatore con i range validati come bound.</p>
-</blockquote>
-<h2 id="strategie-disattivate">Strategie disattivate</h2>
-<p>Tutte con <code>*_ENABLED=false</code> e il verdetto della validazione in commento nel
-<code>.env</code>. <strong>Non riattivare senza nuova validazione completa.</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>VB_ENABLED=false        # Volume Breakout : PF 0.42-0.74 — nessun edge
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>MR_ENABLED=false        # Mean Reversion  : PF 0.28-0.53
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>LIQ_ENABLED=false       # Liq Squeeze     : PF 0.06-0.30
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>IS_ENABLED=false        # Imbalance Scalp : fee-bound, PF 0.18-0.50
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>BRINGS_ENABLED=false    # NY Brings       : PF 0.64, negativa ogni anno
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>WM_ENABLED=false        # W/M Formation   : edge non strutturale
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>STRATEGY_SMART_MONEY_ENABLED=false
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>STRATEGY_IRON_CONDOR_ENABLED=false   # opzioni, fuori direzione progetto
-</code></pre></div>
-<h2 id="note">Note</h2>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Volatility (ATR percentile)</td>
+<td>&lt;30 → 1.0 · 30-70 → 0.75 · ≥70 → 0.50</td>
+</tr>
+<tr>
+<td>Regime</td>
+<td>TREND 1.0 · RANGE 0.80 · EXPANSION 0.70 · COMPRESSION 0.60 · UNKNOWN 0.70</td>
+</tr>
+<tr>
+<td>Fractional Kelly</td>
+<td>kelly = 2×WR−1, clipped [0.05, 0.25], normalized /0.25</td>
+</tr>
+</tbody>
+</table>
+<p>Final caps applied in cascade: effective leverage ≤ 10×, then the
+<strong>aggregate gross exposure cap</strong> (below). The core position does not use
+the 3-factor model: its size is equity × exposure fraction × vol-target
+bucket, still subject to the gross cap.</p>
+<h2 id="2-portfolio-caps-multi-strategy-anti-oversizing">2. Portfolio caps (multi-strategy anti-oversizing)</h2>
+<p>With 5 active instances, multiple strategies can open positions at the
+same time. Two limits:</p>
 <ul>
-<li><code>Config.load_strategies()</code> (<a href="../config.py">../config.py</a>) è l'unico punto
-  che traduce il <code>.env</code> in istanze: la dashboard usa la stessa funzione,
-  quindi vede esattamente le istanze del bot.</li>
-<li>Testnet: l'equity di sizing è cappata a $50k (i faucet testnet gonfiano
-  l'equity e produrrebbero ordini fuori scala).</li>
-<li>Validazione config all'avvio: chiavi mancanti o <code>DERIBIT_ENV</code> non valido
-  bloccano il bootstrap.</li>
+<li><strong><code>MAX_GROSS_EXPOSURE=1.5</code></strong>: the sum of ABSOLUTE notional of all open
+  futures positions ≤ 1.5 × equity. Every new size is capped to the
+  remaining headroom; at the cap, new entries are blocked.</li>
+<li><strong><code>MAX_OPEN_TRADES=3</code></strong>: maximum number of venue positions.</li>
 </ul>
+<p><code>can_open_new_position()</code> is the single gate: kill switch → max
+positions → gross cap. Structural note: the macro gates make OPPOSITE
+positions on the same instrument impossible — no netting conflicts on a
+netted venue.</p>
+<h2 id="3-daily-kill-switch">3. Daily kill switch</h2>
+<ul>
+<li>Every closed trade's P&amp;L is registered</li>
+<li>If the day's P&amp;L ≤ −(equity × <code>MAX_DAILY_LOSS_PCT</code>, default 3%) →
+  <strong>trading suspended until midnight</strong> (resets on date change)</li>
+<li>A <strong>manual kill switch</strong> is also available from the dashboard (flag
+  file honored by the RiskManager)</li>
+<li>Visible in the dashboard (Risk &amp; Exposure page)</li>
+</ul>
+<h2 id="4-order-lifecycle-never-naked-positions">4. Order lifecycle: never naked positions</h2>
+<p>In <code>OrderManager.execute_generic_trade</code>:</p>
+<ol>
+<li><strong>Market entry</strong> (an unfilled limit would leave rejected reduce-only
+   SL/TP orders and, filling later, a position WITHOUT a stop — a real
+   bug found and fixed in June 2026)</li>
+<li><strong>Reduce-only stop_market SL with 3× retry</strong>; if all fail →
+   <strong>EMERGENCY CLOSE</strong> of the just-opened position</li>
+<li>Reduce-only limit TP (best effort)</li>
+<li>SL/TP registered in the <code>OrderRegistry</code> → the management loop (30s)
+   cancels orphaned orders after every close</li>
+</ol>
+<p>Additionally: the <code>FailureHandler</code> closes everything if the API stays
+down too long; the core position keeps a venue disaster stop for crashes
+while the bot is offline.</p>
+<h2 id="5-vol-targeting-on-the-core-position">5. Vol-targeting on the core position</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>expo = clip(vol_target / realized_vol, 0, 1)
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>       quantized to discrete buckets (rebalance only on bucket change)
+</code></pre></div>
+<p>Result in the 4-year equity simulation: portfolio maxDD 29.6% → 21.5%,
+Calmar 2.43 → 2.61, worst year 0.0%. <strong>Adopted</strong>; tested and rejected:
+fractional Kelly and drawdown-triggered de-risking (both worsened
+Calmar).</p>
+<h2 id="6-equity-and-testnet">6. Equity and testnet</h2>
+<p>Total equity = BTC + ETH equity converted to USD at index prices. On
+<strong>testnet</strong>, sizing equity is capped at $50,000 (faucet funds would
+inflate sizes beyond market limits).</p>
+<h2 id="live-guardrails-continuous-monitoring">Live guardrails (continuous monitoring)</h2>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rolling PF &lt; 0.8 after ≥ 30 live trades</td>
+<td>disable the strategy and re-validate</td>
+</tr>
+<tr>
+<td>Strategy DD &gt; 1.5× backtest maxDD</td>
+<td>disable IMMEDIATELY</td>
+</tr>
+<tr>
+<td>Orphan order / SL-less position in the dashboard</td>
+<td>investigate immediately</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -900,7 +956,7 @@ all'operatore con i range validati come bound.</p>
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Torna su
+  Back to top
 </button>
         
       </main>
@@ -932,10 +988,10 @@ all'operatore con i range validati come bound.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

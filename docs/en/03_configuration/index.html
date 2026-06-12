@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="it" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -12,7 +12,7 @@
         <meta name="author" content="CryptoQuantix Team">
       
       
-        <link rel="canonical" href="https://cryptoquantix.github.io/docs/03_configuration/">
+        <link rel="canonical" href="https://cryptoquantix.github.io/docs/en/03_configuration/">
       
       
         <link rel="prev" href="../02_strategies/">
@@ -22,25 +22,25 @@
       
       
         
-          <link rel="alternate" href="./" hreflang="it">
+          <link rel="alternate" href="../../03_configuration/" hreflang="it">
         
-          <link rel="alternate" href="../en/03_configuration/" hreflang="en">
+          <link rel="alternate" href="./" hreflang="en">
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
-        <title>Configurazione (.env) - CryptoQuantix — Docs</title>
+        <title>Configuration (.env) - CryptoQuantix — Docs</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -59,7 +59,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -84,8 +84,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#configurazione-il-file-env" class="md-skip">
-          Vai al contenuto
+        <a href="#configuration-the-env-file" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -97,8 +97,8 @@
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Intestazione">
-    <a href=".." title="CryptoQuantix — Docs" class="md-header__button md-logo" aria-label="CryptoQuantix — Docs" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../" title="CryptoQuantix — Docs" class="md-header__button md-logo" aria-label="CryptoQuantix — Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Configurazione (.env)
+              Configuration (.env)
             
           </span>
         </div>
@@ -144,20 +144,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="Seleziona la lingua">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="it" class="md-select__link">
+            <a href="../../03_configuration/" hreflang="it" class="md-select__link">
               Italiano
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../en/03_configuration/" hreflang="en" class="md-select__link">
+            <a href="./" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -178,16 +178,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Cerca" placeholder="Cerca" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Cerca">
+      <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="Cancella" aria-label="Cancella" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -198,7 +198,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Inizializza la ricerca
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -229,7 +229,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../" class="md-tabs__link">
         
   
   
@@ -254,7 +254,7 @@
   
     
   
-  Architettura
+  Architecture
 
       </a>
     </li>
@@ -273,7 +273,7 @@
   
     
   
-  Strategie attive
+  Active strategies
 
       </a>
     </li>
@@ -294,7 +294,7 @@
   
     
   
-  Configurazione (.env)
+  Configuration (.env)
 
       </a>
     </li>
@@ -332,7 +332,7 @@
           
   
   
-  Infrastruttura
+  Infrastructure
 
         </a>
       </li>
@@ -362,9 +362,9 @@
 
   
 
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigazione" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="CryptoQuantix — Docs" class="md-nav__button md-logo" aria-label="CryptoQuantix — Docs" data-md-component="logo">
+    <a href="../" title="CryptoQuantix — Docs" class="md-nav__button md-logo" aria-label="CryptoQuantix — Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -382,7 +382,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -416,7 +416,7 @@
   <span class="md-ellipsis">
     
   
-    Architettura
+    Architecture
   
 
     
@@ -443,7 +443,7 @@
   <span class="md-ellipsis">
     
   
-    Strategie attive
+    Active strategies
   
 
     
@@ -479,7 +479,7 @@
   <span class="md-ellipsis">
     
   
-    Configurazione (.env)
+    Configuration (.env)
   
 
     
@@ -497,7 +497,7 @@
   <span class="md-ellipsis">
     
   
-    Configurazione (.env)
+    Configuration (.env)
   
 
     
@@ -509,7 +509,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Indice">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -518,15 +518,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Indice
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#blocco-operativo" class="md-nav__link">
+  <a href="#operational-block" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Blocco operativo
+        Operational block
       
     </span>
   </a>
@@ -534,15 +534,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#strategie-attive" class="md-nav__link">
+  <a href="#active-strategies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Strategie attive
+        Active strategies
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Strategie attive">
+    <nav class="md-nav" aria-label="Active strategies">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -562,10 +562,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#strategie-disattivate" class="md-nav__link">
+  <a href="#disabled-strategies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Strategie disattivate
+        Disabled strategies
       
     </span>
   </a>
@@ -573,10 +573,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#note" class="md-nav__link">
+  <a href="#notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Note
+        Notes
       
     </span>
   </a>
@@ -648,7 +648,7 @@
   <span class="md-ellipsis">
     
   
-    Infrastruttura
+    Infrastructure
   
 
     
@@ -664,7 +664,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Infrastruttura
+    Infrastructure
   
 
           </label>
@@ -684,7 +684,7 @@
   <span class="md-ellipsis">
     
   
-    Dati & Microstruttura
+    Data & Microstructure
   
 
     
@@ -768,7 +768,7 @@
   <span class="md-ellipsis">
     
   
-    Esecuzione & Deployment
+    Execution & Deployment
   
 
     
@@ -806,76 +806,77 @@
 
 
 
-<h1 id="configurazione-il-file-env">Configurazione — il file <code>.env</code></h1>
+<h1 id="configuration-the-env-file">Configuration — the <code>.env</code> file</h1>
 <blockquote>
-<p>Aggiornato: giugno 2026. Il <code>.env</code> è organizzato in tre blocchi:
-<strong>operativo</strong> (API, rischio, monitoring), <strong>STRATEGIE ATTIVE</strong> (parametri
-validati — non toccare senza rivalidare) e <strong>STRATEGIE DISATTIVATE</strong>
-(bocciate coi dati, col verdetto in commento). Il bot legge il <code>.env</code>
-SOLO all'avvio: ogni modifica richiede un riavvio.</p>
+<p>Updated: June 2026. The <code>.env</code> is organized in three blocks:
+<strong>operational</strong> (API, risk, monitoring), <strong>ACTIVE STRATEGIES</strong>
+(validated parameters — do not touch without re-validating) and
+<strong>DISABLED STRATEGIES</strong> (rejected on the data, verdict in the
+comments). The bot reads the <code>.env</code> ONLY at startup: every change
+requires a restart.</p>
 </blockquote>
-<h2 id="blocco-operativo">Blocco operativo</h2>
+<h2 id="operational-block">Operational block</h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a># Deribit
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>DERIBIT_API_KEY=...           # mai committare; la dashboard non li mostra
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>DERIBIT_API_KEY=...           # never commit; the dashboard never shows them
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>DERIBIT_API_SECRET=...
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>DERIBIT_ENV=test              # test | live
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a># Risk management (vedi 05_risk_sizing.md)
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a># Risk management (see 05_risk_sizing.md)
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>INITIAL_EQUITY=10000
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>BASE_RISK_PCT=0.01            # 1% rischio per trade tattico
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>MAX_DAILY_LOSS_PCT=0.03       # kill switch dopo -3% giornaliero
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>MAX_OPEN_TRADES=3             # max posizioni aperte sul venue
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>MAX_GROSS_EXPOSURE=1.5        # nozionale lordo aggregato max 1.5x equity
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>BASE_RISK_PCT=0.01            # 1% risk per tactical trade
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>MAX_DAILY_LOSS_PCT=0.03       # kill switch after -3% daily
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>MAX_OPEN_TRADES=3             # max open positions on the venue
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>MAX_GROSS_EXPOSURE=1.5        # aggregate gross notional max 1.5x equity
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a># Monitoring
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>MONITORING_INTERVAL_MINUTES=15   # frequenza scan segnali
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>MONITORING_INTERVAL_MINUTES=15   # signal scan frequency
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>HEALTH_CHECK_INTERVAL_SEC=5
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>MAX_API_DOWN_SEC=30              # emergency close dopo 30s di API down
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>MAX_API_DOWN_SEC=30              # emergency close after 30s of API down
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>LOG_LEVEL=INFO
 <a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a># Telegram (opzionale, vuoto = disabilitato)
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a># Telegram (optional, empty = disabled)
 <a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>TELEGRAM_BOT_TOKEN=
 <a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>TELEGRAM_CHAT_ID=
 </code></pre></div>
-<h2 id="strategie-attive">Strategie attive</h2>
-<p>Ogni strategia si abilita con <code>TB_ENABLED</code> / <code>FS_ENABLED</code> / <code>MC_ENABLED</code> e
-ha il proprio blocco di parametri nel <code>.env</code> (prefissi <code>TB_</code>, <code>FS_</code>, <code>MC_</code>).
-I default sono i valori <strong>validati sui 4 anni</strong>: cambiare un parametro
-significa uscire dalla validazione → ripassare la pipeline prima di
-fidarsi dei risultati.</p>
+<h2 id="active-strategies">Active strategies</h2>
+<p>Each strategy is enabled with <code>TB_ENABLED</code> / <code>FS_ENABLED</code> / <code>MC_ENABLED</code>
+and has its own parameter block in the <code>.env</code> (prefixes <code>TB_</code>, <code>FS_</code>,
+<code>MC_</code>). The defaults are the values <strong>validated over the 4 years</strong>:
+changing a parameter means leaving the validation → re-run the pipeline
+before trusting any result.</p>
 <h3 id="multi-symbol">Multi-symbol</h3>
-<p><code>TB_SYMBOLS</code> / <code>FS_SYMBOLS</code> / <code>MC_SYMBOLS</code> accettano una lista
-(<code>BTCUSDT,ETHUSDT</code>): il bot crea UN'ISTANZA per simbolo con lo strumento
-Deribit derivato (<code>ETHUSDT</code> → <code>ETH-PERPETUAL</code>). Ogni lato di ogni
-strategia è abilitato solo sui simboli dove la validazione è positiva.</p>
+<p><code>TB_SYMBOLS</code> / <code>FS_SYMBOLS</code> / <code>MC_SYMBOLS</code> accept a list
+(<code>BTCUSDT,ETHUSDT</code>): the bot creates ONE INSTANCE per symbol with the
+derived Deribit instrument (<code>ETHUSDT</code> → <code>ETH-PERPETUAL</code>). Each side of
+each strategy is enabled only on the symbols where validation passed.</p>
 <blockquote>
-<p>🔒 <strong>Le tabelle complete dei parametri di strategia</strong> (lookback, soglie,
-moltiplicatori e relativi range validati) <strong>sono riservate</strong> —
-disponibili con la licenza commerciale (contatto:
-lantoniotrento@gmail.com). L'editor della dashboard le espone comunque
-all'operatore con i range validati come bound.</p>
+<p>🔒 <strong>The complete strategy parameter tables</strong> (lookbacks, thresholds,
+multipliers and their validated ranges) <strong>are proprietary</strong> — available
+under the commercial license (contact: lantoniotrento@gmail.com). The
+dashboard editor still exposes them to the operator with the validated
+ranges as bounds.</p>
 </blockquote>
-<h2 id="strategie-disattivate">Strategie disattivate</h2>
-<p>Tutte con <code>*_ENABLED=false</code> e il verdetto della validazione in commento nel
-<code>.env</code>. <strong>Non riattivare senza nuova validazione completa.</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>VB_ENABLED=false        # Volume Breakout : PF 0.42-0.74 — nessun edge
+<h2 id="disabled-strategies">Disabled strategies</h2>
+<p>All with <code>*_ENABLED=false</code> and the validation verdict in the <code>.env</code>
+comments. <strong>Do not re-enable without a full new validation.</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>VB_ENABLED=false        # Volume Breakout : PF 0.42-0.74 — no edge
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>MR_ENABLED=false        # Mean Reversion  : PF 0.28-0.53
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>LIQ_ENABLED=false       # Liq Squeeze     : PF 0.06-0.30
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>IS_ENABLED=false        # Imbalance Scalp : fee-bound, PF 0.18-0.50
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>BRINGS_ENABLED=false    # NY Brings       : PF 0.64, negativa ogni anno
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>WM_ENABLED=false        # W/M Formation   : edge non strutturale
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>BRINGS_ENABLED=false    # NY Brings       : PF 0.64, negative every year
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>WM_ENABLED=false        # W/M Formation   : non-structural edge
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>STRATEGY_SMART_MONEY_ENABLED=false
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>STRATEGY_IRON_CONDOR_ENABLED=false   # opzioni, fuori direzione progetto
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>STRATEGY_IRON_CONDOR_ENABLED=false   # options, out of project scope
 </code></pre></div>
-<h2 id="note">Note</h2>
+<h2 id="notes">Notes</h2>
 <ul>
-<li><code>Config.load_strategies()</code> (<a href="../config.py">../config.py</a>) è l'unico punto
-  che traduce il <code>.env</code> in istanze: la dashboard usa la stessa funzione,
-  quindi vede esattamente le istanze del bot.</li>
-<li>Testnet: l'equity di sizing è cappata a $50k (i faucet testnet gonfiano
-  l'equity e produrrebbero ordini fuori scala).</li>
-<li>Validazione config all'avvio: chiavi mancanti o <code>DERIBIT_ENV</code> non valido
-  bloccano il bootstrap.</li>
+<li><code>Config.load_strategies()</code> is the single point that translates the
+  <code>.env</code> into instances: the dashboard uses the same function, so it sees
+  exactly the instances the bot builds.</li>
+<li>Testnet: sizing equity is capped at $50k (testnet faucet funds inflate
+  equity and would produce out-of-scale orders).</li>
+<li>Config validation at startup: missing keys or an invalid <code>DERIBIT_ENV</code>
+  block the bootstrap.</li>
 </ul>
 
 
@@ -900,7 +901,7 @@ all'operatore con i range validati come bound.</p>
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Torna su
+  Back to top
 </button>
         
       </main>
@@ -932,10 +933,10 @@ all'operatore con i range validati come bound.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

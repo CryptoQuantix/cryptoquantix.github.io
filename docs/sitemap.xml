@@ -1,39 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
-         <loc>https://cryptoquantix.github.io/docs/</loc>
-         <lastmod>2026-06-12</lastmod>
+        <loc>https://cryptoquantix.github.io/docs/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/"/>
     </url>
     <url>
-         <loc>https://cryptoquantix.github.io/docs/01_architecture/</loc>
-         <lastmod>2026-06-12</lastmod>
+        <loc>https://cryptoquantix.github.io/docs/01_architecture/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/01_architecture/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/01_architecture/"/>
     </url>
     <url>
-         <loc>https://cryptoquantix.github.io/docs/02_data_microstructure/</loc>
-         <lastmod>2026-06-12</lastmod>
+        <loc>https://cryptoquantix.github.io/docs/02_data_microstructure/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/02_data_microstructure/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/02_data_microstructure/"/>
     </url>
     <url>
-         <loc>https://cryptoquantix.github.io/docs/02_strategies/</loc>
-         <lastmod>2026-06-12</lastmod>
+        <loc>https://cryptoquantix.github.io/docs/02_strategies/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/02_strategies/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/02_strategies/"/>
     </url>
     <url>
-         <loc>https://cryptoquantix.github.io/docs/03_configuration/</loc>
-         <lastmod>2026-06-12</lastmod>
+        <loc>https://cryptoquantix.github.io/docs/03_configuration/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/03_configuration/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/03_configuration/"/>
     </url>
     <url>
-         <loc>https://cryptoquantix.github.io/docs/03_orderflow_math/</loc>
-         <lastmod>2026-06-12</lastmod>
+        <loc>https://cryptoquantix.github.io/docs/03_orderflow_math/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/03_orderflow_math/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/03_orderflow_math/"/>
     </url>
     <url>
-         <loc>https://cryptoquantix.github.io/docs/05_risk_sizing/</loc>
-         <lastmod>2026-06-12</lastmod>
+        <loc>https://cryptoquantix.github.io/docs/05_risk_sizing/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/05_risk_sizing/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/05_risk_sizing/"/>
     </url>
     <url>
-         <loc>https://cryptoquantix.github.io/docs/06_backtest_montecarlo/</loc>
-         <lastmod>2026-06-12</lastmod>
+        <loc>https://cryptoquantix.github.io/docs/06_backtest_montecarlo/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/06_backtest_montecarlo/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/06_backtest_montecarlo/"/>
     </url>
     <url>
-         <loc>https://cryptoquantix.github.io/docs/07_execution_ops/</loc>
-         <lastmod>2026-06-12</lastmod>
+        <loc>https://cryptoquantix.github.io/docs/07_execution_ops/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/07_execution_ops/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/07_execution_ops/"/>
+    </url>
+    <url>
+        <loc>https://cryptoquantix.github.io/docs/en/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/"/>
+    </url>
+    <url>
+        <loc>https://cryptoquantix.github.io/docs/en/01_architecture/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/01_architecture/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/01_architecture/"/>
+    </url>
+    <url>
+        <loc>https://cryptoquantix.github.io/docs/en/02_data_microstructure/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/02_data_microstructure/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/02_data_microstructure/"/>
+    </url>
+    <url>
+        <loc>https://cryptoquantix.github.io/docs/en/02_strategies/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/02_strategies/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/02_strategies/"/>
+    </url>
+    <url>
+        <loc>https://cryptoquantix.github.io/docs/en/03_configuration/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/03_configuration/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/03_configuration/"/>
+    </url>
+    <url>
+        <loc>https://cryptoquantix.github.io/docs/en/03_orderflow_math/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/03_orderflow_math/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/03_orderflow_math/"/>
+    </url>
+    <url>
+        <loc>https://cryptoquantix.github.io/docs/en/05_risk_sizing/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/05_risk_sizing/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/05_risk_sizing/"/>
+    </url>
+    <url>
+        <loc>https://cryptoquantix.github.io/docs/en/06_backtest_montecarlo/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/06_backtest_montecarlo/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/06_backtest_montecarlo/"/>
+    </url>
+    <url>
+        <loc>https://cryptoquantix.github.io/docs/en/07_execution_ops/</loc>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://cryptoquantix.github.io/docs/en/07_execution_ops/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://cryptoquantix.github.io/docs/07_execution_ops/"/>
     </url>
 </urlset>
