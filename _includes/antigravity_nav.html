@@ -24,11 +24,15 @@
         {{ item.title }}
       </a>
       {% else %}
+      {% assign is_active = false %}
+      {% if page.url == item.url or page.permalink == item.url %}
+        {% assign is_active = true %}
+      {% endif %}
       <a href="{{ item.url | relative_url }}"
-        class="text-sm font-bold uppercase tracking-wide text-gray-400 hover:text-white transition-colors relative group">
+        class="text-sm font-bold uppercase tracking-wide transition-colors relative group {% if is_active %}text-brand-purple{% else %}text-gray-400 hover:text-white{% endif %}">
         {{ item.title }}
         <span
-          class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-brand-purple to-brand-pink transition-all group-hover:w-full"></span>
+          class="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-brand-purple to-brand-pink transition-all group-hover:w-full {% if is_active %}w-full{% else %}w-0{% endif %}"></span>
       </a>
       {% endif %}
       {% endfor %}
@@ -82,8 +86,12 @@
     class="text-2xl font-black flex items-center gap-3 text-gray-900 dark:text-white hover:text-brand-purple transition-colors"
     onclick="toggleMobileMenu()"><i class="fab fa-github"></i> {{ item.title }}</a>
   {% else %}
+  {% assign is_active = false %}
+  {% if page.url == item.url or page.permalink == item.url %}
+    {% assign is_active = true %}
+  {% endif %}
   <a href="{{ item.url | relative_url }}"
-    class="text-3xl font-black text-gray-900 dark:text-white hover:text-brand-purple transition-colors font-display" onclick="toggleMobileMenu()">{{
+    class="text-3xl font-black transition-colors font-display {% if is_active %}text-brand-purple{% else %}text-gray-900 dark:text-white hover:text-brand-purple{% endif %}" onclick="toggleMobileMenu()">{{
     item.title }}</a>
   {% endif %}
   {% endfor %}
