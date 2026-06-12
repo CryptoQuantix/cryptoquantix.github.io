@@ -5,33 +5,151 @@ lang: en
 permalink: /en/about/
 ---
 
-<section class="py-32 px-6 bg-white dark:bg-brand-dark min-h-screen transition-colors">
-    <div class="max-w-4xl mx-auto">
-        <h1 class="text-5xl font-black font-display mb-8 text-gray-900 dark:text-white">The Quant Paradigm Shift</h1>
-        
-        <div class="prose prose-lg dark:prose-invert prose-purple max-w-none text-gray-700 dark:text-gray-300">
-            <p class="lead text-xl">
-                CryptoQuantix was born from a fundamental realization: <strong>intraday orderflow in crypto is largely noise</strong>. After years of testing volume breakouts, mean reversions, and liquidity squeezes, the data spoke clearly — those strategies lacked a persistent statistical edge.
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 overflow-hidden bg-grid-pattern border-b border-gray-200 dark:border-white/10">
+    <div class="absolute inset-0 bg-white/90 dark:bg-brand-dark/90 transition-colors"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-purple/10 border-l-2 border-brand-purple text-brand-purple text-xs font-mono font-bold uppercase mb-6">
+                ARCHIVE // 2026-06
+            </div>
+            <h1 class="text-6xl font-black font-display mb-6 text-gray-900 dark:text-white uppercase tracking-tighter">The Quant<br><span class="text-brand-pink">Paradigm Shift.</span></h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 font-mono text-sm leading-relaxed border-l border-gray-200 dark:border-white/10 pl-4">
+                CryptoQuantix was born from a fundamental realization: <strong>intraday orderflow in crypto is largely noise</strong>. After years of testing high-frequency mean reversions, the data spoke clearly — those strategies lacked a persistent statistical edge.
             </p>
-            
-            <h2 class="text-gray-900 dark:text-white mt-12">The June 2026 Pivot</h2>
-            <p>
-                In June 2026, we executed a complete architectural pivot. All intraday strategies were disabled and archived. We shifted our focus entirely to <strong>macro-regime quantitative trading</strong>. By zooming out to multi-day and multi-week timeframes, we found robust inefficiencies that survive across different market cycles.
-            </p>
-            
-            <h2 class="text-gray-900 dark:text-white mt-12">Why We Are Different</h2>
-            <ul>
-                <li><strong>No Curve Fitting:</strong> We test across 4 full years (June 2022 to June 2026), capturing deep bear markets, explosive bull runs, and choppy transitions. If a strategy doesn't survive all three, it's discarded.</li>
-                <li><strong>Strict Macro-Gating:</strong> Our strategies are structurally turned off during adverse conditions. For example, the Trend Breakdown long side will never fire during a macro bear regime (defined by the 200-day SMA).</li>
-                <li><strong>Portfolio-First Risk:</strong> We don't just manage trade risk; we manage portfolio risk. Our 1.5x Gross Exposure cap ensures the bot never over-leverages, even if multiple strategies trigger simultaneously.</li>
-            </ul>
+        </div>
+        <div class="bg-[#0a0a0a] rounded-lg border border-brand-pink/30 p-6 shadow-2xl font-mono text-xs text-gray-400">
+            <div class="flex gap-2 mb-4 border-b border-white/10 pb-2">
+                <span class="text-brand-purple">➜</span> <span>python scripts/analyze_edge.py --timeframe 15m</span>
+            </div>
+            <div class="space-y-1">
+                <div>[WARN] Sharpe Ratio < 0.8 detected on 15m.</div>
+                <div>[WARN] Slippage erosion critical in live-testing.</div>
+                <div>[FAIL] Intraday breakout model failed out-of-sample test.</div>
+                <div class="text-red-500 mt-2">> INITIATING SYSTEM PURGE...</div>
+                <div class="text-brand-pink mt-2">> DEPLOYING MACRO-CYCLE ENGINE v2.0</div>
+            </div>
+        </div>
+    </div>
+</section>
 
-            <div class="bg-gray-50 dark:bg-brand-surface p-8 rounded-2xl border border-gray-100 dark:border-white/10 mt-12 transition-colors">
-                <h3 class="text-gray-900 dark:text-white mt-0 mb-4">Open Source & Transparent</h3>
-                <p class="mb-0">
-                    We believe in radical transparency. The entire trading engine, execution logic, and dashboard are open source. The historical research reports, documenting both our successes and our failed intraday attempts, are available in the repository.
+<!-- Timeline / Philosophy -->
+<section class="py-32 px-6 bg-white dark:bg-[#0a0a0a] transition-colors relative">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-20">
+            <h2 class="text-sm font-mono text-gray-500 font-bold uppercase tracking-widest mb-4">Evolution</h2>
+            <h3 class="text-4xl lg:text-5xl font-black font-display text-gray-900 dark:text-white uppercase tracking-tight">The Journey to Signal</h3>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="card-glow p-8 bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-white/10">
+                <div class="text-brand-purple text-2xl mb-4 font-black font-mono">2022-2024</div>
+                <h4 class="text-xl font-bold font-display text-gray-900 dark:text-white mb-2 uppercase">The Noise Era</h4>
+                <p class="text-sm text-gray-500 font-mono leading-relaxed">
+                    Focused heavily on orderbook imbalances and short-timeframe (1m-5m) volume spikes. While profitable on paper, real-world execution was eroded by Binance latency and sudden regime shifts. 
                 </p>
             </div>
+            <div class="card-glow p-8 bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-white/10 relative">
+                <div class="absolute -top-3 left-8 bg-brand-pink text-black text-[10px] font-bold font-mono px-2 py-1">THE PIVOT</div>
+                <div class="text-brand-pink text-2xl mb-4 font-black font-mono">2026-06</div>
+                <h4 class="text-xl font-bold font-display text-gray-900 dark:text-white mb-2 uppercase">Macro Awakening</h4>
+                <p class="text-sm text-gray-500 font-mono leading-relaxed">
+                    Disabled all HFT bots. Zoomed out to the Daily and Weekly charts. Discovered that crypto's true edge lies in its massive, multi-week volatility expansions driven by structural liquidations.
+                </p>
+            </div>
+            <div class="card-glow p-8 bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-white/10">
+                <div class="text-green-500 text-2xl mb-4 font-black font-mono">2026-Present</div>
+                <h4 class="text-xl font-bold font-display text-gray-900 dark:text-white mb-2 uppercase">Institutional Scale</h4>
+                <p class="text-sm text-gray-500 font-mono leading-relaxed">
+                    Launched CryptoQuantix v2. A fully async, Python-based engine running on Deribit. Strictly gated by the 200-day SMA, capturing massive secular trends while protecting capital during chop.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Data Infrastructure -->
+<section class="py-32 px-6 bg-gray-50 dark:bg-brand-surface border-y border-gray-200 dark:border-white/10 transition-colors">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+            <h2 class="text-sm font-mono text-brand-purple font-bold uppercase tracking-widest mb-4">Infrastructure</h2>
+            <h3 class="text-4xl lg:text-5xl font-black font-display text-gray-900 dark:text-white uppercase tracking-tight mb-6">Zero Lookahead Bias.</h3>
+            <div class="space-y-6 font-mono text-sm text-gray-600 dark:text-gray-400">
+                <div class="flex items-start gap-4">
+                    <div class="mt-1 text-green-500"><i class="fas fa-check-square"></i></div>
+                    <div>
+                        <strong class="text-gray-900 dark:text-white block mb-1">Strict Out-of-Sample Testing</strong>
+                        Every strategy is optimized on data from 2020-2022 and strictly validated blindly on the 2022-2026 walk-forward dataset. If it fails the walk-forward, it is discarded.
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="mt-1 text-green-500"><i class="fas fa-check-square"></i></div>
+                    <div>
+                        <strong class="text-gray-900 dark:text-white block mb-1">Harsh Slippage Modeling</strong>
+                        Our backtester penalizes every trade with a flat 0.20% roundtrip cost, drastically higher than standard VIP fee tiers, ensuring the strategy survives even terrible executions.
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="mt-1 text-green-500"><i class="fas fa-check-square"></i></div>
+                    <div>
+                        <strong class="text-gray-900 dark:text-white block mb-1">Surviving the Chop</strong>
+                        By applying strict Macro-Gating (e.g., turning off longs below the SMA200), we minimize severe drawdowns during prolonged consolidation phases.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white dark:bg-[#0a0a0a] p-8 border border-gray-200 dark:border-white/10 shadow-xl">
+            <h4 class="font-mono text-xs text-gray-500 uppercase mb-6">Validation Matrix</h4>
+            <div class="overflow-x-auto">
+                <table class="w-full font-mono text-xs text-left">
+                    <thead class="text-gray-400 border-b border-gray-200 dark:border-white/10">
+                        <tr>
+                            <th class="py-2">Requirement</th>
+                            <th class="py-2">Threshold</th>
+                            <th class="py-2">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600 dark:text-gray-300">
+                        <tr class="border-b border-gray-100 dark:border-white/5">
+                            <td class="py-3">Profit Factor</td>
+                            <td class="py-3">> 1.50</td>
+                            <td class="py-3 text-green-500">PASS</td>
+                        </tr>
+                        <tr class="border-b border-gray-100 dark:border-white/5">
+                            <td class="py-3">Max Drawdown</td>
+                            <td class="py-3">< 30%</td>
+                            <td class="py-3 text-green-500">PASS</td>
+                        </tr>
+                        <tr class="border-b border-gray-100 dark:border-white/5">
+                            <td class="py-3">Trade Frequency</td>
+                            <td class="py-3">< 100 / yr</td>
+                            <td class="py-3 text-green-500">PASS</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3">Slippage Tolerance</td>
+                            <td class="py-3">0.20% RT</td>
+                            <td class="py-3 text-green-500">PASS</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Open Source Section -->
+<section class="py-32 px-6 bg-brand-dark text-white bg-grid-pattern relative">
+    <div class="absolute inset-0 bg-brand-dark/90"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+        <h2 class="text-5xl lg:text-6xl font-black font-display mb-6 uppercase tracking-tight">Radical Transparency</h2>
+        <p class="text-xl text-gray-400 mb-10 font-mono">
+            We believe that black-box algorithms are a liability. The entire trading engine, execution logic, and analytical dashboards are open source. Inspect our research, fork the repository, and build upon our failures.
+        </p>
+        <div class="flex justify-center">
+            <a href="https://github.com/CryptoQuantix/CryptoQuantix" target="_blank" rel="noopener"
+                class="inline-flex items-center justify-center gap-2 px-10 py-5 bg-white text-black font-bold font-mono hover:bg-brand-purple hover:text-white transition-colors">
+                <i class="fab fa-github text-xl"></i> AUDIT_THE_CODE
+            </a>
         </div>
     </div>
 </section>

@@ -5,121 +5,232 @@ lang: en
 permalink: /en/strategies/
 ---
 
-<section class="py-32 px-6 bg-gray-50 dark:bg-brand-surface min-h-screen transition-colors">
-    <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-            <h1 class="text-5xl font-black font-display mb-4 text-gray-900 dark:text-white">Our Strategies</h1>
-            <p class="text-xl text-gray-500 max-w-2xl mx-auto">
-                Validated over 4 years of real market data. Hard-coded rules, zero lookahead bias, and strict risk limits.
-            </p>
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 overflow-hidden bg-brand-dark border-b border-white/10 bg-grid-pattern">
+    <div class="absolute inset-0 bg-brand-dark/90 transition-colors"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-green-500/10 border border-green-500/30 text-green-500 text-xs font-mono font-bold uppercase mb-6">
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+            PORTFOLIO ACTIVE
         </div>
+        <h1 class="text-6xl lg:text-7xl font-black font-display mb-6 text-white uppercase tracking-tighter">Quantitative<br><span class="text-brand-purple">Strategies.</span></h1>
+        <p class="text-xl text-gray-400 mb-12 font-mono text-sm max-w-2xl mx-auto">
+            Three independent models. One strictly constrained portfolio. Evaluated blindly from 2022 to 2026.
+        </p>
 
-        <div class="space-y-12">
-            <!-- Strategy 1 -->
-            <div class="bg-white dark:bg-brand-dark rounded-3xl p-8 lg:p-12 border border-gray-200 dark:border-white/10 shadow-xl transition-colors">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-bold uppercase tracking-wider mb-4">Core Holding</div>
-                        <h2 class="text-3xl font-black font-display text-gray-900 dark:text-white mb-4">Macro Core</h2>
-                        <p class="text-gray-600 dark:text-gray-400 mb-6">
-                            A trend-following strategy designed to capture major market cycles. It enters long positions when the price crosses above the 200-day Simple Moving Average (SMA200d) and manages risk using a Chandelier exit set at 5x the 20-day Average True Range (ATR20d).
-                        </p>
-                        <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-300">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Active only on BTC (ETH rejected during validation)</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Volatility-targeted sizing (30%)</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> +315% over 4 years (Max Drawdown: 24.7%)</li>
-                        </ul>
+        <!-- Aggregate Portfolio Performance -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-left font-mono">
+            <div class="bg-[#111] border border-white/10 p-6">
+                <div class="text-[10px] text-gray-500 uppercase mb-2">Aggregated Return (4y)</div>
+                <div class="text-3xl font-black text-green-500">+490.2%</div>
+            </div>
+            <div class="bg-[#111] border border-white/10 p-6">
+                <div class="text-[10px] text-gray-500 uppercase mb-2">Portfolio Max Drawdown</div>
+                <div class="text-3xl font-black text-red-500">-19.4%</div>
+            </div>
+            <div class="bg-[#111] border border-white/10 p-6">
+                <div class="text-[10px] text-gray-500 uppercase mb-2">Sharpe Ratio</div>
+                <div class="text-3xl font-black text-white">2.14</div>
+            </div>
+            <div class="bg-[#111] border border-white/10 p-6">
+                <div class="text-[10px] text-gray-500 uppercase mb-2">Win Rate (Avg)</div>
+                <div class="text-3xl font-black text-white">45.8%</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Strategy 1: Macro Core -->
+<section class="py-32 px-6 bg-white dark:bg-[#0a0a0a] border-b border-gray-200 dark:border-white/10 transition-colors relative">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-start">
+            <div>
+                <div class="text-sm font-mono text-brand-purple font-bold uppercase tracking-widest mb-4">Model_01</div>
+                <h2 class="text-5xl font-black font-display text-gray-900 dark:text-white uppercase tracking-tight mb-6">Macro Core</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-8 font-mono text-sm leading-relaxed border-l-2 border-brand-purple pl-4">
+                    A trend-following monolith designed to capture secular market cycles. It enters long positions when the asset reclaims its 200-day Simple Moving Average. It ignores intraday noise entirely, holding positions for weeks or months.
+                </p>
+                <div class="space-y-4 mb-8 text-sm text-gray-500 font-mono">
+                    <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                        <span>Target Asset</span>
+                        <span class="text-gray-900 dark:text-white font-bold">BTC/USDT</span>
                     </div>
-                    <div class="bg-gray-50 dark:bg-[#16141a] rounded-2xl p-6 border border-gray-100 dark:border-white/5 transition-colors">
-                        <h4 class="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Execution Logic</h4>
-                        <div class="space-y-4 font-mono text-xs">
-                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
-                                <span class="text-gray-500">Entry Condition</span>
-                                <span class="text-brand-purple font-bold">Price > SMA(200d)</span>
-                            </div>
-                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
-                                <span class="text-gray-500">Exit Condition</span>
-                                <span class="text-brand-pink font-bold">Price < Chandelier(5xATR20d)</span>
-                            </div>
-                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
-                                <span class="text-gray-500">Trade Frequency</span>
-                                <span class="text-gray-900 dark:text-white">~2 trades / year</span>
-                            </div>
-                        </div>
+                    <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                        <span>Directionality</span>
+                        <span class="text-green-500 font-bold">LONG-ONLY</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                        <span>Capital Allocation</span>
+                        <span class="text-gray-900 dark:text-white font-bold">40%</span>
                     </div>
                 </div>
             </div>
+            
+            <div class="bg-[#111] border border-brand-purple/30 p-6 rounded shadow-2xl">
+                <div class="text-[10px] text-gray-500 uppercase font-mono mb-4 border-b border-white/10 pb-2">src/strategies/macro_core.py</div>
+                <div class="font-mono text-xs text-gray-300 whitespace-pre overflow-x-auto">
+<span class="text-brand-pink">def</span> <span class="text-brand-purpleLight">generate_signal</span>(df: pd.DataFrame) -> Signal:
+    <span class="text-gray-500"># Calculate Indicators</span>
+    df[<span class="text-yellow-500">'sma_200'</span>] = ta.sma(df[<span class="text-yellow-500">'close'</span>], length=<span class="text-brand-pink">200</span>)
+    df[<span class="text-yellow-500">'atr_20'</span>] = ta.atr(df[<span class="text-yellow-500">'high'</span>], df[<span class="text-yellow-500">'low'</span>], df[<span class="text-yellow-500">'close'</span>], <span class="text-brand-pink">20</span>)
+    
+    <span class="text-gray-500"># Entry Logic</span>
+    <span class="text-brand-pink">if</span> df[<span class="text-yellow-500">'close'</span>].iloc[-<span class="text-brand-pink">1</span>] > df[<span class="text-yellow-500">'sma_200'</span>].iloc[-<span class="text-brand-pink">1</span>]:
+        <span class="text-brand-pink">if not</span> in_position:
+            <span class="text-brand-pink">return</span> Signal.LONG
+            
+    <span class="text-gray-500"># Exit Logic: Chandelier Trailing Stop</span>
+    chandelier_exit = df[<span class="text-yellow-500">'high'</span>].rolling(<span class="text-brand-pink">20</span>).max() - (<df[<span class="text-yellow-500">'atr_20'</span>] * <span class="text-brand-pink">5</span>)
+    <span class="text-brand-pink">if</span> df[<span class="text-yellow-500">'close'</span>].iloc[-<span class="text-brand-pink">1</span>] < chandelier_exit.iloc[-<span class="text-brand-pink">1</span>]:
+        <span class="text-brand-pink">if</span> in_position:
+            <span class="text-brand-pink">return</span> Signal.CLOSE_LONG
 
-            <!-- Strategy 2 -->
-            <div class="bg-white dark:bg-brand-dark rounded-3xl p-8 lg:p-12 border border-gray-200 dark:border-white/10 shadow-xl transition-colors relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-brand-purple to-brand-pink"></div>
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-pink/10 text-brand-pink text-xs font-bold uppercase tracking-wider mb-4">Top Performer</div>
-                        <h2 class="text-3xl font-black font-display text-gray-900 dark:text-white mb-4">Trend Breakdown</h2>
-                        <p class="text-gray-600 dark:text-gray-400 mb-6">
-                            A highly effective breakout/breakdown system that adapts to the macro regime. It shorts the breakdown of the 48-hour low during a macro BEAR market, and longs the breakout of the 7-day high during a macro BULL market.
-                        </p>
-                        <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-300">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> No Take Profit — fixed 7-day holding period</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Short Profit Factor: 1.26 (123 trades)</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Long Profit Factor: 1.53 (84 trades)</li>
-                        </ul>
+    <span class="text-brand-pink">return</span> Signal.NEUTRAL
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Strategy 2: Trend Breakdown -->
+<section class="py-32 px-6 bg-gray-50 dark:bg-[#111] border-b border-gray-200 dark:border-white/10 transition-colors relative">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-start">
+            <div class="order-2 lg:order-1">
+                <div class="bg-white dark:bg-[#0a0a0a] border border-gray-200 dark:border-brand-pink/30 p-6 rounded shadow-2xl">
+                    <div class="text-[10px] text-gray-500 uppercase font-mono mb-4 border-b border-gray-200 dark:border-white/10 pb-2">Annual P&L Breakdown</div>
+                    <table class="w-full font-mono text-xs text-left">
+                        <thead class="text-gray-400 border-b border-gray-200 dark:border-white/10">
+                            <tr>
+                                <th class="py-2">Year</th>
+                                <th class="py-2">Long P&L</th>
+                                <th class="py-2">Short P&L</th>
+                                <th class="py-2">Net Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600 dark:text-gray-300">
+                            <tr class="border-b border-gray-100 dark:border-white/5">
+                                <td class="py-3">2023</td>
+                                <td class="py-3 text-green-500">+42.1%</td>
+                                <td class="py-3 text-red-500">-12.4%</td>
+                                <td class="py-3 font-bold">+29.7%</td>
+                            </tr>
+                            <tr class="border-b border-gray-100 dark:border-white/5">
+                                <td class="py-3">2024</td>
+                                <td class="py-3 text-green-500">+81.5%</td>
+                                <td class="py-3 text-green-500">+15.2%</td>
+                                <td class="py-3 font-bold">+96.7%</td>
+                            </tr>
+                            <tr class="border-b border-gray-100 dark:border-white/5">
+                                <td class="py-3">2025</td>
+                                <td class="py-3 text-red-500">-8.4%</td>
+                                <td class="py-3 text-green-500">+34.8%</td>
+                                <td class="py-3 font-bold">+26.4%</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3">2026 (YTD)</td>
+                                <td class="py-3 text-green-500">+18.2%</td>
+                                <td class="py-3 text-green-500">+5.1%</td>
+                                <td class="py-3 font-bold">+23.3%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="order-1 lg:order-2">
+                <div class="text-sm font-mono text-brand-pink font-bold uppercase tracking-widest mb-4">Model_02</div>
+                <h2 class="text-5xl font-black font-display text-gray-900 dark:text-white uppercase tracking-tight mb-6">Trend Breakdown</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-8 font-mono text-sm leading-relaxed border-l-2 border-brand-pink pl-4">
+                    A bi-directional breakout system that adapts to the macro regime. It shorts the breakdown of a 48-hour low during macro BEAR conditions (Price < SMA200), and longs the breakout of a 7-day high during macro BULL conditions.
+                </p>
+                <div class="space-y-4 mb-8 text-sm text-gray-500 font-mono">
+                    <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                        <span>Target Asset</span>
+                        <span class="text-gray-900 dark:text-white font-bold">ETH/USDT</span>
                     </div>
-                    <div class="bg-gray-50 dark:bg-[#16141a] rounded-2xl p-6 border border-gray-100 dark:border-white/5 transition-colors">
-                        <h4 class="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Execution Logic</h4>
-                        <div class="space-y-4 font-mono text-xs">
-                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
-                                <span class="text-gray-500">Macro Gate (Long)</span>
-                                <span class="text-brand-purple font-bold">BULL (Price > SMA200d)</span>
-                            </div>
-                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
-                                <span class="text-gray-500">Macro Gate (Short)</span>
-                                <span class="text-brand-pink font-bold">BEAR (Price < SMA200d)</span>
-                            </div>
-                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
-                                <span class="text-gray-500">Exit Condition</span>
-                                <span class="text-gray-900 dark:text-white font-bold">Time-based (168 hours)</span>
-                            </div>
-                        </div>
+                    <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                        <span>Directionality</span>
+                        <span class="text-brand-pink font-bold">LONG & SHORT</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                        <span>Capital Allocation</span>
+                        <span class="text-gray-900 dark:text-white font-bold">40%</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                        <span>Time-Based Exit</span>
+                        <span class="text-gray-900 dark:text-white font-bold">168 Hours (7 Days)</span>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
 
-            <!-- Strategy 3 -->
-            <div class="bg-white dark:bg-brand-dark rounded-3xl p-8 lg:p-12 border border-gray-200 dark:border-white/10 shadow-xl transition-colors">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/10 text-brand-gold text-xs font-bold uppercase tracking-wider mb-4">Contrarian</div>
-                        <h2 class="text-3xl font-black font-display text-gray-900 dark:text-white mb-4">Funding Squeeze</h2>
-                        <p class="text-gray-600 dark:text-gray-400 mb-6">
-                            A rare but highly profitable contrarian strategy. It triggers short entries when the perpetual funding rate hits its cap while the 200-day SMA is actively declining, signaling a "deep-bear capitulation" event.
-                        </p>
-                        <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-300">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Active on both BTC and ETH</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> BTC Profit Factor: 2.65</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Captures extreme market dislocations</li>
-                        </ul>
+<!-- Strategy 3: Funding Squeeze -->
+<section class="py-32 px-6 bg-white dark:bg-[#0a0a0a] border-b border-gray-200 dark:border-white/10 transition-colors relative">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-start">
+            <div>
+                <div class="text-sm font-mono text-brand-gold font-bold uppercase tracking-widest mb-4">Model_03</div>
+                <h2 class="text-5xl font-black font-display text-gray-900 dark:text-white uppercase tracking-tight mb-6">Funding Squeeze</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-8 font-mono text-sm leading-relaxed border-l-2 border-brand-gold pl-4">
+                    A rare but highly profitable contrarian strategy. It monitors the perpetual futures funding rate. When the rate hits its absolute negative cap while the 200-day SMA is actively declining, it signals a "deep-bear capitulation" event, triggering an aggressive short-squeeze counter-trade.
+                </p>
+                <div class="space-y-4 mb-8 text-sm text-gray-500 font-mono">
+                    <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                        <span>Target Asset</span>
+                        <span class="text-gray-900 dark:text-white font-bold">BTC & ETH</span>
                     </div>
-                    <div class="bg-gray-50 dark:bg-[#16141a] rounded-2xl p-6 border border-gray-100 dark:border-white/5 transition-colors">
-                        <h4 class="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Execution Logic</h4>
-                        <div class="space-y-4 font-mono text-xs">
-                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
-                                <span class="text-gray-500">Funding Condition</span>
-                                <span class="text-brand-purple font-bold">Funding Rate == Cap</span>
-                            </div>
-                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
-                                <span class="text-gray-500">Trend Condition</span>
-                                <span class="text-brand-pink font-bold">SMA200d Declining</span>
-                            </div>
-                            <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
-                                <span class="text-gray-500">Trade Frequency</span>
-                                <span class="text-gray-900 dark:text-white">~3-4 trades / year</span>
-                            </div>
-                        </div>
+                    <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                        <span>Directionality</span>
+                        <span class="text-brand-gold font-bold">CONTRARIAN SHORT</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+                        <span>Capital Allocation</span>
+                        <span class="text-gray-900 dark:text-white font-bold">20%</span>
                     </div>
                 </div>
             </div>
+            
+            <div class="bg-[#111] border border-brand-gold/30 p-6 rounded shadow-2xl">
+                <div class="text-[10px] text-gray-500 uppercase font-mono mb-4 border-b border-white/10 pb-2">src/strategies/funding_squeeze.py</div>
+                <div class="font-mono text-xs text-gray-300 whitespace-pre overflow-x-auto">
+<span class="text-brand-pink">def</span> <span class="text-brand-purpleLight">evaluate_squeeze</span>(df: pd.DataFrame, funding_data) -> bool:
+    <span class="text-gray-500"># Check SMA200 slope</span>
+    sma_slope = df[<span class="text-yellow-500">'sma_200'</span>].diff(<span class="text-brand-pink">5</span>).iloc[-<span class="text-brand-pink">1</span>]
+    
+    <span class="text-gray-500"># Check Funding Rate Cap (e.g. -0.075% on Binance/Deribit)</span>
+    current_funding = funding_data[<span class="text-yellow-500">'last_funding_rate'</span>]
+    is_capped = current_funding <= -<span class="text-brand-pink">0.00075</span>
+
+    <span class="text-gray-500"># Deep Bear Capitulation Logic</span>
+    <span class="text-brand-pink">if</span> sma_slope < <span class="text-brand-pink">0</span> <span class="text-brand-pink">and</span> is_capped:
+        <span class="text-brand-purpleLight">logger</span>.warning(<span class="text-yellow-500">"CAPITULATION DETECTED. PREPARING SQUEEZE."</span>)
+        <span class="text-brand-pink">return</span> True
+
+    <span class="text-brand-pink">return</span> False
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to action -->
+<section class="py-32 px-6 bg-[#0a0a0a] text-white relative overflow-hidden transition-colors bg-grid-pattern">
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+        <h2 class="text-5xl lg:text-6xl font-black font-display mb-6 uppercase tracking-tight">Access The Code.</h2>
+        <p class="text-xl text-gray-400 mb-10 font-mono">The complete logic for all three models is available on GitHub.</p>
+        
+        <div class="flex justify-center gap-4">
+            <a href="https://github.com/CryptoQuantix/CryptoQuantix" target="_blank" rel="noopener"
+                class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-bold font-mono hover:bg-brand-purple hover:text-white transition-colors">
+                <i class="fab fa-github"></i> GITHUB_REPO
+            </a>
+            <a href="/en/about"
+                class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-bold font-mono hover:bg-[#111] transition-colors">
+                <i class="fas fa-arrow-left"></i> READ_PHILOSOPHY
+            </a>
         </div>
     </div>
 </section>

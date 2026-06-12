@@ -5,7 +5,7 @@
         <div class="max-w-sm">
             <a href="{{ '/' | relative_url }}{% if page.lang == 'it' %}it/{% else %}en/{% endif %}"
                 class="flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity">
-                <img src="/assets/images/logo/logo-transparent.png" alt="CryptoQuantix" class="h-12 w-auto">
+                <img src="/assets/images/logo/logo-transparent.png" alt="CryptoQuantix" class="h-14 w-14 object-contain flex-shrink-0">
                 <span class="text-2xl font-black tracking-tighter gradient-text font-display">CryptoQuantix</span>
             </a>
             <p class="text-gray-500 mb-2 text-sm font-bold uppercase tracking-widest">
@@ -106,7 +106,7 @@
                             class="hover:text-brand-purple transition-colors">Antonio Trento</a>
                     </li>
                     <li>
-                        <a href="https://zirelia.github.io/zirelia/legal/" target="_blank" rel="noopener"
+                        <a href="{% if page.lang == 'it' %}/it/legal/{% else %}/en/legal/{% endif %}"
                             class="hover:text-brand-purple transition-colors">
                             {% if page.lang == 'it' %}Disclaimer Legale{% else %}Legal Disclaimer{% endif %}
                         </a>
