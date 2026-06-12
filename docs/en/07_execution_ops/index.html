@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#esecuzione-deribit-operazioni-e-deployment" class="md-skip">
+        <a href="#deribit-execution-operations-and-deployment" class="md-skip">
           Skip to content
         </a>
       
@@ -735,22 +735,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-deribit-api-panoramica" class="md-nav__link">
+  <a href="#1-deribit-api-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Deribit API — Panoramica
+        1. Deribit API — Overview
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Deribit API — Panoramica">
+    <nav class="md-nav" aria-label="1. Deribit API — Overview">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11-struttura-api" class="md-nav__link">
+  <a href="#11-api-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1 Struttura API
+        1.1 API Structure
       
     </span>
   </a>
@@ -758,10 +758,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#12-strumenti-futures" class="md-nav__link">
+  <a href="#12-futures-instruments" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 Strumenti Futures
+        1.2 Futures Instruments
       
     </span>
   </a>
@@ -769,10 +769,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#13-ordini-disponibili" class="md-nav__link">
+  <a href="#13-available-orders" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3 Ordini Disponibili
+        1.3 Available Orders
       
     </span>
   </a>
@@ -796,15 +796,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-ordermanager-flusso-di-esecuzione" class="md-nav__link">
+  <a href="#2-ordermanager-execution-flow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. OrderManager — Flusso di Esecuzione
+        2. OrderManager — Execution Flow
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. OrderManager — Flusso di Esecuzione">
+    <nav class="md-nav" aria-label="2. OrderManager — Execution Flow">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -819,10 +819,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-orphan-order-problem-e-soluzione" class="md-nav__link">
+  <a href="#22-the-orphan-order-problem-and-its-solution" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2 Orphan Order Problem e Soluzione
+        2.2 The Orphan Order Problem and Its Solution
       
     </span>
   </a>
@@ -835,15 +835,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-positionmonitor-monitoraggio-posizioni" class="md-nav__link">
+  <a href="#3-positionmonitor-position-monitoring" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. PositionMonitor — Monitoraggio Posizioni
+        3. PositionMonitor — Position Monitoring
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. PositionMonitor — Monitoraggio Posizioni">
+    <nav class="md-nav" aria-label="3. PositionMonitor — Position Monitoring">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -874,15 +874,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-monitoring-e-alerting" class="md-nav__link">
+  <a href="#4-monitoring-and-alerting" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Monitoring e Alerting
+        4. Monitoring and Alerting
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. Monitoring e Alerting">
+    <nav class="md-nav" aria-label="4. Monitoring and Alerting">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -897,10 +897,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-dashboard-streamlit" class="md-nav__link">
+  <a href="#42-streamlit-dashboard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2 Dashboard Streamlit
+        4.2 Streamlit Dashboard
       
     </span>
   </a>
@@ -936,10 +936,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#52-checklist-pre-live" class="md-nav__link">
+  <a href="#52-pre-live-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.2 Checklist Pre-Live
+        5.2 Pre-Live Checklist
       
     </span>
   </a>
@@ -947,10 +947,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#53-raccolta-dati-storici" class="md-nav__link">
+  <a href="#53-historical-data-collection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.3 Raccolta Dati Storici
+        5.3 Historical Data Collection
       
     </span>
   </a>
@@ -1044,14 +1044,18 @@
 
 
 
-<h1 id="esecuzione-deribit-operazioni-e-deployment">Esecuzione Deribit, Operazioni e Deployment</h1>
-<h2 id="1-deribit-api-panoramica">1. Deribit API — Panoramica</h2>
-<h3 id="11-struttura-api">1.1 Struttura API</h3>
-<p>Deribit usa WebSocket per trading real-time e REST come alternativa. Il client nel progetto usa REST (<code>src/core/deribit_client.py</code>) per semplicita e affidabilita.</p>
-<p><strong>Base URL</strong>:
+<h1 id="deribit-execution-operations-and-deployment">Deribit Execution, Operations and Deployment</h1>
+<h2 id="1-deribit-api-overview">1. Deribit API — Overview</h2>
+<h3 id="11-api-structure">1.1 API Structure</h3>
+<p>Deribit offers WebSocket for real-time trading and REST as an
+alternative. The project's client uses REST
+(<code>src/core/deribit_client.py</code>) for simplicity and reliability.</p>
+<p><strong>Base URLs</strong>:
 - Testnet: <code>https://test.deribit.com/api/v2</code>
 - Live: <code>https://www.deribit.com/api/v2</code></p>
-<p><strong>Autenticazione</strong>: client_credentials con <code>client_id</code> e <code>client_secret</code>. Il token scade ogni 15 minuti; il client fa auto-refresh.</p>
+<p><strong>Authentication</strong>: client_credentials with <code>client_id</code> and
+<code>client_secret</code>. The token expires every 15 minutes; the client
+auto-refreshes.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;public/auth&quot;</span><span class="p">,</span> <span class="p">{</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="s2">&quot;grant_type&quot;</span><span class="p">:</span> <span class="s2">&quot;client_credentials&quot;</span><span class="p">,</span>
@@ -1061,52 +1065,53 @@
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_access_token</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;access_token&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_access_token</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="12-strumenti-futures">1.2 Strumenti Futures</h3>
-<p>Su Deribit esistono due tipi di futures:
-- <strong>Perpetual</strong> (es. <code>BTC-PERPETUAL</code>): nessuna scadenza, funding rate ogni 8h
-- <strong>Future a scadenza</strong> (es. <code>BTC-28MAR25</code>): scade al prezzo indice alla data</p>
-<p>Il progetto usa esclusivamente <strong>perpetual</strong> (piu liquidi, nessun rischio rollover).</p>
-<p><strong>Funding rate</strong> per perpetual:
+<h3 id="12-futures-instruments">1.2 Futures Instruments</h3>
+<p>Deribit offers two kinds of futures:
+- <strong>Perpetual</strong> (e.g. <code>BTC-PERPETUAL</code>): no expiry, funding rate every 8h
+- <strong>Dated futures</strong> (e.g. <code>BTC-28MAR25</code>): settle at the index price on expiry</p>
+<p>The project uses <strong>perpetuals exclusively</strong> (more liquid, no rollover
+risk).</p>
+<p><strong>Funding rate</strong> for perpetuals:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Funding_payment = Position_size * mark_price * funding_rate
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>funding_rate    = clamp(interest_rate - premium_rate, -0.05%, +0.05%)  per 8h
 </code></pre></div></p>
-<p>Esempio: long 0.1 BTC, mark=$64500, funding=0.01%:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Payment = 0.1 * 64500 * 0.0001 = $0.645 ogni 8 ore = $0.0806/ora
+<p>Example: long 0.1 BTC, mark=$64500, funding=0.01%:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Payment = 0.1 * 64500 * 0.0001 = $0.645 every 8 hours = $0.0806/hour
 </code></pre></div>
-Costo marginale, ma si accumula su posizioni lunghe tenute giorni.</p>
-<h3 id="13-ordini-disponibili">1.3 Ordini Disponibili</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Market order (taker, immediato, fee 0.05%)</span>
+A marginal cost, but it accumulates on positions held for days.</p>
+<h3 id="13-available-orders">1.3 Available Orders</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Market order (taker, immediate, 0.05% fee)</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">client</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="n">instrument</span><span class="o">=</span><span class="s2">&quot;BTC-PERPETUAL&quot;</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;market&quot;</span><span class="p">)</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Limit order (maker se va in book, fee 0.03%)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Limit order (maker if it rests in the book, 0.03% fee)</span>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">client</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="n">instrument</span><span class="o">=</span><span class="s2">&quot;BTC-PERPETUAL&quot;</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>           <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;limit&quot;</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">64000.0</span><span class="p">)</span>
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># Stop limit (diventa limit quando prezzo tocca trigger)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># Stop order (triggers when price touches the trigger level)</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">client</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="n">instrument</span><span class="o">=</span><span class="s2">&quot;BTC-PERPETUAL&quot;</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
 <a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>           <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;stop_limit&quot;</span><span class="p">,</span> <span class="n">stop_price</span><span class="o">=</span><span class="mf">63500.0</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="mf">63480.0</span><span class="p">)</span>
 <a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="c1"># Cancel singolo</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="c1"># Cancel a single order</span>
 <a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">client</span><span class="o">.</span><span class="n">cancel</span><span class="p">(</span><span class="n">order_id</span><span class="o">=</span><span class="s2">&quot;ETH-12345&quot;</span><span class="p">)</span>
 <a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="c1"># Cancel tutti (emergency)</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="c1"># Cancel everything (emergency)</span>
 <a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="n">client</span><span class="o">.</span><span class="n">cancel_all</span><span class="p">()</span>
 </code></pre></div>
 <h3 id="14-position-close">1.4 Position Close</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Close with market order</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Close with a market order</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">client</span><span class="o">.</span><span class="n">close_position</span><span class="p">(</span><span class="n">instrument</span><span class="o">=</span><span class="s2">&quot;BTC-PERPETUAL&quot;</span><span class="p">,</span> <span class="n">type_</span><span class="o">=</span><span class="s2">&quot;market&quot;</span><span class="p">)</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Oppure sell/buy size uguale e opposta</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Or sell/buy an equal and opposite size</span>
 </code></pre></div>
 <hr />
-<h2 id="2-ordermanager-flusso-di-esecuzione">2. OrderManager — Flusso di Esecuzione</h2>
+<h2 id="2-ordermanager-execution-flow">2. OrderManager — Execution Flow</h2>
 <h3 id="21-execute_generic_trade">2.1 execute_generic_trade()</h3>
-<p>Il metodo core che viene chiamato da tutte le strategie:</p>
+<p>The core method called by every strategy:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">execute_generic_trade</span><span class="p">(</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="bp">self</span><span class="p">,</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">instrument_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>          <span class="c1"># &quot;buy&quot; o &quot;sell&quot;</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">quantity</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>         <span class="c1"># in BTC</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>          <span class="c1"># &quot;buy&quot; or &quot;sell&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">quantity</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">entry_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;market&quot;</span><span class="p">,</span>
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">price</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="n">stop_loss</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1115,69 +1120,38 @@ Costo marginale, ma si accumula su posizioni lunghe tenute giorni.</p>
 <a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
 <a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="c1"># 1. Entry order</span>
-<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;buy&quot;</span><span class="p">:</span>
-<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>        <span class="n">ok</span><span class="p">,</span> <span class="n">entry_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span>
-<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>            <span class="n">instrument_name</span><span class="p">,</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">entry_type</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span>
-<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>        <span class="p">)</span>
-<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>    <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>        <span class="n">ok</span><span class="p">,</span> <span class="n">entry_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span>
-<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>            <span class="n">instrument_name</span><span class="p">,</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">entry_type</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span>
-<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>        <span class="p">)</span>
-<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>
-<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">ok</span><span class="p">:</span>
-<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
-<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>
-<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>    <span class="n">trade_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">entry_id</span><span class="si">}</span><span class="s2">&quot;</span>
-<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>
-<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>    <span class="c1"># 2. Stop Loss (ordine opposto a stop_limit)</span>
-<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>    <span class="n">sl_id</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>    <span class="k">if</span> <span class="n">stop_loss</span><span class="p">:</span>
-<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>        <span class="n">sl_direction</span> <span class="o">=</span> <span class="s2">&quot;sell&quot;</span> <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;buy&quot;</span> <span class="k">else</span> <span class="s2">&quot;buy&quot;</span>
-<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>        <span class="n">ok_sl</span><span class="p">,</span> <span class="n">sl_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">place_stop_limit</span><span class="p">(</span>
-<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>            <span class="n">instrument_name</span><span class="p">,</span> <span class="n">sl_direction</span><span class="p">,</span> <span class="n">quantity</span><span class="p">,</span>
-<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>            <span class="n">stop_price</span><span class="o">=</span><span class="n">stop_loss</span><span class="p">,</span>
-<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>            <span class="n">price</span><span class="o">=</span><span class="n">stop_loss</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.999</span> <span class="k">if</span> <span class="n">sl_direction</span> <span class="o">==</span> <span class="s2">&quot;sell&quot;</span> <span class="k">else</span> <span class="mf">1.001</span><span class="p">),</span>
-<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">-sl&quot;</span><span class="p">,</span>
-<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>        <span class="p">)</span>
-<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>
-<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>    <span class="c1"># 3. Take Profit (ordine opposto a limit)</span>
-<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>    <span class="n">tp_id</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>    <span class="k">if</span> <span class="n">take_profit</span><span class="p">:</span>
-<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>        <span class="n">tp_direction</span> <span class="o">=</span> <span class="s2">&quot;sell&quot;</span> <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;buy&quot;</span> <span class="k">else</span> <span class="s2">&quot;buy&quot;</span>
-<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>        <span class="n">ok_tp</span><span class="p">,</span> <span class="n">tp_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">buy_or_sell</span><span class="p">(</span>
-<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>            <span class="n">instrument_name</span><span class="p">,</span> <span class="n">tp_direction</span><span class="p">,</span> <span class="n">quantity</span><span class="p">,</span>
-<a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a>            <span class="n">order_type</span><span class="o">=</span><span class="s2">&quot;limit&quot;</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="n">take_profit</span><span class="p">,</span>
-<a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a>            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">-tp&quot;</span><span class="p">,</span>
-<a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>        <span class="p">)</span>
-<a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a>
-<a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a>    <span class="c1"># 4. Registra nel registry</span>
-<a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">registry</span><span class="p">:</span>
-<a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">trade_id</span><span class="p">,</span> <span class="n">sl_id</span><span class="o">=</span><span class="n">sl_id</span><span class="p">,</span> <span class="n">tp_id</span><span class="o">=</span><span class="n">tp_id</span><span class="p">,</span>
-<a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a>                               <span class="n">instrument</span><span class="o">=</span><span class="n">instrument_name</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">)</span>
-<a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a>
-<a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a>    <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="n">trade_id</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="c1"># 2. Stop Loss (opposite reduce-only stop order, with retries)</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>    <span class="c1"># 3. Take Profit (opposite reduce-only limit order)</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    <span class="c1"># 4. Register SL/TP in the OrderRegistry for orphan cleanup</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>    <span class="o">...</span>
 </code></pre></div>
-<h3 id="22-orphan-order-problem-e-soluzione">2.2 Orphan Order Problem e Soluzione</h3>
-<p><strong>Il problema</strong>: Deribit esegue automaticamente SL o TP quando il prezzo li raggiunge. Ma l'altro ordine rimane aperto (orfano).</p>
-<p>Scenario tipico:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>t=0: Buy 0.01 BTC-PERPETUAL @ 64500, SL @ 63800 (order-124), TP @ 65800 (order-125)
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>t=100: Prezzo scende a 63800 → Deribit esegue SL (order-124) → posizione chiusa
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>t=101: order-125 (TP @ 65800) rimane aperto ← ORFANO
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>       Blocca margine, rischio accidentale fill se prezzo rimbalza
+<p>The current implementation (see
+<a href="../05_risk_sizing/">05_risk_sizing.md</a>) enters at <strong>market</strong>, places the
+SL as a <strong>reduce-only stop_market with 3× retry</strong> and, if the stop cannot
+be placed, <strong>emergency-closes</strong> the just-opened position — a position is
+never left without a stop on the venue.</p>
+<h3 id="22-the-orphan-order-problem-and-its-solution">2.2 The Orphan Order Problem and Its Solution</h3>
+<p><strong>The problem</strong>: Deribit automatically executes the SL or TP when the
+price reaches them. But the companion order stays open (orphaned).</p>
+<p>Typical scenario:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>t=0:   Buy 0.01 BTC-PERPETUAL @ 64500, SL @ 63800 (order-124), TP @ 65800 (order-125)
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>t=100: Price drops to 63800 → Deribit executes the SL (order-124) → position closed
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>t=101: order-125 (TP @ 65800) stays open ← ORPHAN
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>       It locks margin and risks an accidental fill if the price bounces
 </code></pre></div></p>
-<p><strong>Soluzione con OrderRegistry</strong>:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># PositionMonitor._check_orphan_orders() eseguito ogni 30s</span>
+<p><strong>Solution with the OrderRegistry</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># PositionMonitor._check_orphan_orders() runs every 30s</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">check_orphan_orders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">currencies</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;BTC&quot;</span><span class="p">,</span> <span class="s2">&quot;ETH&quot;</span><span class="p">]):</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="c1"># 1. Posizioni attualmente aperte</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="c1"># 1. Currently open positions</span>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">open_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_open_futures_positions</span><span class="p">()</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">open_trade_ids</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">open_positions</span><span class="p">}</span>
 <a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="c1"># 2. Trade registrati ma non piu in posizione = orfani</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="c1"># 2. Registered trades no longer in a position = orphans</span>
 <a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="n">registered_trades</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">get_all</span><span class="p">()</span>
 <a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="k">for</span> <span class="n">trade_id</span><span class="p">,</span> <span class="n">companions</span> <span class="ow">in</span> <span class="n">registered_trades</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
 <a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>        <span class="k">if</span> <span class="n">trade_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">open_trade_ids</span><span class="p">:</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>            <span class="c1"># Posizione chiusa → cancella companion orders</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>            <span class="c1"># Position closed → cancel companion orders</span>
 <a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>            <span class="k">if</span> <span class="n">companions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sl_id&quot;</span><span class="p">):</span>
 <a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">cancel</span><span class="p">(</span><span class="n">companions</span><span class="p">[</span><span class="s2">&quot;sl_id&quot;</span><span class="p">])</span>
 <a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>            <span class="k">if</span> <span class="n">companions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tp_id&quot;</span><span class="p">):</span>
@@ -1185,31 +1159,32 @@ Costo marginale, ma si accumula su posizioni lunghe tenute giorni.</p>
 <a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">unregister</span><span class="p">(</span><span class="n">trade_id</span><span class="p">)</span>
 </code></pre></div></p>
 <hr />
-<h2 id="3-positionmonitor-monitoraggio-posizioni">3. PositionMonitor — Monitoraggio Posizioni</h2>
+<h2 id="3-positionmonitor-position-monitoring">3. PositionMonitor — Position Monitoring</h2>
 <h3 id="31-get_open_futures_positions">3.1 get_open_futures_positions()</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_open_futures_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="sd">    Recupera posizioni aperte su tutte le coppie futures/perpetual.</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="sd">    Filtra automaticamente opzioni (riconoscibili dal formato nome, es. BTC-28MAR25-60000-C).</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">positions</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="k">for</span> <span class="n">currency</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;BTC&quot;</span><span class="p">,</span> <span class="s2">&quot;ETH&quot;</span><span class="p">]:</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;private/get_positions&quot;</span><span class="p">,</span> <span class="p">{</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>            <span class="s2">&quot;currency&quot;</span><span class="p">:</span> <span class="n">currency</span><span class="p">,</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>            <span class="s2">&quot;kind&quot;</span><span class="p">:</span> <span class="s2">&quot;future&quot;</span>  <span class="c1"># esclude opzioni</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>        <span class="p">})</span>
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>        <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;result&quot;</span><span class="p">,</span> <span class="p">[]):</span>
-<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>            <span class="k">if</span> <span class="n">pos</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;size&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># solo posizioni non-zero</span>
-<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>                <span class="n">positions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>                    <span class="s2">&quot;instrument_name&quot;</span><span class="p">:</span> <span class="n">pos</span><span class="p">[</span><span class="s2">&quot;instrument_name&quot;</span><span class="p">],</span>
-<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>                    <span class="s2">&quot;size&quot;</span><span class="p">:</span>  <span class="n">pos</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">],</span>         <span class="c1"># positivo=long, negativo=short</span>
-<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>                    <span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="s2">&quot;buy&quot;</span> <span class="k">if</span> <span class="n">pos</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;sell&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>                    <span class="s2">&quot;mark_price&quot;</span><span class="p">:</span>  <span class="n">pos</span><span class="p">[</span><span class="s2">&quot;mark_price&quot;</span><span class="p">],</span>
-<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>                    <span class="s2">&quot;pnl&quot;</span><span class="p">:</span> <span class="n">pos</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;floating_profit_loss&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>                    <span class="s2">&quot;entry_price&quot;</span><span class="p">:</span> <span class="n">pos</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;average_price&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>                    <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">pos</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
-<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>                <span class="p">})</span>
-<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>    <span class="k">return</span> <span class="n">positions</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="sd">    Fetches open positions across all futures/perpetual pairs.</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="sd">    Automatically filters out options (recognizable by the name format,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="sd">    e.g. BTC-28MAR25-60000-C).</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="n">positions</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="k">for</span> <span class="n">currency</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;BTC&quot;</span><span class="p">,</span> <span class="s2">&quot;ETH&quot;</span><span class="p">]:</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;private/get_positions&quot;</span><span class="p">,</span> <span class="p">{</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>            <span class="s2">&quot;currency&quot;</span><span class="p">:</span> <span class="n">currency</span><span class="p">,</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>            <span class="s2">&quot;kind&quot;</span><span class="p">:</span> <span class="s2">&quot;future&quot;</span>  <span class="c1"># excludes options</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>        <span class="p">})</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>        <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;result&quot;</span><span class="p">,</span> <span class="p">[]):</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>            <span class="k">if</span> <span class="n">pos</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;size&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># non-zero positions only</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>                <span class="n">positions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>                    <span class="s2">&quot;instrument_name&quot;</span><span class="p">:</span> <span class="n">pos</span><span class="p">[</span><span class="s2">&quot;instrument_name&quot;</span><span class="p">],</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>                    <span class="s2">&quot;size&quot;</span><span class="p">:</span>  <span class="n">pos</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">],</span>         <span class="c1"># positive=long, negative=short</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>                    <span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="s2">&quot;buy&quot;</span> <span class="k">if</span> <span class="n">pos</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;sell&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>                    <span class="s2">&quot;mark_price&quot;</span><span class="p">:</span>  <span class="n">pos</span><span class="p">[</span><span class="s2">&quot;mark_price&quot;</span><span class="p">],</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>                    <span class="s2">&quot;pnl&quot;</span><span class="p">:</span> <span class="n">pos</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;floating_profit_loss&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>                    <span class="s2">&quot;entry_price&quot;</span><span class="p">:</span> <span class="n">pos</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;average_price&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>                    <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">pos</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>                <span class="p">})</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>    <span class="k">return</span> <span class="n">positions</span>
 </code></pre></div>
 <h3 id="32-portfolio-summary">3.2 Portfolio Summary</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_portfolio_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
@@ -1224,11 +1199,11 @@ Costo marginale, ma si accumula su posizioni lunghe tenute giorni.</p>
 <a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="p">}</span>
 </code></pre></div>
 <hr />
-<h2 id="4-monitoring-e-alerting">4. Monitoring e Alerting</h2>
+<h2 id="4-monitoring-and-alerting">4. Monitoring and Alerting</h2>
 <h3 id="41-telegramalerts">4.1 TelegramAlerts</h3>
-<p>Il sistema di alerting usa un <strong>background thread</strong> con una coda per:
-- Non bloccare mai il trading loop (anche se Telegram e lento/down)
-- Rate limiting per evitare spam</p>
+<p>The alerting system uses a <strong>background thread</strong> with a queue to:
+- Never block the trading loop (even if Telegram is slow/down)
+- Rate-limit to avoid spam</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">TelegramAlerts</span><span class="p">:</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot_token</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">):</span>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
@@ -1252,11 +1227,11 @@ Costo marginale, ma si accumula su posizioni lunghe tenute giorni.</p>
 <a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>            <span class="s2">&quot;parse_mode&quot;</span><span class="p">:</span> <span class="s2">&quot;Markdown&quot;</span><span class="p">,</span>
 <a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>        <span class="p">},</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </code></pre></div>
-<p><strong>Tipi di alert</strong>:</p>
+<p><strong>Alert types</strong>:</p>
 <table>
 <thead>
 <tr>
-<th>Metodo</th>
+<th>Method</th>
 <th>Trigger</th>
 <th>Rate limit</th>
 </tr>
@@ -1264,176 +1239,162 @@ Costo marginale, ma si accumula su posizioni lunghe tenute giorni.</p>
 <tbody>
 <tr>
 <td><code>send_trade_open()</code></td>
-<td>Apertura ogni trade</td>
+<td>Every trade opened</td>
 <td>1/trade</td>
 </tr>
 <tr>
 <td><code>send_trade_close()</code></td>
-<td>Chiusura ogni trade</td>
+<td>Every trade closed</td>
 <td>1/trade</td>
 </tr>
 <tr>
 <td><code>send_daily_pnl()</code></td>
 <td>Daily report (23:50)</td>
-<td>1/ora</td>
+<td>1/hour</td>
 </tr>
 <tr>
 <td><code>send_regime_change()</code></td>
-<td>Cambio regime</td>
+<td>Regime change</td>
 <td>1/min</td>
 </tr>
 <tr>
 <td><code>send_api_error()</code></td>
-<td>Errore API Deribit</td>
+<td>Deribit API error</td>
 <td>1/min</td>
 </tr>
 <tr>
 <td><code>send_emergency()</code></td>
 <td>Emergency close</td>
-<td>Mai (CRITICAL bypass)</td>
+<td>Never (CRITICAL bypass)</td>
 </tr>
 <tr>
 <td><code>send_kill_switch()</code></td>
-<td>Attivazione kill switch</td>
-<td>Mai (CRITICAL bypass)</td>
+<td>Kill switch activation</td>
+<td>Never (CRITICAL bypass)</td>
 </tr>
 </tbody>
 </table>
-<h3 id="42-dashboard-streamlit">4.2 Dashboard Streamlit</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Avvio dashboard (in finestra separata)</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>streamlit<span class="w"> </span>run<span class="w"> </span>src/monitoring/dashboard.py<span class="w"> </span>--<span class="w"> </span>--bot-module<span class="w"> </span>src.async_trading_bot
+<h3 id="42-streamlit-dashboard">4.2 Streamlit Dashboard</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Start the dashboard (separate process from the bot)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>streamlit<span class="w"> </span>run<span class="w"> </span>scripts/run_dashboard.py
 </code></pre></div>
-<p>Panel disponibili:
-1. <strong>Equity Curve</strong>: grafico rendimento in tempo reale
-2. <strong>Regime corrente</strong>: TREND/RANGE con confidenza
-3. <strong>Orderflow live</strong>: CVD, imbalance, aggression ratio, Kyle's Lambda
-4. <strong>Posizioni aperte</strong>: strumento, direzione, size, P&amp;L float
-5. <strong>Scoring strategie</strong>: punteggio per ogni strategia
-6. <strong>Trade log</strong>: ultimi 20 trade con dettagli</p>
+<p>Six pages: Live trades (with order reconciliation), Risk &amp; Exposure,
+Trade history, Market context, Settings (guard-railed .env editor),
+Actions (kill switch, manual closes) — details in
+<a href="../01_architecture/">01_architecture.md</a>.</p>
 <hr />
 <h2 id="5-deployment">5. Deployment</h2>
 <h3 id="51-docker">5.1 Docker</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c"># Dockerfile</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;import asyncio; from src.async_trading_bot import AsyncTradingBot; asyncio.run(AsyncTradingBot().start())&quot;</span><span class="p">]</span>
+<p>The reference deployment uses the repository's <code>docker-compose.yml</code>:
+<strong>three services</strong> from the same image — <code>bot</code> (async trading),
+<code>dashboard</code> (Streamlit on localhost:8501, to be exposed only behind a
+tunnel + authentication) and <code>collector</code> (positioning-data archive).</p>
+<p>Key design points:
+- <code>./data</code>, <code>./logs</code> and <code>./.env</code> are <strong>bind mounts</strong>: data survives
+  container re-creation
+- <strong>no <code>env_file:</code></strong> in the compose — the bot reads the <code>.env</code> FILE with
+  <code>load_dotenv()</code> at every start, so dashboard-editor changes take
+  effect on restart
+- <code>restart: unless-stopped</code> acts as the supervisor for the
+  "edit .env → restart request → restart" flow</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w">           </span><span class="c1"># start the 3 services</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>ps<span class="w">              </span><span class="c1"># status + healthchecks</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>bot<span class="w">     </span><span class="c1"># follow the bot logs</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w">            </span><span class="c1"># stop (data stays on the host)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># docker-compose.yml</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.8&quot;</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nt">services</span><span class="p">:</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span><span class="nt">cryptoquantix</span><span class="p">:</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data:/app/data</span>
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./logs:/app/logs</span>
-<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
-<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">    </span><span class="nt">logging</span><span class="p">:</span>
-<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;json-file&quot;</span>
-<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">      </span><span class="nt">options</span><span class="p">:</span>
-<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">        </span><span class="nt">max-size</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10m&quot;</span>
-<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">        </span><span class="nt">max-file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;5&quot;</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w">                    </span><span class="c1"># avvia in background</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>docker-compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>cryptoquantix<span class="w">  </span><span class="c1"># segui i log</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>docker-compose<span class="w"> </span>down<span class="w">                     </span><span class="c1"># stop</span>
-</code></pre></div>
-<h3 id="52-checklist-pre-live">5.2 Checklist Pre-Live</h3>
-<p>Prima di passare da testnet a live, verificare:</p>
+<h3 id="52-pre-live-checklist">5.2 Pre-Live Checklist</h3>
+<p>Before switching from testnet to live, verify:</p>
 <ul>
-<li>[ ] <code>dry_run_strategies.py --backtest</code> passa senza errori</li>
-<li>[ ] <code>dry_run_full.py --duration 120</code> genera almeno 1 segnale</li>
-<li>[ ] <code>.env</code> ha <code>DERIBIT_ENV=live</code> (non testnet)</li>
-<li>[ ] API keys live create su Deribit con permessi corretti (Trade, Read)</li>
-<li>[ ] <code>INITIAL_EQUITY</code> impostato al saldo reale del conto</li>
-<li>[ ] <code>MAX_DAILY_LOSS_PCT=0.02</code> (2%) per i primi giorni</li>
-<li>[ ] <code>MAX_OPEN_TRADES=1</code> per i primi giorni</li>
-<li>[ ] Telegram bot attivo e riceve test message</li>
-<li>[ ] VPS con backup automatico del file <code>.env</code></li>
-<li>[ ] Monitoring alert: se bot non risponde per &gt;5min → notifica manuale</li>
+<li>[ ] <code>dry_run_strategies.py --backtest</code> passes without errors</li>
+<li>[ ] <code>dry_run_full.py --duration 120</code> generates at least 1 signal</li>
+<li>[ ] <code>.env</code> has <code>DERIBIT_ENV=prod</code> (not testnet)</li>
+<li>[ ] Live API keys created on Deribit with correct permissions (Trade, Read)</li>
+<li>[ ] <code>INITIAL_EQUITY</code> set to the real account balance</li>
+<li>[ ] <code>MAX_DAILY_LOSS_PCT=0.02</code> (2%) for the first days</li>
+<li>[ ] <code>MAX_OPEN_TRADES=1</code> for the first days</li>
+<li>[ ] Telegram bot active and receiving a test message</li>
+<li>[ ] Host with automatic backup of the <code>.env</code> file</li>
+<li>[ ] Monitoring alert: if the bot is unresponsive for &gt;5min → manual notification</li>
 </ul>
-<h3 id="53-raccolta-dati-storici">5.3 Raccolta Dati Storici</h3>
-<p>Per raccogliere tick data storici (necessari per backtest reale):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Raccoglie dati per 24 ore (lasciare girare in background)</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>python<span class="w"> </span>scripts/dry_run_data.py<span class="w"> </span>--duration<span class="w"> </span><span class="m">86400</span><span class="w"> </span>--symbol<span class="w"> </span>BTCUSDT
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># I dati vengono salvati in data/raw/binance_ticks.duckdb</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1"># Circa 50MB/giorno per BTCUSDT</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1"># Verifica dati raccolti</span>
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="s2">import duckdb</span>
-<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="s2">conn = duckdb.connect(&#39;data/raw/binance_ticks.duckdb&#39;)</span>
-<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="s2">print(conn.execute(&#39;SELECT COUNT(*) FROM agg_trades&#39;).fetchone())</span>
-<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="s2">print(conn.execute(&#39;SELECT MIN(timestamp_ms), MAX(timestamp_ms) FROM agg_trades&#39;).fetchone())</span>
-<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="s2">&quot;</span>
+<h3 id="53-historical-data-collection">5.3 Historical Data Collection</h3>
+<p>To collect historical tick data (needed for real backtests):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Collects data for 24 hours (leave running in the background)</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>python<span class="w"> </span>scripts/dry_run_data.py<span class="w"> </span>--duration<span class="w"> </span><span class="m">86400</span><span class="w"> </span>--symbol<span class="w"> </span>BTCUSDT
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># Data is saved to data/raw/binance_ticks.duckdb</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1"># Roughly 50MB/day for BTCUSDT</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="c1"># Verify collected data</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="s2">import duckdb</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="s2">conn = duckdb.connect(&#39;data/raw/binance_ticks.duckdb&#39;)</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="s2">print(conn.execute(&#39;SELECT COUNT(*) FROM agg_trades&#39;).fetchone())</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="s2">print(conn.execute(&#39;SELECT MIN(timestamp_ms), MAX(timestamp_ms) FROM agg_trades&#39;).fetchone())</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="s2">&quot;</span>
 </code></pre></div>
 <h3 id="54-log-management">5.4 Log Management</h3>
-<p>I log sono scritti in <code>logs/</code> con <code>RotatingFileHandler</code>:
-- <code>logs/trading_bot.log</code> (max 5MB, 5 backup)
+<p>Logs are written to <code>logs/</code> with a <code>RotatingFileHandler</code>:
+- <code>logs/async_bot.log</code> (max 5MB, 5 backups)
 - <code>logs/dry_run_full.log</code>
 - <code>logs/dry_run_orderflow.log</code></p>
-<p><strong>Lettura rapida ultimi errori</strong>:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>grep<span class="w"> </span><span class="s2">&quot;ERROR\|CRITICAL&quot;</span><span class="w"> </span>logs/trading_bot.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
+<p><strong>Quick scan of recent errors</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>grep<span class="w"> </span><span class="s2">&quot;ERROR\|CRITICAL&quot;</span><span class="w"> </span>logs/async_bot.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
 </code></pre></div></p>
 <hr />
 <h2 id="6-troubleshooting">6. Troubleshooting</h2>
 <table>
 <thead>
 <tr>
-<th>Problema</th>
-<th>Causa probabile</th>
-<th>Soluzione</th>
+<th>Issue</th>
+<th>Likely cause</th>
+<th>Fix</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>ModuleNotFoundError: websockets</code></td>
-<td>Dipendenza non installata</td>
+<td>Dependency not installed</td>
 <td><code>pip install websockets&gt;=12.0</code></td>
 </tr>
 <tr>
 <td><code>[OrderBook] sequence gap</code></td>
-<td>No snapshot REST iniziale</td>
-<td>Normale all'avvio; book si stabilizza in ~60s</td>
+<td>No initial REST snapshot</td>
+<td>Normal at startup; the book stabilizes in ~60s</td>
 </tr>
 <tr>
 <td><code>Authentication failed</code></td>
-<td>API key errata o scaduta</td>
-<td>Rigenerare su Deribit, aggiornare <code>.env</code></td>
+<td>Wrong or expired API key</td>
+<td>Regenerate on Deribit, update <code>.env</code></td>
 </tr>
 <tr>
-<td><code>Kill switch attivo</code></td>
-<td>Daily loss limit raggiunto</td>
-<td>Aspettare mezzanotte (reset automatico) o disabilitare manualmente</td>
+<td>Kill switch active</td>
+<td>Daily loss limit reached</td>
+<td>Wait for midnight (automatic reset) or deactivate manually from the dashboard</td>
 </tr>
 <tr>
-<td>Trade non eseguiti</td>
+<td>Trades not executed</td>
 <td><code>can_open_new_position() = False</code></td>
-<td>Verificare log per motivo specifico</td>
+<td>Check the logs for the specific reason</td>
 </tr>
 <tr>
-<td>Ordini orfani persistenti</td>
-<td>Registry non sincronizzato</td>
-<td>Restart bot; PositionMonitor pulisce all'avvio</td>
+<td>Persistent orphan orders</td>
+<td>Registry out of sync</td>
+<td>Restart the bot; the PositionMonitor cleans up at startup</td>
 </tr>
 <tr>
-<td><code>UnicodeEncodeError</code> Windows</td>
-<td>Terminal cp1252</td>
-<td><code>set PYTHONIOENCODING=utf-8</code> prima di avviare</td>
+<td><code>UnicodeEncodeError</code> on Windows</td>
+<td>cp1252 terminal</td>
+<td><code>set PYTHONIOENCODING=utf-8</code> before starting</td>
 </tr>
 <tr>
-<td>Pochi segnali</td>
-<td>Soglia scoring troppo alta</td>
-<td>Ridurre <code>min_score_threshold</code> in ScoringEngine o aspettare warmup</td>
+<td>Few signals</td>
+<td>Scoring threshold too high</td>
+<td>Lower <code>min_score_threshold</code> in the ScoringEngine or wait for warmup</td>
 </tr>
 <tr>
-<td>Strategia sempre BLOCKED</td>
-<td>Regime sbagliato o score basso</td>
-<td>Verificare <code>scoring.json</code> + <code>dry_run_orderflow.py</code> per stato regime</td>
+<td>Strategy always BLOCKED</td>
+<td>Wrong regime or low score</td>
+<td>Check the scoring state + regime status</td>
 </tr>
 </tbody>
 </table>

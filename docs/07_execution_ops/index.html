@@ -1300,53 +1300,39 @@ Costo marginale, ma si accumula su posizioni lunghe tenute giorni.</p>
 </tbody>
 </table>
 <h3 id="42-dashboard-streamlit">4.2 Dashboard Streamlit</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Avvio dashboard (in finestra separata)</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>streamlit<span class="w"> </span>run<span class="w"> </span>src/monitoring/dashboard.py<span class="w"> </span>--<span class="w"> </span>--bot-module<span class="w"> </span>src.async_trading_bot
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Avvio dashboard (processo separato dal bot)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>streamlit<span class="w"> </span>run<span class="w"> </span>scripts/run_dashboard.py
 </code></pre></div>
-<p>Panel disponibili:
-1. <strong>Equity Curve</strong>: grafico rendimento in tempo reale
-2. <strong>Regime corrente</strong>: TREND/RANGE con confidenza
-3. <strong>Orderflow live</strong>: CVD, imbalance, aggression ratio, Kyle's Lambda
-4. <strong>Posizioni aperte</strong>: strumento, direzione, size, P&amp;L float
-5. <strong>Scoring strategie</strong>: punteggio per ogni strategia
-6. <strong>Trade log</strong>: ultimi 20 trade con dettagli</p>
+<p>Sei pagine: Trade in corso (con riconciliazione ordini), Rischio &amp;
+Esposizione, Storico Operazioni, Contesto Mercato, Impostazioni (editor
+.env con guardrail), Azioni (kill switch, chiusure manuali) — dettagli in
+<a href="../01_architecture/">01_architecture.md</a>.</p>
 <hr />
 <h2 id="5-deployment">5. Deployment</h2>
 <h3 id="51-docker">5.1 Docker</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c"># Dockerfile</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;import asyncio; from src.async_trading_bot import AsyncTradingBot; asyncio.run(AsyncTradingBot().start())&quot;</span><span class="p">]</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># docker-compose.yml</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.8&quot;</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nt">services</span><span class="p">:</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span><span class="nt">cryptoquantix</span><span class="p">:</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data:/app/data</span>
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./logs:/app/logs</span>
-<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
-<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">    </span><span class="nt">logging</span><span class="p">:</span>
-<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;json-file&quot;</span>
-<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">      </span><span class="nt">options</span><span class="p">:</span>
-<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">        </span><span class="nt">max-size</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10m&quot;</span>
-<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">        </span><span class="nt">max-file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;5&quot;</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w">                    </span><span class="c1"># avvia in background</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>docker-compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>cryptoquantix<span class="w">  </span><span class="c1"># segui i log</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>docker-compose<span class="w"> </span>down<span class="w">                     </span><span class="c1"># stop</span>
+<p>Il deploy di riferimento usa il <code>docker-compose.yml</code> del repo: <strong>tre
+servizi</strong> dalla stessa immagine — <code>bot</code> (trading async), <code>dashboard</code>
+(Streamlit su localhost:8501, da esporre solo dietro tunnel +
+autenticazione) e <code>collector</code> (archivio dati di posizionamento).</p>
+<p>Punti chiave del design:
+- <code>./data</code>, <code>./logs</code> e <code>./.env</code> sono <strong>bind mount</strong>: i dati sopravvivono
+  alla ricreazione dei container
+- <strong>niente <code>env_file:</code></strong> nel compose — il bot legge il FILE <code>.env</code> con
+  <code>load_dotenv()</code> a ogni avvio, così le modifiche dall'editor della
+  dashboard hanno effetto al riavvio
+- <code>restart: unless-stopped</code> fa da supervisor per il flusso
+  "modifica .env → richiesta riavvio → restart"</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w">           </span><span class="c1"># avvia i 3 servizi</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>ps<span class="w">              </span><span class="c1"># stato + healthcheck</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>bot<span class="w">     </span><span class="c1"># segui i log del bot</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w">            </span><span class="c1"># stop (i dati restano sul host)</span>
 </code></pre></div>
 <h3 id="52-checklist-pre-live">5.2 Checklist Pre-Live</h3>
 <p>Prima di passare da testnet a live, verificare:</p>
 <ul>
 <li>[ ] <code>dry_run_strategies.py --backtest</code> passa senza errori</li>
 <li>[ ] <code>dry_run_full.py --duration 120</code> genera almeno 1 segnale</li>
-<li>[ ] <code>.env</code> ha <code>DERIBIT_ENV=live</code> (non testnet)</li>
+<li>[ ] <code>.env</code> ha <code>DERIBIT_ENV=prod</code> (non testnet)</li>
 <li>[ ] API keys live create su Deribit con permessi corretti (Trade, Read)</li>
 <li>[ ] <code>INITIAL_EQUITY</code> impostato al saldo reale del conto</li>
 <li>[ ] <code>MAX_DAILY_LOSS_PCT=0.02</code> (2%) per i primi giorni</li>
@@ -1357,19 +1343,19 @@ Costo marginale, ma si accumula su posizioni lunghe tenute giorni.</p>
 </ul>
 <h3 id="53-raccolta-dati-storici">5.3 Raccolta Dati Storici</h3>
 <p>Per raccogliere tick data storici (necessari per backtest reale):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Raccoglie dati per 24 ore (lasciare girare in background)</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>python<span class="w"> </span>scripts/dry_run_data.py<span class="w"> </span>--duration<span class="w"> </span><span class="m">86400</span><span class="w"> </span>--symbol<span class="w"> </span>BTCUSDT
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># I dati vengono salvati in data/raw/binance_ticks.duckdb</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1"># Circa 50MB/giorno per BTCUSDT</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1"># Verifica dati raccolti</span>
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="s2">import duckdb</span>
-<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="s2">conn = duckdb.connect(&#39;data/raw/binance_ticks.duckdb&#39;)</span>
-<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="s2">print(conn.execute(&#39;SELECT COUNT(*) FROM agg_trades&#39;).fetchone())</span>
-<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="s2">print(conn.execute(&#39;SELECT MIN(timestamp_ms), MAX(timestamp_ms) FROM agg_trades&#39;).fetchone())</span>
-<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Raccoglie dati per 24 ore (lasciare girare in background)</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>python<span class="w"> </span>scripts/dry_run_data.py<span class="w"> </span>--duration<span class="w"> </span><span class="m">86400</span><span class="w"> </span>--symbol<span class="w"> </span>BTCUSDT
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># I dati vengono salvati in data/raw/binance_ticks.duckdb</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1"># Circa 50MB/giorno per BTCUSDT</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="c1"># Verifica dati raccolti</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="s2">import duckdb</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="s2">conn = duckdb.connect(&#39;data/raw/binance_ticks.duckdb&#39;)</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="s2">print(conn.execute(&#39;SELECT COUNT(*) FROM agg_trades&#39;).fetchone())</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="s2">print(conn.execute(&#39;SELECT MIN(timestamp_ms), MAX(timestamp_ms) FROM agg_trades&#39;).fetchone())</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="s2">&quot;</span>
 </code></pre></div>
 <h3 id="54-log-management">5.4 Log Management</h3>
 <p>I log sono scritti in <code>logs/</code> con <code>RotatingFileHandler</code>:
@@ -1377,7 +1363,7 @@ Costo marginale, ma si accumula su posizioni lunghe tenute giorni.</p>
 - <code>logs/dry_run_full.log</code>
 - <code>logs/dry_run_orderflow.log</code></p>
 <p><strong>Lettura rapida ultimi errori</strong>:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>grep<span class="w"> </span><span class="s2">&quot;ERROR\|CRITICAL&quot;</span><span class="w"> </span>logs/trading_bot.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>grep<span class="w"> </span><span class="s2">&quot;ERROR\|CRITICAL&quot;</span><span class="w"> </span>logs/trading_bot.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
 </code></pre></div></p>
 <hr />
 <h2 id="6-troubleshooting">6. Troubleshooting</h2>
