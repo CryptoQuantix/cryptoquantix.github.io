@@ -1,0 +1,1152 @@
+
+<!doctype html>
+<html lang="it" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Bot di trading quantitativo su futures/perpetual — Deribit + dati Binance">
+      
+      
+        <meta name="author" content="CryptoQuantix Team">
+      
+      
+        <link rel="canonical" href="https://cryptoquantix.github.io/docs/03_configuration/">
+      
+      
+        <link rel="prev" href="../02_strategies/">
+      
+      
+        <link rel="next" href="../05_risk_sizing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Configurazione (.env) - CryptoQuantix — Documentazione</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configurazione-il-file-env" class="md-skip">
+          Vai al contenuto
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Intestazione">
+    <a href=".." title="CryptoQuantix — Documentazione" class="md-header__button md-logo" aria-label="CryptoQuantix — Documentazione" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CryptoQuantix — Documentazione
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configurazione (.env)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cerca" placeholder="Cerca" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cerca">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Cancella" aria-label="Cancella" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inizializza la ricerca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01_architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architettura
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02_strategies/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Strategie attive
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configurazione (.env)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05_risk_sizing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Risk & Sizing
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../02_data_microstructure/" class="md-tabs__link">
+          
+  
+  
+  Infrastruttura
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigazione" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CryptoQuantix — Documentazione" class="md-nav__button md-logo" aria-label="CryptoQuantix — Documentazione" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CryptoQuantix — Documentazione
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architettura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_strategies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strategie attive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configurazione (.env)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configurazione (.env)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Indice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Indice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#blocco-operativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blocco operativo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strategie-attive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategie attive
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Strategie attive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-symbol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-symbol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trend-breakdown-prefisso-tb_" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trend Breakdown (prefisso TB_)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funding-squeeze-prefisso-fs_" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funding Squeeze (prefisso FS_)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macro-core-prefisso-mc_" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macro Core (prefisso MC_)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strategie-disattivate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategie disattivate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Note
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_risk_sizing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Risk & Sizing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastruttura
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Infrastruttura
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_data_microstructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dati & Microstruttura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_orderflow_math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orderflow & CVD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_backtest_montecarlo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backtest Engine & Monte Carlo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_execution_ops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Esecuzione & Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="configurazione-il-file-env">Configurazione — il file <code>.env</code></h1>
+<blockquote>
+<p>Aggiornato: giugno 2026. Il <code>.env</code> è organizzato in tre blocchi:
+<strong>operativo</strong> (API, rischio, monitoring), <strong>STRATEGIE ATTIVE</strong> (parametri
+validati — non toccare senza rivalidare) e <strong>STRATEGIE DISATTIVATE</strong>
+(bocciate coi dati, col verdetto in commento). Il bot legge il <code>.env</code>
+SOLO all'avvio: ogni modifica richiede un riavvio.</p>
+</blockquote>
+<h2 id="blocco-operativo">Blocco operativo</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a># Deribit
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>DERIBIT_API_KEY=...           # mai committare; la dashboard non li mostra
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>DERIBIT_API_SECRET=...
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>DERIBIT_ENV=test              # test | live
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a># Risk management (vedi 05_risk_sizing.md)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>INITIAL_EQUITY=10000
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>BASE_RISK_PCT=0.01            # 1% rischio per trade tattico
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>MAX_DAILY_LOSS_PCT=0.03       # kill switch dopo -3% giornaliero
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>MAX_OPEN_TRADES=3             # max posizioni aperte sul venue
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>MAX_GROSS_EXPOSURE=1.5        # nozionale lordo aggregato max 1.5x equity
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a># Monitoring
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>MONITORING_INTERVAL_MINUTES=15   # frequenza scan segnali
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>HEALTH_CHECK_INTERVAL_SEC=5
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>MAX_API_DOWN_SEC=30              # emergency close dopo 30s di API down
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>LOG_LEVEL=INFO
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a># Telegram (opzionale, vuoto = disabilitato)
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>TELEGRAM_BOT_TOKEN=
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>TELEGRAM_CHAT_ID=
+</code></pre></div>
+<h2 id="strategie-attive">Strategie attive</h2>
+<p>I parametri di default sono quelli VALIDATI sui 4 anni. I range provati e i
+risultati sono nei report (<code>data/research/</code>); cambiare un parametro
+significa uscire dalla validazione → ripassare la pipeline
+(<a href="../microevolutive/PLAN_BULL_EVOLUTION.md">../microevolutive/PLAN_BULL_EVOLUTION.md</a> §1).</p>
+<h3 id="multi-symbol">Multi-symbol</h3>
+<p><code>TB_SYMBOLS</code> / <code>FS_SYMBOLS</code> / <code>MC_SYMBOLS</code> accettano una lista
+(<code>BTCUSDT,ETHUSDT</code>): il bot crea UN'ISTANZA per simbolo con lo strumento
+Deribit derivato (<code>ETHUSDT</code> → <code>ETH-PERPETUAL</code>). Limitazioni validate:</p>
+<ul>
+<li><code>TB_SHORT_SYMBOLS=BTCUSDT</code> — lo short TB su ETH è bocciato (PF 0.87)</li>
+<li><code>MC_SYMBOLS=BTCUSDT</code> — MacroCore su ETH bocciata; con più simboli il
+  budget di esposizione core si divide per N</li>
+</ul>
+<h3 id="trend-breakdown-prefisso-tb_">Trend Breakdown (prefisso <code>TB_</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Variabile</th>
+<th>Default</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TB_ENABLED</code></td>
+<td>true</td>
+<td></td>
+</tr>
+<tr>
+<td><code>TB_SYMBOLS</code></td>
+<td>BTCUSDT,ETHUSDT</td>
+<td>un'istanza per simbolo</td>
+</tr>
+<tr>
+<td><code>TB_SHORT_SYMBOLS</code></td>
+<td>BTCUSDT</td>
+<td>short solo dove validato</td>
+</tr>
+<tr>
+<td><code>TB_LOOKBACK_H</code></td>
+<td>48</td>
+<td>Donchian low short (barre 1h)</td>
+</tr>
+<tr>
+<td><code>TB_LOOKBACK_LONG_H</code></td>
+<td>168</td>
+<td>Donchian high long (7 giorni)</td>
+</tr>
+<tr>
+<td><code>TB_SMA_H</code></td>
+<td>48</td>
+<td>filtro trend orario</td>
+</tr>
+<tr>
+<td><code>TB_SL_ATR_MULT</code></td>
+<td>2.0</td>
+<td>stop = 2×ATR(1h,14)</td>
+</tr>
+<tr>
+<td><code>TB_RR_RATIO</code></td>
+<td>2.0</td>
+<td>TP short = 2R</td>
+</tr>
+<tr>
+<td><code>TB_RR_LONG</code></td>
+<td>0</td>
+<td>0 = nessun TP sui long (let winners run)</td>
+</tr>
+<tr>
+<td><code>TB_MAX_HOLD_HOURS</code></td>
+<td>24</td>
+<td>time exit short</td>
+</tr>
+<tr>
+<td><code>TB_MAX_HOLD_LONG_HOURS</code></td>
+<td>168</td>
+<td>time exit long</td>
+</tr>
+<tr>
+<td><code>TB_FLOW_CONFIRM</code></td>
+<td>0.50</td>
+<td>gate buy_ratio</td>
+</tr>
+<tr>
+<td><code>TB_MACRO_SMA_DAYS</code></td>
+<td>200</td>
+<td>gate macro daily</td>
+</tr>
+</tbody>
+</table>
+<h3 id="funding-squeeze-prefisso-fs_">Funding Squeeze (prefisso <code>FS_</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Variabile</th>
+<th>Default</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FS_ENABLED</code></td>
+<td>true</td>
+<td></td>
+</tr>
+<tr>
+<td><code>FS_SYMBOLS</code></td>
+<td>BTCUSDT,ETHUSDT</td>
+<td></td>
+</tr>
+<tr>
+<td><code>FS_FUNDING_THRESHOLD</code></td>
+<td>0.0001</td>
+<td>0.01%/8h = cap exchange su BTC</td>
+</tr>
+<tr>
+<td><code>FS_SMA_H</code></td>
+<td>48</td>
+<td>prezzo sotto SMA48 oraria</td>
+</tr>
+<tr>
+<td><code>FS_SL_ATR_MULT</code></td>
+<td>2.0</td>
+<td></td>
+</tr>
+<tr>
+<td><code>FS_TP_RR</code></td>
+<td>2.0</td>
+<td></td>
+</tr>
+<tr>
+<td><code>FS_MAX_HOLD_HOURS</code></td>
+<td>24</td>
+<td></td>
+</tr>
+<tr>
+<td><code>FS_COOLDOWN_HOURS</code></td>
+<td>8</td>
+<td>un trade per finestra funding</td>
+</tr>
+<tr>
+<td><code>FS_MACRO_SMA_DAYS</code></td>
+<td>200</td>
+<td>gate bear</td>
+</tr>
+<tr>
+<td><code>FS_SLOPE_DAYS</code></td>
+<td>30</td>
+<td>SMA200d più bassa di 30gg fa</td>
+</tr>
+<tr>
+<td><code>FS_ENTRY_WINDOW_MIN</code></td>
+<td>60</td>
+<td>entra solo dopo il settlement (00/08/16 UTC)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="macro-core-prefisso-mc_">Macro Core (prefisso <code>MC_</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Variabile</th>
+<th>Default</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MC_ENABLED</code></td>
+<td>true</td>
+<td></td>
+</tr>
+<tr>
+<td><code>MC_SYMBOLS</code></td>
+<td>BTCUSDT</td>
+<td>solo BTC (ETH bocciata)</td>
+</tr>
+<tr>
+<td><code>MC_SMA_DAYS</code></td>
+<td>200</td>
+<td>filtro macro daily</td>
+</tr>
+<tr>
+<td><code>MC_ATR_DAYS</code></td>
+<td>20</td>
+<td>ATR per il chandelier</td>
+</tr>
+<tr>
+<td><code>MC_CHANDELIER_K</code></td>
+<td>5.0</td>
+<td>plateau robusto 4.5-6</td>
+</tr>
+<tr>
+<td><code>MC_DISASTER_SL_PCT</code></td>
+<td>0.25</td>
+<td>stop venue -25% (bot offline)</td>
+</tr>
+<tr>
+<td><code>MC_EXPOSURE_FRACTION</code></td>
+<td>1.0</td>
+<td>size core = equity × frazione</td>
+</tr>
+<tr>
+<td><code>MC_VOL_TARGET</code></td>
+<td>0.30</td>
+<td>vol-target annualizzata (0 = off)</td>
+</tr>
+<tr>
+<td><code>MC_VOL_LOOKBACK_DAYS</code></td>
+<td>30</td>
+<td>finestra vol realizzata</td>
+</tr>
+<tr>
+<td><code>MC_EXPO_STEP</code></td>
+<td>0.25</td>
+<td>bucket di esposizione</td>
+</tr>
+<tr>
+<td><code>MC_STATE_PATH</code></td>
+<td>data/macro_core_state.json</td>
+<td>stato persistente</td>
+</tr>
+</tbody>
+</table>
+<h2 id="strategie-disattivate">Strategie disattivate</h2>
+<p>Tutte con <code>*_ENABLED=false</code> e il verdetto della validazione in commento nel
+<code>.env</code>. <strong>Non riattivare senza nuova validazione completa.</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>VB_ENABLED=false        # Volume Breakout : PF 0.42-0.74 — nessun edge
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>MR_ENABLED=false        # Mean Reversion  : PF 0.28-0.53
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>LIQ_ENABLED=false       # Liq Squeeze     : PF 0.06-0.30
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>IS_ENABLED=false        # Imbalance Scalp : fee-bound, PF 0.18-0.50
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>BRINGS_ENABLED=false    # NY Brings       : PF 0.64, negativa ogni anno
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>WM_ENABLED=false        # W/M Formation   : edge non strutturale
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>STRATEGY_SMART_MONEY_ENABLED=false
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>STRATEGY_IRON_CONDOR_ENABLED=false   # opzioni, fuori direzione progetto
+</code></pre></div>
+<h2 id="note">Note</h2>
+<ul>
+<li><code>Config.load_strategies()</code> (<a href="../config.py">../config.py</a>) è l'unico punto
+  che traduce il <code>.env</code> in istanze: la dashboard usa la stessa funzione,
+  quindi vede esattamente le istanze del bot.</li>
+<li>Testnet: l'equity di sizing è cappata a $50k (i faucet testnet gonfiano
+  l'equity e produrrebbero ordini fuori scala).</li>
+<li>Validazione config all'avvio: chiavi mancanti o <code>DERIBIT_ENV</code> non valido
+  bloccano il bootstrap.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Torna su
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

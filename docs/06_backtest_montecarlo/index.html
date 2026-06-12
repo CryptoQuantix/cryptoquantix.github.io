@@ -1,0 +1,1282 @@
+
+<!doctype html>
+<html lang="it" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Bot di trading quantitativo su futures/perpetual — Deribit + dati Binance">
+      
+      
+        <meta name="author" content="CryptoQuantix Team">
+      
+      
+        <link rel="canonical" href="https://cryptoquantix.github.io/docs/06_backtest_montecarlo/">
+      
+      
+        <link rel="prev" href="../03_orderflow_math/">
+      
+      
+        <link rel="next" href="../07_execution_ops/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Backtest Engine & Monte Carlo - CryptoQuantix — Documentazione</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#backtest-engine-e-analisi-statistica" class="md-skip">
+          Vai al contenuto
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Intestazione">
+    <a href=".." title="CryptoQuantix — Documentazione" class="md-header__button md-logo" aria-label="CryptoQuantix — Documentazione" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CryptoQuantix — Documentazione
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Backtest Engine & Monte Carlo
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cerca" placeholder="Cerca" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cerca">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Cancella" aria-label="Cancella" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inizializza la ricerca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01_architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architettura
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02_strategies/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Strategie attive
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03_configuration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configurazione (.env)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05_risk_sizing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Risk & Sizing
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../02_data_microstructure/" class="md-tabs__link">
+          
+  
+  
+  Infrastruttura
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigazione" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CryptoQuantix — Documentazione" class="md-nav__button md-logo" aria-label="CryptoQuantix — Documentazione" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CryptoQuantix — Documentazione
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architettura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_strategies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strategie attive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configurazione (.env)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_risk_sizing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Risk & Sizing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastruttura
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Infrastruttura
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_data_microstructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dati & Microstruttura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_orderflow_math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orderflow & CVD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backtest Engine & Monte Carlo
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backtest Engine & Monte Carlo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Indice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Indice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-filosofia-del-backtesting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Filosofia del Backtesting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-backtestengine-architettura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. BacktestEngine — Architettura
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. BacktestEngine — Architettura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-flusso-di-esecuzione" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Flusso di Esecuzione
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-simulazione-dei-fill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Simulazione dei Fill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-sql-per-ricostruzione-ohlcv-da-tick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 SQL per Ricostruzione OHLCV da Tick
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-metriche-di-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Metriche di Performance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Metriche di Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-rendimento-e-drawdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Rendimento e Drawdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-sharpe-ratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Sharpe Ratio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-sortino-ratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Sortino Ratio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-profit-factor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Profit Factor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-payoff-ratio-e-win-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Payoff Ratio e Win Rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-monte-carlo-simulation-bootstrap-resampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Monte Carlo Simulation — Bootstrap Resampling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Monte Carlo Simulation — Bootstrap Resampling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-teoria-del-bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Teoria del Bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-algoritmo-monte-carlo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Algoritmo Monte Carlo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-output-statistico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Output Statistico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-interpretazione-dei-risultati" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Interpretazione dei Risultati
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-numero-di-trade-per-significativita-statistica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Numero di Trade per Significativita Statistica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-journal-analytics-dataset-per-machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Journal Analytics — Dataset per Machine Learning
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_execution_ops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Esecuzione & Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="backtest-engine-e-analisi-statistica">Backtest Engine e Analisi Statistica</h1>
+<h2 id="1-filosofia-del-backtesting">1. Filosofia del Backtesting</h2>
+<p>Il backtest e uno strumento di validazione, non di ottimizzazione. I rischi principali:</p>
+<ul>
+<li><strong>Overfitting</strong>: adattare i parametri ai dati storici → il modello "memorizza" il passato invece di imparare</li>
+<li><strong>Lookahead bias</strong>: usare informazioni future non disponibili al momento del segnale</li>
+<li><strong>Survivorship bias</strong>: testare solo su asset che sono sopravvissuti</li>
+<li><strong>Transaction cost underestimation</strong>: ignorare slippage, fee, impatto mercato</li>
+<li><strong>Data snooping</strong>: testare molti modelli sugli stessi dati → almeno uno sara profittevole per caso</li>
+</ul>
+<p>Il nostro backtest usa la <strong>stessa codebase</strong> delle strategie live: lo stesso <code>OrderflowEngine</code>, lo stesso <code>RegimeDetector</code>, le stesse strategie. L'unico mock e l'<code>OrderManager</code> (che registra fills invece di inviarli a Deribit).</p>
+<hr />
+<h2 id="2-backtestengine-architettura">2. BacktestEngine — Architettura</h2>
+<h3 id="21-flusso-di-esecuzione">2.1 Flusso di Esecuzione</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>BacktestEngine.run(strategy, symbol, start_date, end_date)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── _load_candles() → carica da DuckDB o usa candle_data fornito
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   └── _load_from_duckdb(): SQL su tabella agg_trades → OHLCV 1m
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── MockOrderManager() → replace strategy.order_manager
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├── For each candle_i in candle_data:
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   ├── _feed_candle_to_engine(of_engine, candle)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   │   └── Simula 2 aggTrade: buy_volume + sell_volume
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   ├── _check_exits(open_trades, high, low, close)
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│   │   ├── LONG: se low &lt;= sl_price → exit at sl_price (&quot;sl&quot;)
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│   │   │        se high &gt;= tp_price → exit at tp_price (&quot;tp&quot;)
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   │   └── SHORT: speculare
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│   │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│   └── if i % scan_interval_candles == 0 and i &gt;= 30:
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│       ├── regime_detector.detect(candle_history) → aggiorna regime
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│       └── strategy.scan() → signals
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│           └── Per ogni signal: crea BacktestTrade, aggiungi a open_trades
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>└── Chiudi tutti i trade aperti a fine dati (&quot;end_of_data&quot;)
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    └── BacktestMetrics.compute(trades) → metriche performance
+</code></pre></div>
+<h3 id="22-simulazione-dei-fill">2.2 Simulazione dei Fill</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">execute_generic_trade</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">entry_type</span><span class="o">=</span><span class="s2">&quot;market&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">fill_price</span> <span class="o">=</span> <span class="n">price</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">if</span> <span class="n">entry_type</span> <span class="o">==</span> <span class="s2">&quot;market&quot;</span><span class="p">:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="c1"># Slippage: mercato si muove contro di te al fill</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="n">slippage</span> <span class="o">=</span> <span class="n">price</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">slippage_pct</span>  <span class="c1"># default 0.05%</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="n">fill_price</span> <span class="o">+=</span> <span class="n">slippage</span> <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;buy&quot;</span> <span class="k">else</span> <span class="o">-</span><span class="n">slippage</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="c1"># Fee Deribit futures taker: 0.05%</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="c1"># Applicata in _compute_pnl()</span>
+</code></pre></div>
+<p><strong>Struttura fee Deribit</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Taker fee (market order): 0.05% del nozionale
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Maker fee (limit order):   0.03% del nozionale
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Fee per trade (entry + exit): 2 * 0.05% = 0.10% (andata + ritorno)
+</code></pre></div></p>
+<p>Su BTC-PERPETUAL a $64500 con 0.01 BTC:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Nozionale = 64500 * 0.01 = $645
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Fee entry  = 645 * 0.0005 = $0.32
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Fee exit   = 645 * 0.0005 = $0.32
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Total fee  = $0.64 per round trip
+</code></pre></div></p>
+<h3 id="23-sql-per-ricostruzione-ohlcv-da-tick">2.3 SQL per Ricostruzione OHLCV da Tick</h3>
+<p>Il backtest carica dati storici dal DuckDB aggregando i tick in candle 1 minuto:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">SELECT</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="p">(</span><span class="n">timestamp_ms</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">60000</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">60000</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bucket_ts</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">FIRST</span><span class="p">(</span><span class="n">price</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">timestamp_ms</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">open</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">MAX</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">high</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="k">MIN</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">low</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="k">LAST</span><span class="p">(</span><span class="n">price</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">timestamp_ms</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">close</span><span class="p">,</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">volume</span><span class="p">,</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">is_buyer_maker</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">buy_volume</span><span class="p">,</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">is_buyer_maker</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sell_volume</span><span class="p">,</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">trade_count</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="k">FROM</span><span class="w"> </span><span class="n">agg_trades</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">symbol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BTCUSDT&#39;</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">timestamp_ms</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="o">?</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">bucket_ts</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">bucket_ts</span>
+</code></pre></div>
+<p>L'uso di <code>FIRST()</code> e <code>LAST()</code> invece di <code>MIN(timestamp_ms)</code> + subquery e specifico di DuckDB e garantisce open/close corretto anche con trade fuori ordine.</p>
+<hr />
+<h2 id="3-metriche-di-performance">3. Metriche di Performance</h2>
+<h3 id="31-rendimento-e-drawdown">3.1 Rendimento e Drawdown</h3>
+<p><strong>Total Return</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>R_total = (Equity_final - Equity_initial) / Equity_initial * 100
+</code></pre></div></p>
+<p><strong>Maximum Drawdown (MDD)</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>DD(t) = (Peak(t) - Equity(t)) / Peak(t) * 100
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>MDD = max_t DD(t)
+</code></pre></div></p>
+<p>dove <code>Peak(t) = max_{s &lt;= t} Equity(s)</code> (massimo storico fino a t).</p>
+<p><strong>Calmar Ratio</strong> (rendimento aggiustato per drawdown):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Calmar = R_total (annualizzato) / MDD
+</code></pre></div>
+Calmar &gt; 1: rendimento annuale supera il drawdown massimo → buona gestione del rischio.</p>
+<h3 id="32-sharpe-ratio">3.2 Sharpe Ratio</h3>
+<p>Il <strong>Sharpe Ratio</strong> misura il rendimento excess per unita di rischio:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Sharpe = (E[R] - R_f) / sigma(R)
+</code></pre></div>
+<p>Nel trading intraday, il risk-free rate <code>R_f</code> e approssimativamente 0 su timeframe brevi. Calcoliamo lo Sharpe sui <strong>R-multiples</strong> (rendimenti normalizzati per il rischio di ogni trade):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>R_i = (exit_price - entry_price) / |entry_price - sl_price|  (long)
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>R_i = (entry_price - exit_price) / |sl_price - entry_price|  (short)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Sharpe_R = mean(R_multiples) / std(R_multiples)
+</code></pre></div>
+<p>Benchmarks del settore:
+- Sharpe &lt; 0.5: strategia debole
+- 0.5 - 1.0: accettabile
+- 1.0 - 2.0: buono
+- &gt; 2.0: eccellente (difficile da mantenere su lunghi periodi)</p>
+<h3 id="33-sortino-ratio">3.3 Sortino Ratio</h3>
+<p>Il <strong>Sortino Ratio</strong> penalizza solo la volatilita negativa (downside risk):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Sortino = E[R] / sigma_downside(R)
+</code></pre></div>
+<p>dove <code>sigma_downside = sqrt(E[min(R-MAR, 0)^2])</code> e la deviazione standard dei rendimenti sotto il MAR (Minimum Acceptable Return, spesso = 0).</p>
+<p>Il Sortino e preferibile al Sharpe per strategie asimmetriche (molte piccole vincite, rare grandi perdite → Sharpe basso ma Sortino accettabile).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nd">@staticmethod</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">sortino_ratio</span><span class="p">(</span><span class="n">r_multiples</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">mar</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="n">returns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r_multiples</span><span class="p">)</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">downside</span> <span class="o">=</span> <span class="n">returns</span><span class="p">[</span><span class="n">returns</span> <span class="o">&lt;</span> <span class="n">mar</span><span class="p">]</span> <span class="o">-</span> <span class="n">mar</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">downside</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    <span class="n">sigma_down</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">downside</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma_down</span><span class="p">)</span> <span class="k">if</span> <span class="n">sigma_down</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+</code></pre></div>
+<h3 id="34-profit-factor">3.4 Profit Factor</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Profit Factor = Sum(winning_trades_PnL) / |Sum(losing_trades_PnL)|
+</code></pre></div>
+<ul>
+<li>PF &gt; 1.0: strategia profittevole</li>
+<li>PF &gt; 1.5: buono</li>
+<li>PF &gt; 2.0: eccellente</li>
+</ul>
+<h3 id="35-payoff-ratio-e-win-rate">3.5 Payoff Ratio e Win Rate</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Payoff Ratio = avg_win / avg_loss  (in valore assoluto)
+</code></pre></div>
+<p>La relazione fondamentale tra WR e Payoff:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Break-even WR = 1 / (1 + Payoff)
+</code></pre></div></p>
+<p>Con Payoff = 2 (avg_win = 2 * avg_loss): break-even WR = 1/3 = 33%
+Con Payoff = 1 (avg_win = avg_loss): break-even WR = 50%</p>
+<p>Un sistema puo essere profittevole con WR basso se il Payoff e alto, e viceversa.</p>
+<hr />
+<h2 id="4-monte-carlo-simulation-bootstrap-resampling">4. Monte Carlo Simulation — Bootstrap Resampling</h2>
+<h3 id="41-teoria-del-bootstrap">4.1 Teoria del Bootstrap</h3>
+<p>Il metodo <strong>bootstrap</strong> (Efron, 1979) stima la distribuzione di una statistica campionando con rimpiazzo dai dati storici. Nel trading:</p>
+<ul>
+<li>I trade storici <code>{R_1, R_2, ..., R_N}</code> costituiscono il campione originale</li>
+<li>Ogni simulazione: campiona N valori con rimpiazzo → sequenza alternativa possibile</li>
+<li>Eseguire 1000 simulazioni → distribuzione delle possibili sequenze di trade</li>
+</ul>
+<p><strong>Assunzione chiave</strong>: i trade sono statisticamente indipendenti (no correlazione seriale). Questa e una semplificazione: trade in trend correlato possono non essere indipendenti. Tuttavia, per sistemi con holding period brevi (&lt; 1 giorno), l'assunzione e ragionevole.</p>
+<h3 id="42-algoritmo-monte-carlo">4.2 Algoritmo Monte Carlo</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trades</span><span class="p">,</span> <span class="n">initial_equity</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">n_trades</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="n">pnls</span>      <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">pnl_usd</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">trades</span><span class="p">]</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="n">r_mults</span>   <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">r_multiple</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">trades</span><span class="p">]</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="n">n_trades</span>  <span class="o">=</span> <span class="n">n_trades</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">pnls</span><span class="p">)</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="n">final_equities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_simulations</span><span class="p">)</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>    <span class="n">max_drawdowns</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_simulations</span><span class="p">)</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>    <span class="n">sharpes</span>        <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_simulations</span><span class="p">)</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_simulations</span><span class="p">):</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>        <span class="c1"># Resample con rimpiazzo</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>        <span class="n">sim_pnls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pnls</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_trades</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>        <span class="n">sim_r</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">r_mults</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_trades</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>        <span class="c1"># Equity path</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>        <span class="n">equity_path</span> <span class="o">=</span> <span class="n">initial_equity</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sim_pnls</span><span class="p">]))</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>        <span class="n">final_equities</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">equity_path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>        <span class="c1"># Max drawdown per questa simulazione</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>        <span class="n">peak</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">equity_path</span><span class="p">)</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>        <span class="n">dd_pct</span> <span class="o">=</span> <span class="p">(</span><span class="n">peak</span> <span class="o">-</span> <span class="n">equity_path</span><span class="p">)</span> <span class="o">/</span> <span class="n">peak</span> <span class="o">*</span> <span class="mi">100</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>        <span class="n">max_drawdowns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dd_pct</span><span class="p">)</span>
+<a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>
+<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a>        <span class="c1"># Sharpe per questa simulazione</span>
+<a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a>        <span class="n">std_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sim_r</span><span class="p">)</span>
+<a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a>        <span class="n">sharpes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sim_r</span><span class="p">)</span> <span class="o">/</span> <span class="n">std_r</span> <span class="k">if</span> <span class="n">std_r</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+</code></pre></div>
+<h3 id="43-output-statistico">4.3 Output Statistico</h3>
+<p><strong>Distribuzione del capitale finale</strong> (dopo N trade):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>P5  (worst 5%):  [equity_p5]    &lt;- scenario pessimistico
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>P25:             [equity_p25]
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>P50 (median):    [equity_p50]   &lt;- scenario piu probabile
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>P75:             [equity_p75]
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>P95 (best 5%):   [equity_p95]   &lt;- scenario ottimistico
+</code></pre></div>
+<p><strong>Distribuzione del Max Drawdown</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>DD_P50 (median):   &lt;- drawdown &quot;normale&quot;
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>DD_P75:            &lt;- drawdown in scenario avverso
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>DD_P95 (worst 5%): &lt;- drawdown in scenario molto avverso
+</code></pre></div>
+<p><strong>Probabilita di rovina</strong> (equity &lt; threshold, default 50% del capitale):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>P(ruin) = n_simulations_below_threshold / total_simulations
+</code></pre></div></p>
+<p><strong>Sharpe Confidence Interval</strong> (90%):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>[Sharpe_P5, Sharpe_P95]
+</code></pre></div></p>
+<h3 id="44-interpretazione-dei-risultati">4.4 Interpretazione dei Risultati</h3>
+<p><strong>Esempio output</strong> per sistema con 100 trade storici, $10,000 equity, 1000 simulazioni:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>MONTE CARLO SIMULATION (1000 runs x 100 trades)
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>====================================================
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>Initial Equity:     $10,000.00
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>--- Final Equity Distribution ---
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>  P5  (worst 5%):   $ 8,450.00    &lt;- scenario: puoi perdere fino a $1,550
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>  P25:              $ 9,800.00
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>  P50 (median):     $11,200.00    &lt;- piu probabile: +12%
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>  P75:              $12,600.00
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>  P95 (best 5%):    $14,300.00
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>--- Max Drawdown Distribution ---
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>  P50 (median):     12.3%
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>  P75:              18.7%
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>  P95 (worst 5%):   31.2%          &lt;- raro ma possibile: drawdown di $3,120
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>
+<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>--- Probabilities ---
+<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>  Profitable:       82.3%          &lt;- 82% delle sequenze sono profittevoli
+<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>  Ruin (50% loss):   0.2%          &lt;- molto raro con sizing conservativo
+<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>
+<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>--- Sharpe (90% CI) ---
+<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>  Mean:             0.842
+<a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>  Range:            [0.312, 1.498]  &lt;- ampia variabilita: serve piu storia
+</code></pre></div>
+<h3 id="45-numero-di-trade-per-significativita-statistica">4.5 Numero di Trade per Significativita Statistica</h3>
+<p><strong>Legge dei Grandi Numeri</strong>: la media campionaria converge alla media vera all'aumentare di N.</p>
+<p><strong>Errore standard della media</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>SE = sigma(R) / sqrt(N)
+</code></pre></div></p>
+<p>Per avere CI al 95% del Sharpe con larghezza &lt; 0.5:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>N &gt; (2 * z_0.975 * sigma / 0.5)^2
+</code></pre></div></p>
+<p>Con sigma = 1 (R-multiples con std=1), z = 1.96:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>N &gt; (2 * 1.96 / 0.5)^2 = 61.5
+</code></pre></div></p>
+<p>Servono <strong>almeno 62 trade</strong> per avere un Sharpe statisticamente significativo con precisione ±0.25. Per la pratica, raccomandato &gt; 100 trade.</p>
+<p>Con &lt; 30 trade, qualsiasi statistica di performance e rumore — lo scoring engine applica correttamente il default di 0.5 in questo caso.</p>
+<hr />
+<h2 id="5-journal-analytics-dataset-per-machine-learning">5. Journal Analytics — Dataset per Machine Learning</h2>
+<p>Il <code>TradeLogger</code> salva per ogni trade il contesto completo al momento dell'ingresso:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nd">@dataclass</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">TradeSnapshot</span><span class="p">:</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>    <span class="c1"># Identificazione</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>    <span class="n">trade_id</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>    <span class="n">strategy</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>    <span class="n">symbol</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>    <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>    <span class="n">timestamp_ms</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>    <span class="c1"># Prezzi</span>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>    <span class="n">entry_price</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>    <span class="n">sl_price</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>    <span class="n">tp_price</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>    <span class="n">quantity</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>
+<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>    <span class="c1"># Contesto orderflow (feature per ML)</span>
+<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>    <span class="n">regime</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a>    <span class="n">cvd_1m</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a>    <span class="n">cvd_5m</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a>    <span class="n">cvd_15m</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a>    <span class="n">book_imbalance</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a>    <span class="n">aggression_ratio</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a>    <span class="n">volume_zscore</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-25-24" name="__codelineno-25-24" href="#__codelineno-25-24"></a>    <span class="n">vwap_z</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-25-25" name="__codelineno-25-25" href="#__codelineno-25-25"></a>    <span class="n">oi_change_pct</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-25-26" name="__codelineno-25-26" href="#__codelineno-25-26"></a>    <span class="n">kyle_lambda</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-25-27" name="__codelineno-25-27" href="#__codelineno-25-27"></a>    <span class="n">is_absorption</span><span class="p">:</span> <span class="nb">bool</span>
+<a id="__codelineno-25-28" name="__codelineno-25-28" href="#__codelineno-25-28"></a>    <span class="n">is_liq_vacuum</span><span class="p">:</span> <span class="nb">bool</span>
+<a id="__codelineno-25-29" name="__codelineno-25-29" href="#__codelineno-25-29"></a>
+<a id="__codelineno-25-30" name="__codelineno-25-30" href="#__codelineno-25-30"></a>    <span class="c1"># Esito (riempito all&#39;uscita)</span>
+<a id="__codelineno-25-31" name="__codelineno-25-31" href="#__codelineno-25-31"></a>    <span class="n">exit_price</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+<a id="__codelineno-25-32" name="__codelineno-25-32" href="#__codelineno-25-32"></a>    <span class="n">exit_reason</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>    <span class="c1"># &quot;tp&quot;, &quot;sl&quot;, &quot;manual&quot;</span>
+<a id="__codelineno-25-33" name="__codelineno-25-33" href="#__codelineno-25-33"></a>    <span class="n">pnl_usd</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+<a id="__codelineno-25-34" name="__codelineno-25-34" href="#__codelineno-25-34"></a>    <span class="n">r_multiple</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+<a id="__codelineno-25-35" name="__codelineno-25-35" href="#__codelineno-25-35"></a>    <span class="n">duration_minutes</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+<a id="__codelineno-25-36" name="__codelineno-25-36" href="#__codelineno-25-36"></a>    <span class="n">win</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+<p><strong>Uso per ML</strong>: dopo 200+ trade si hanno abbastanza dati per addestrare un classificatore binario (win/loss) usando le feature di orderflow come input. Approcci possibili:
+- Logistic Regression (baseline interpretabile)
+- Gradient Boosting (XGBoost/LightGBM) per catturare non-linearita
+- Random Forest per importanza delle feature</p>
+<p>Il target: predire se un trade sara vincente → usare il winrate predetto nel F3 del risk engine.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Torna su
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
