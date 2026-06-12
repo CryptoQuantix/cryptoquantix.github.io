@@ -27,7 +27,7 @@
                 class="px-8 py-4 bg-white text-black rounded-xl font-bold text-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
                 <i class="fab fa-github mr-2"></i> Metti una stella su GitHub
             </a>
-            <a href="{{ site.cta.docs_url }}"
+            <a href="{% if page.lang == 'it' %}https://cryptoquantix.github.io/docs/{% else %}https://cryptoquantix.github.io/docs/en/{% endif %}"
                 class="px-8 py-4 bg-white/10 text-white border border-white/20 rounded-xl font-bold text-lg hover:bg-white/20 transition-all backdrop-blur-sm">
                 <i class="fas fa-book mr-2"></i> Leggi la Documentazione
             </a>
@@ -45,7 +45,7 @@
                 class="px-8 py-4 bg-white text-black rounded-xl font-bold text-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
                 <i class="fab fa-github mr-2"></i> Star on GitHub
             </a>
-            <a href="{{ site.cta.docs_url }}"
+            <a href="{% if page.lang == 'it' %}https://cryptoquantix.github.io/docs/{% else %}https://cryptoquantix.github.io/docs/en/{% endif %}"
                 class="px-8 py-4 bg-white/10 text-white border border-white/20 rounded-xl font-bold text-lg hover:bg-white/20 transition-all backdrop-blur-sm">
                 <i class="fas fa-book mr-2"></i> Read the Docs
             </a>

@@ -90,7 +90,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/CryptoQuantix/CryptoQuantix#readme" target="_blank" rel="noopener"
+                        <a href="{% if page.lang == 'it' %}https://cryptoquantix.github.io/docs/{% else %}https://cryptoquantix.github.io/docs/en/{% endif %}" target="_blank" rel="noopener"
                             class="hover:text-brand-purple transition-colors flex items-center gap-2">
                             <i class="fas fa-book text-xs"></i>
                             {% if page.lang == 'it' %}Documentazione{% else %}Documentation{% endif %}
